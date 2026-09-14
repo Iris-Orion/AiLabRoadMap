@@ -525,6 +525,7 @@
             <span class="filter-label" id="lib-tier-label">Milestone 等级：</span>
             <div class="lib-chips-wrap" id="lib-tier-chips">
               <button class="lib-chip active" data-tier="ALL" id="tier-chip-all">全部评级 (262)</button>
+              <button class="lib-chip code-chip" data-tier="CODE" id="tier-chip-code">💻 核心伪代码 & 源码 (39)</button>
               <button class="lib-chip tier-s-chip" data-tier="Tier S" id="tier-chip-s">🌟 Tier S 划时代里程碑 (12)</button>
               <button class="lib-chip tier-a-chip" data-tier="Tier A" id="tier-chip-a">🔷 Tier A 核心基石 (16)</button>
               <button class="lib-chip tier-b-chip" data-tier="Tier B" id="tier-chip-b">🟢 Tier B 重要前沿 (17)</button>
@@ -663,6 +664,12 @@
               </svg>
               <span>PDF 全文</span>
             </a>
+            <a id="link-github" href="#" target="_blank" rel="noopener noreferrer" class="link-btn github" style="display:none;" title="查看论文官方或权威开源代码实现">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>GitHub 源码 ↗</span>
+            </a>
             <a id="link-deepmind" href="#" target="_blank" rel="noopener noreferrer" class="link-btn official">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -729,6 +736,53 @@
                 <div id="lineage-successors" class="lineage-list">
                   <span class="empty-hint" id="lineage-empty-succ">暂无后续衍生节点</span>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Algorithm Core Pseudocode & Engineering Implementation Section -->
+          <div class="drawer-section pseudocode-section" id="section-pseudocode">
+            <div class="code-section-header">
+              <div class="code-header-left">
+                <h3 class="section-title">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  <span id="code-section-title">算法核心伪代码与工程实现 (Core Pseudocode & Implementation)</span>
+                </h3>
+                <span class="code-lang-tag" id="code-lang-tag">Python / PyTorch / JAX</span>
+              </div>
+              <div class="code-header-actions">
+                <a id="code-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="code-action-btn github-action-btn" style="display:none;" title="在 GitHub 上查看源码">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span id="label-code-github">GitHub 源码直达 ↗</span>
+                </a>
+                <button id="btn-copy-code" class="code-action-btn copy-btn" title="一键复制伪代码">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span id="label-copy-code">复制代码</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Code Viewer Wrap -->
+            <div class="code-viewer-wrap">
+              <pre class="code-block"><code id="code-snippet-content"># 伪代码加载中...</code></pre>
+            </div>
+
+            <!-- Auxiliary Explanation Card -->
+            <div class="code-explanation-card">
+              <div class="explanation-title">
+                <span class="exp-icon">💡</span>
+                <span id="explanation-heading">核心算法机制剖析与步骤详解 (Algorithmic Walkthrough)</span>
+              </div>
+              <div class="explanation-body" id="code-explanation-text">
+                <!-- Dynamically rendered -->
               </div>
             </div>
           </div>

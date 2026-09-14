@@ -1102,6 +1102,255 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* --------------------------------------------------------------------------
+   Core Pseudocode & Engineering Implementation Section
+   -------------------------------------------------------------------------- */
+.pseudocode-section {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.code-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.code-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.code-header-left .section-title {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.code-lang-tag {
+  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  padding: 2px 7px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: var(--radius-sm);
+}
+
+.code-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.code-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.code-action-btn:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.code-action-btn.github-action-btn {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .code-action-btn.github-action-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.code-action-btn.github-action-btn:hover {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.code-action-btn.copy-btn.copied {
+  background: rgba(16, 185, 129, 0.18);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+.code-viewer-wrap {
+  position: relative;
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+[data-theme="light"] .code-viewer-wrap {
+  background: #1e1e2e;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.code-block {
+  margin: 0;
+  padding: 14px 16px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.code-block code {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #c9d1d9;
+  white-space: pre;
+  display: block;
+}
+
+.code-explanation-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.explanation-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.explanation-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.exp-section-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
+.exp-section-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.exp-subtitle {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+
+.exp-step-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exp-step-list li {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.exp-flow-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  color: var(--brand-blue);
+  word-break: break-word;
+}
+
+.exp-highlight-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 3px solid #f59e0b;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Card Badge in Library */
+.card-code-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.btn-read-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-read-code:hover {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.lib-chip.code-chip {
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.lib-chip.code-chip.active {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+/* --------------------------------------------------------------------------
    CoolPapers 6D Structured FAQ Section
    -------------------------------------------------------------------------- */
 .faq-section-header {

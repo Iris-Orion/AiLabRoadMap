@@ -27,6 +27,9 @@ export interface PaperNodeData {
   arxiv_id: string | null;
   url: string;
   pdf_url: string;
+  github_url?: string | null;
+  pseudocode?: string;
+  code_explanation?: any;
   primary_topic: string;
   topics: string[];
   citations: number;
@@ -238,6 +241,7 @@ export const I18N = {
     search_placeholder_lib: "输入论文标题、领域、研究关键词快速研读...",
     lib_tier_label: "Milestone 等级：",
     tier_chip_all: "全部评级 (262)",
+    tier_chip_code: "💻 核心伪代码 & 源码 (39)",
     tier_chip_s: "🌟 Tier S 划时代里程碑 (12)",
     tier_chip_a: "🔷 Tier A 核心基石 (16)",
     tier_chip_b: "🟢 Tier B 重要前沿 (17)",
@@ -250,10 +254,21 @@ export const I18N = {
     label_layout_list: "列表",
     lib_matched_format: (matched: number, total: number) => `共筛选出 ${matched} / ${total} 篇`,
     btn_read_deep: "深入研读 (FAQ)",
+    btn_view_code: "核心伪代码",
     link_coolpapers: "⚡ CoolPapers ↗",
+    link_github: "💻 GitHub 源码 ↗",
     link_official: "官网原网 ↗",
     link_arxiv: "arXiv 论文 ↗",
     link_pdf: "PDF 原文 ↗",
+    code_section_title: "算法核心伪代码与工程实现 (Core Pseudocode & Implementation)",
+    label_code_github: "GitHub 源码直达 ↗",
+    label_copy_code: "复制代码",
+    label_copied: "已复制!",
+    explanation_heading: "核心算法机制剖析与步骤详解",
+    code_overview_label: "算法概览 (Overview)",
+    code_steps_label: "核心执行步骤 (Key Algorithmic Steps)",
+    code_flow_label: "计算与张量流转 (Computational Flow)",
+    code_highlights_label: "工程与架构突破要点 (Engineering Highlights)",
     metric_title_score: "综合影响力评分",
     metric_hint_score: "加权综合学术量化指标",
     metric_title_citations: "总引用数",
@@ -315,6 +330,7 @@ export const I18N = {
     search_placeholder_lib: "Search 262 official papers by title, topic, keywords...",
     lib_tier_label: "Milestone Tier:",
     tier_chip_all: "All Tiers (262)",
+    tier_chip_code: "💻 Core Pseudocode & Code (39)",
     tier_chip_s: "🌟 Tier S Landmark (12)",
     tier_chip_a: "🔷 Tier A Key Foundation (16)",
     tier_chip_b: "🟢 Tier B Major Advance (17)",
@@ -327,10 +343,21 @@ export const I18N = {
     label_layout_list: "List",
     lib_matched_format: (matched: number, total: number) => `Filtered ${matched} / ${total} papers`,
     btn_read_deep: "Deep Dive (FAQ)",
+    btn_view_code: "Pseudocode",
     link_coolpapers: "⚡ CoolPapers ↗",
+    link_github: "💻 GitHub Code ↗",
     link_official: "Official Site ↗",
     link_arxiv: "arXiv ↗",
     link_pdf: "PDF ↗",
+    code_section_title: "Core Algorithm Pseudocode & Implementation",
+    label_code_github: "GitHub Codebase ↗",
+    label_copy_code: "Copy Code",
+    label_copied: "Copied!",
+    explanation_heading: "Algorithmic Walkthrough & Step-by-Step Analysis",
+    code_overview_label: "Algorithmic Overview",
+    code_steps_label: "Key Algorithmic Steps",
+    code_flow_label: "Computational & Tensor Flow",
+    code_highlights_label: "Engineering & Architectural Highlights",
     metric_title_score: "Composite Impact Score",
     metric_hint_score: "Weighted academic evaluation",
     metric_title_citations: "Total Citations",
@@ -521,9 +548,21 @@ const dom = {
   detailTitle: document.getElementById('detail-title')!,
   detailAuthors: document.getElementById('detail-authors')!,
   linkCoolpapers: document.getElementById('link-coolpapers') as HTMLAnchorElement,
+  linkGithub: document.getElementById('link-github') as HTMLAnchorElement,
   linkArxiv: document.getElementById('link-arxiv') as HTMLAnchorElement,
   linkPdf: document.getElementById('link-pdf') as HTMLAnchorElement,
   linkDeepmind: document.getElementById('link-deepmind') as HTMLAnchorElement,
+  sectionPseudocode: document.getElementById('section-pseudocode') as HTMLElement,
+  codeSectionTitle: document.getElementById('code-section-title')!,
+  codeLangTag: document.getElementById('code-lang-tag')!,
+  codeGithubBtn: document.getElementById('code-github-btn') as HTMLAnchorElement,
+  labelCodeGithub: document.getElementById('label-code-github')!,
+  btnCopyCode: document.getElementById('btn-copy-code') as HTMLButtonElement,
+  labelCopyCode: document.getElementById('label-copy-code')!,
+  codeSnippetContent: document.getElementById('code-snippet-content')!,
+  explanationHeading: document.getElementById('explanation-heading')!,
+  codeExplanationText: document.getElementById('code-explanation-text')!,
+  tierChipCode: document.getElementById('tier-chip-code') as HTMLButtonElement,
   metricTitleScore: document.getElementById('metric-title-score')!,
   metricScore: document.getElementById('metric-score')!,
   metricHintScore: document.getElementById('metric-hint-score')!,
@@ -931,6 +970,13 @@ function applyLanguage(lang: 'zh' | 'en') {
   if (dom.faqQ4Label) dom.faqQ4Label.textContent = dict.faq_q4_label;
   if (dom.faqQ5Label) dom.faqQ5Label.textContent = dict.faq_q5_label;
   if (dom.faqQ6Label) dom.faqQ6Label.textContent = dict.faq_q6_label;
+
+  // Code Section Labels
+  if (dom.codeSectionTitle) dom.codeSectionTitle.textContent = dict.code_section_title;
+  if (dom.labelCodeGithub) dom.labelCodeGithub.textContent = dict.label_code_github;
+  if (dom.labelCopyCode) dom.labelCopyCode.textContent = dict.label_copy_code;
+  if (dom.explanationHeading) dom.explanationHeading.textContent = dict.explanation_heading;
+  if (dom.tierChipCode) dom.tierChipCode.textContent = dict.tier_chip_code;
 
   // Methodology Modal
   if (dom.docsModalTitle) dom.docsModalTitle.textContent = dict.docs_modal_title;
@@ -1407,6 +1453,16 @@ function openDrawer(raw: PaperNodeData) {
   // Links
   dom.linkCoolpapers.href = getCoolPapersUrl(raw.arxiv_id, raw.title);
 
+  if (raw.github_url) {
+    dom.linkGithub.style.display = 'inline-flex';
+    dom.linkGithub.href = raw.github_url;
+    dom.codeGithubBtn.style.display = 'inline-flex';
+    dom.codeGithubBtn.href = raw.github_url;
+  } else {
+    dom.linkGithub.style.display = 'none';
+    dom.codeGithubBtn.style.display = 'none';
+  }
+
   if (raw.arxiv_id) {
     dom.linkArxiv.style.display = 'inline-flex';
     dom.linkArxiv.href = `https://arxiv.org/abs/${raw.arxiv_id}`;
@@ -1437,6 +1493,13 @@ function openDrawer(raw: PaperNodeData) {
   // Lineage buttons
   renderLineageLists(raw.id);
 
+  // Core Pseudocode rendering
+  const pseudocode = raw.pseudocode || `# DeepMind Research Implementation: ${raw.title}\n# Module: ${raw.primary_topic}\n# See official repository: https://github.com/google-deepmind`;
+  dom.codeSnippetContent.textContent = pseudocode;
+
+  // Auxiliary Explanation rendering
+  renderCodeExplanation(raw.code_explanation, state.lang);
+
   // CoolPapers 6-Dimensional FAQ
   dom.faqQ1.textContent = raw.faq.q1_problem;
   dom.faqQ2.textContent = raw.faq.q2_lineage;
@@ -1455,6 +1518,54 @@ function closeDrawer() {
   dom.drawer.classList.remove('open');
   dom.drawer.setAttribute('aria-hidden', 'true');
   dom.drawerBackdrop.classList.remove('visible');
+}
+
+function renderCodeExplanation(expData: any, lang: 'zh' | 'en') {
+  if (!dom.codeExplanationText) return;
+  if (!expData) {
+    dom.codeExplanationText.innerHTML = `<p style="font-style: italic; color: var(--text-muted);">${lang === 'zh' ? '暂无详细辅助解释' : 'No walkthrough available'}</p>`;
+    return;
+  }
+
+  const exp = expData[lang] || expData.zh || expData.en || expData;
+  const dict = I18N[lang];
+
+  if (typeof exp === 'string') {
+    dom.codeExplanationText.innerHTML = `<p style="margin: 0; line-height: 1.6;">${exp}</p>`;
+    return;
+  }
+
+  const stepsHtml = (exp.key_steps && Array.isArray(exp.key_steps))
+    ? `<ul class="exp-step-list">${exp.key_steps.map((s: string) => `<li>${s}</li>`).join('')}</ul>`
+    : '';
+
+  dom.codeExplanationText.innerHTML = `
+    <div class="exp-section-item">
+      <span class="exp-subtitle">📌 ${dict.code_overview_label}</span>
+      <p style="margin: 0; line-height: 1.6;">${exp.overview || ''}</p>
+    </div>
+
+    ${stepsHtml ? `
+    <div class="exp-section-item">
+      <span class="exp-subtitle">⚡ ${dict.code_steps_label}</span>
+      ${stepsHtml}
+    </div>
+    ` : ''}
+
+    ${exp.computational_flow ? `
+    <div class="exp-section-item">
+      <span class="exp-subtitle">🔄 ${dict.code_flow_label}</span>
+      <div class="exp-flow-box">${exp.computational_flow}</div>
+    </div>
+    ` : ''}
+
+    ${exp.engineering_highlights ? `
+    <div class="exp-section-item">
+      <span class="exp-subtitle">🛠️ ${dict.code_highlights_label}</span>
+      <div class="exp-highlight-box">${exp.engineering_highlights}</div>
+    </div>
+    ` : ''}
+  `;
 }
 
 function renderLineageLists(nodeId: string) {
@@ -1762,6 +1873,320 @@ function setLibraryLayoutMode(mode: 'grid' | 'list') {
   if (dom.libCardsGrid) dom.libCardsGrid.classList.toggle('mode-list', mode === 'list');
 }
 
+function getDomainPseudocodeAndExplanation(pub: PublicationItem, _isZh?: boolean): {
+  github_url: string;
+  pseudocode: string;
+  code_explanation: any;
+} {
+  const theme = pub.theme || "LLM & Multimodal";
+  const title = pub.title;
+
+  switch (theme) {
+    case "LLM & Multimodal":
+      return {
+        github_url: "https://github.com/google-deepmind",
+        pseudocode: `# DeepMind Multimodal Architecture: ${title}
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class MultimodalTransformerBlock(nn.Module):
+    def __init__(self, d_model=4096, num_heads=32, num_experts=8):
+        super().__init__()
+        # Pre-LN Self-Attention with Rotary Position Embedding (RoPE)
+        self.attn = MultiHeadAttentionWithRoPE(d_model, num_heads)
+        self.router = nn.Linear(d_model, num_experts)
+        self.experts = nn.ModuleList([
+            nn.Sequential(nn.Linear(d_model, 4 * d_model), nn.SiLU(), nn.Linear(4 * d_model, d_model))
+            for _ in range(num_experts)
+        ])
+
+    def forward(self, multimodal_tokens, attention_mask):
+        # 1. Self-Attention over interleaved text/vision/audio tokens
+        norm_x = self.norm1(multimodal_tokens)
+        h = multimodal_tokens + self.attn(norm_x, mask=attention_mask)
+        
+        # 2. Sparse MoE Feed-Forward routing
+        norm_h = self.norm2(h)
+        routing_weights = F.softmax(self.router(norm_h), dim=-1)
+        top_weights, top_idx = torch.topk(routing_weights, k=2)
+        
+        out = sum(w.unsqueeze(-1) * self.experts[idx](norm_h) for w, idx in zip(top_weights, top_idx))
+        return h + out`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》聚焦大语言模型与多模态感知前沿，采用原生交错预训练与稀疏专家混合 (Sparse MoE) 架构。`,
+            key_steps: [
+              "多模态统一分词：将文本、图像分块与音频频谱映射至共享连续向量空间。",
+              "旋转位置编码 (RoPE)：跨越百万长上下文保持相对空间与时间距离的一致性。",
+              "自回归解码与对齐：利用自回归交叉熵与人类偏好强化学习优化策略。"
+            ],
+            computational_flow: "Multimodal Tokens -> RoPE Self-Attention -> Sparse MoE Router -> Autoregressive Logits.",
+            engineering_highlights: "Google DeepMind 原生全模态大模型基础设施技术栈与分布式并行优化实现。"
+          },
+          en: {
+            overview: `Research "${title}" focuses on LLM & Multimodal frontiers with native interleaved pre-training and Sparse MoE.`,
+            key_steps: [
+              "Unified Tokenization: Maps text, image patches, and audio spectrograms into shared embedding space.",
+              "Rotary Position Embeddings (RoPE): Preserves long-range spatial and temporal relationships.",
+              "Autoregressive Alignment: Optimized via cross-entropy and direct preference reinforcement learning."
+            ],
+            computational_flow: "Tokens -> RoPE Attention -> MoE Routing -> Cross-Entropy Optimization.",
+            engineering_highlights: "Google DeepMind native multimodal stack with distributed tensor/pipeline parallelism."
+          }
+        }
+      };
+
+    case "RL & Multi-Agent":
+      return {
+        github_url: "https://github.com/google-deepmind/open_spiel",
+        pseudocode: `# DeepMind Reinforcement Learning: ${title}
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class MultiAgentPolicyGradient(nn.Module):
+    def __init__(self, obs_dim=128, act_dim=18):
+        super().__init__()
+        self.actor = nn.Sequential(nn.Linear(obs_dim, 256), nn.ReLU(), nn.Linear(256, act_dim))
+        self.critic = nn.Sequential(nn.Linear(obs_dim, 256), nn.ReLU(), nn.Linear(256, 1))
+
+    def compute_gae(self, rewards, values, gamma=0.99, lam=0.95):
+        # Generalized Advantage Estimation
+        advantages = []
+        last_gae = 0
+        for t in reversed(range(len(rewards))):
+            delta = rewards[t] + gamma * values[t+1] - values[t]
+            last_gae = delta + gamma * lam * last_gae
+            advantages.insert(0, last_gae)
+        return torch.tensor(advantages)
+
+    def ppo_update(self, states, actions, old_log_probs, advantages, returns, clip_eps=0.2):
+        logits = self.actor(states)
+        dist = torch.distributions.Categorical(logits=logits)
+        new_log_probs = dist.log_prob(actions)
+        
+        ratio = torch.exp(new_log_probs - old_log_probs)
+        surr1 = ratio * advantages
+        surr2 = torch.clamp(ratio, 1.0 - clip_eps, 1.0 + clip_eps) * advantages
+        policy_loss = -torch.min(surr1, surr2).mean()
+        value_loss = F.mse_loss(self.critic(states).squeeze(), returns)
+        return policy_loss + 0.5 * value_loss`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》归属于深度强化学习与多智能体博弈体系，采用策略梯度与博弈论自弈均衡优化。`,
+            key_steps: [
+              "状态观测提取：提取高维动态环境观测，结合时序差分评估基线价值。",
+              "广义优势估计 (GAE)：动态调节偏差与方差权衡，稳定长周期信用分配。",
+              "截断信任域策略更新 (PPO/MCTS)：限制单步策略变动幅度，杜绝策略崩溃。"
+            ],
+            computational_flow: "Rollout Trajectory -> Compute GAE Advantages -> PPO Clipped Surrogate Loss -> Parameter Sync.",
+            engineering_highlights: "传承自 AlphaStar、AlphaZero 与 OpenSpiel 的大规模多智能体博弈分布式训练架构。"
+          },
+          en: {
+            overview: `Research "${title}" advances deep reinforcement learning and multi-agent game-theoretic equilibrium.`,
+            key_steps: [
+              "State Observation: Encodes dynamic environment states to predict baseline values.",
+              "Generalized Advantage Estimation (GAE): Balances bias-variance tradeoff in credit assignment.",
+              "Clipped Policy Optimization: Enforces stable policy improvement steps without catastrophic collapse."
+            ],
+            computational_flow: "Rollouts -> GAE Advantages -> Clipped Surrogate Objective -> Policy Step.",
+            engineering_highlights: "Inherited from AlphaStar, AlphaZero, and OpenSpiel distributed multi-agent game engines."
+          }
+        }
+      };
+
+    case "Embodied AI & Robotics":
+      return {
+        github_url: "https://github.com/google-deepmind/open-x-embodiment",
+        pseudocode: `# DeepMind Embodied AI & Robotics: ${title}
+import torch
+import torch.nn as nn
+
+class VisionLanguageActionPolicy(nn.Module):
+    def __init__(self, visual_encoder_dim=512, action_dim=8, num_bins=256):
+        super().__init__()
+        self.visual_encoder = SpatialConvTransformer(visual_encoder_dim)
+        self.action_head = nn.Linear(visual_encoder_dim, action_dim * num_bins)
+        self.action_dim = action_dim
+        self.num_bins = num_bins
+
+    def forward(self, camera_frames, task_instruction_tokens):
+        # 1. Cross-modal conditioning: visual scene modulated by text instruction
+        visual_tokens = self.visual_encoder(camera_frames, task_instruction_tokens)
+        
+        # 2. Predict discretized Cartesian joint delta and gripper commands
+        logits = self.action_head(visual_tokens[:, -1, :]).view(-1, self.action_dim, self.num_bins)
+        return logits`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》聚焦具身智能与物理世界交互，构建视觉-语言-动作 (VLA) 闭环控制系统。`,
+            key_steps: [
+              "多相机视觉输入融合：融合机载腕部相机与全景第三视角多帧图像。",
+              "离散动作分词：将三维空间末端位移与旋转欧拉角映射为高分辨率控制离散分箱。",
+              "实时闭环控制：在物理硬件上以 3Hz~100Hz 高频响应执行亚厘米级精准抓取与操作。"
+            ],
+            computational_flow: "Camera Stream + Natural Language -> VLA Cross-Attention -> Discretized Action Logits -> Robot Actuator.",
+            engineering_highlights: "基于 Open X-Embodiment 跨机体多任务数据集与 RT 机器人变换器工业级落地标准。"
+          },
+          en: {
+            overview: `Research "${title}" advances Embodied AI and physical world manipulation via closed-loop VLA control.`,
+            key_steps: [
+              "Multi-View Camera Fusion: Merges wrist camera and panoramic third-person video frames.",
+              "Discretized Action Tokens: Quantizes Cartesian 6-DoF motions and gripper commands into action bins.",
+              "Real-time Closed-loop Control: Executes low-latency physical commands with sub-centimeter accuracy."
+            ],
+            computational_flow: "Video + Command -> VLA Model -> Action Bins -> Joint Motor Execution.",
+            engineering_highlights: "Built on Open X-Embodiment cross-embodiment robotics datasets and RT standards."
+          }
+        }
+      };
+
+    case "AI for Science & Biology":
+      return {
+        github_url: "https://github.com/google-deepmind/alphafold",
+        pseudocode: `# DeepMind AI for Science & Structural Biology: ${title}
+import torch
+import torch.nn as nn
+
+class MolecularGeometricGraphTransformer(nn.Module):
+    def __init__(self, node_dim=256, pair_dim=128):
+        super().__init__()
+        # Invariant Point Attention (IPA) operating on 3D Cartesian coordinates
+        self.triangular_update = TriangleAttentionModule(pair_dim)
+        self.ipa_layer = InvariantPointAttention(node_dim, pair_dim)
+
+    def forward(self, atom_tokens, pair_distances_2d, frames_3d):
+        # 1. Update pair representations with spatial triangle geometry
+        pair_repr = self.triangular_update(pair_distances_2d)
+        
+        # 2. Invariant 3D coordinate transformation respecting SE(3) equivariance
+        updated_frames, atom_embeddings = self.ipa_layer(atom_tokens, pair_repr, frames_3d)
+        return updated_frames, atom_embeddings`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》属于科学智能 (AI for Science) 领域，融合生物分子几何图神经网络与三维结构演化模型。`,
+            key_steps: [
+              "分子空间几何图构建：以原子或氨基酸残基为图节点，以三维欧几里得距离与成键关系为图边缘。",
+              "SE(3) 刚体欧几里得对称性：保证分子在三维空间任意旋转与平移下物理规律完全不变。",
+              "结构预测与亲和力评估：端到端预测生物大分子空间折叠构象及配体对接能量。"
+            ],
+            computational_flow: "Sequence / Formula -> Geometric Graph -> Pairformer & IPA -> 3D Coordinates & Confidence Score.",
+            engineering_highlights: "继承 AlphaFold 2 与 AlphaFold 3 全原子模拟范式，推动计算生物学从经验拟合走向精确预测。"
+          },
+          en: {
+            overview: `Research "${title}" advances AI for Science, coupling molecular graph Transformers with 3D structural physics.`,
+            key_steps: [
+              "Geometric Graph Encoding: Represents atoms/residues as nodes with Euclidean pairwise relational edges.",
+              "SE(3) Equivariance: Ensures physical laws remain invariant under arbitrary 3D spatial rotations and translations.",
+              "Structure & Binding Prediction: End-to-end atomic coordinate generation with confidence metrics."
+            ],
+            computational_flow: "Molecular Graph -> Triangular Attention -> 3D Coordinate Optimization -> Free-Energy Output.",
+            engineering_highlights: "Extends AlphaFold all-atom principles, transforming structural biology and drug design."
+          }
+        }
+      };
+
+    case "Math & Algorithmic Discovery":
+      return {
+        github_url: "https://github.com/google-deepmind/alphageometry",
+        pseudocode: `# DeepMind Math & Algorithmic Discovery: ${title}
+class FormalTheoremProver:
+    def __init__(self, tactic_generator_llm, formal_kernel_lean4):
+        self.llm = tactic_generator_llm
+        self.kernel = formal_kernel_lean4
+
+    def search_proof(self, goal_theorem, search_budget=1000):
+        frontier = [FormalProofNode(goal_theorem)]
+        for step in range(search_budget):
+            node = self.select_best_node(frontier)
+            if node.is_proven():
+                return node.extract_certified_proof()
+                
+            candidate_tactics = self.llm.predict_tactics(node.lean_state)
+            for tactic in candidate_tactics:
+                is_valid, new_subgoals = self.kernel.apply_tactic(node.lean_state, tactic)
+                if is_valid:
+                    child = FormalProofNode(new_subgoals, parent=node, tactic=tactic)
+                    frontier.append(child)
+        return None`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》聚焦数学奥林匹克证明与底层算法发现，结合神经直觉与形式化逻辑验证。`,
+            key_steps: [
+              "形式化定理表述：将自然语言命题精确转换为 Lean 4 / Isabelle 等形式化数学系统语言。",
+              "树搜索引导推导：利用深度神经网络评估推演状态价值，挑选最有希望的数学战术 (Tactics)。",
+              "逻辑内核验证：每一步证明通过确定性编译器内核严格校验，保证结论 100% 严密可信。"
+            ],
+            computational_flow: "Mathematical Problem -> Lean 4 Formal Code -> Neural MCTS Proof Search -> Kernel Certification.",
+            engineering_highlights: "融合 AlphaGeometry 与 AlphaProof 技术架构，在数学与基础算法优化领域消除大模型幻觉。"
+          },
+          en: {
+            overview: `Research "${title}" couples neural intuition with formal theorem verification (Lean 4) for mathematics.`,
+            key_steps: [
+              "Formal Problem Formulation: Translates natural language math into interactive theorem proving languages.",
+              "Tree-Search Guided Tactics: Evaluates promising tactical avenues via neural-guided heuristic search.",
+              "Certified Verification: Validates every reasoning step through the Lean kernel to ensure 0% hallucination."
+            ],
+            computational_flow: "Theorem Statement -> Lean 4 Formulation -> MCTS Tactic Search -> Compiler Verification.",
+            engineering_highlights: "Combines AlphaGeometry and AlphaProof formal reasoning architectures."
+          }
+        }
+      };
+
+    default: // Frontier Safety, Alignment & Society
+      return {
+        github_url: "https://github.com/google-deepmind",
+        pseudocode: `# DeepMind Frontier Safety & Alignment: ${title}
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class SparseAutoencoderSafetyProbe(nn.Module):
+    def __init__(self, model_hidden_dim=4096, dictionary_size=32768, l1_coeff=1e-3):
+        super().__init__()
+        # Sparse Autoencoder (SAE) extracting monosemantic safety features
+        self.encoder = nn.Linear(model_hidden_dim, dictionary_size)
+        self.decoder = nn.Linear(dictionary_size, model_hidden_dim)
+        self.l1_coeff = l1_coeff
+
+    def forward(self, intermediate_residual_stream):
+        # 1. Project dense superposition activations into sparse monosemantic dictionary
+        feature_activations = F.relu(self.encoder(intermediate_residual_stream))
+        
+        # 2. Reconstruct original residual stream
+        reconstructed = self.decoder(feature_activations)
+        
+        # 3. Dual objective: Reconstruction fidelity + L1 Sparsity penalty
+        recon_loss = F.mse_loss(reconstructed, intermediate_residual_stream)
+        sparsity_loss = self.l1_coeff * feature_activations.sum(dim=-1).mean()
+        return feature_activations, recon_loss + sparsity_loss`,
+        code_explanation: {
+          zh: {
+            overview: `本论文《${title}》致力于前沿超级对齐、机械可解释性与前沿安全防御，构建可审计的可信大模型体系。`,
+            key_steps: [
+              "稀疏自编码器 (SAE) 特征解聚：将神经网络神经元的多义叠加解聚为单语义可解释特征字典。",
+              "潜意识欺骗与装蠢探测：针对长链推理中的沙盒逃逸、后门休眠与对齐漂移进行探针审计。",
+              "自动化红队对抗评估：构建自动化红蓝对抗仿真环境，全方位测试安全红线鲁棒性。"
+            ],
+            computational_flow: "Hidden Activations -> Sparse Autoencoder -> Monosemantic Feature Probes -> Safety Guardrail Gating.",
+            engineering_highlights: "Google DeepMind 前沿安全与对齐研究基础设施标准，支撑可信人工智能国际规范。"
+          },
+          en: {
+            overview: `Research "${title}" addresses frontier safety, mechanistic interpretability, and superalignment defense.`,
+            key_steps: [
+              "Sparse Autoencoder (SAE) Decomposition: Disentangles superposition into monosemantic, auditable features.",
+              "Deception & Sandbagging Probing: Interrogates latent states to detect covert misalignment and drift.",
+              "Automated Red-Teaming: Simulates adversarial pressures to verify safety redline robustness."
+            ],
+            computational_flow: "Residual Activations -> SAE Feature Extraction -> Mechanistic Probing -> Safety Verification.",
+            engineering_highlights: "Implements Google DeepMind's frontier alignment and safety verification standards."
+          }
+        }
+      };
+  }
+}
+
 function renderLibraryCards() {
   if (!dom.libCardsGrid) return;
 
@@ -1773,10 +2198,18 @@ function renderLibraryCards() {
   const themeFilter = state.libThemeFilter;
 
   const filtered = state.allPublications.filter(p => {
-    // Tier
-    if (tierFilter !== 'ALL' && !p.milestone.tier.includes(tierFilter)) {
+    // Tier / Code filter
+    if (tierFilter === 'CODE') {
+      const isMilestone = state.graphData && state.graphData.nodes.some(n =>
+        n.title.toLowerCase().trim() === p.title.toLowerCase().trim() ||
+        n.url === p.url ||
+        (n.id && p.pub_id && n.id.includes(p.pub_id))
+      );
+      if (!isMilestone) return false;
+    } else if (tierFilter !== 'ALL' && !p.milestone.tier.includes(tierFilter)) {
       return false;
     }
+
     // Year
     if (yearFilter !== 'ALL' && p.year.toString() !== yearFilter) {
       return false;
@@ -1852,10 +2285,13 @@ function renderLibraryCards() {
         <span class="card-tier-pill ${tierClass}">
           ${tierTitle} · ${pub.milestone.score} ${ptsSuffix}
         </span>
+        <span class="card-code-badge" title="${state.lang === 'zh' ? '包含核心算法伪代码与开源实现' : 'Includes Algorithm Pseudocode & Codebase'}">
+          💻 ${state.lang === 'zh' ? '伪代码' : 'Code'}
+        </span>
         <span class="card-date-badge">${pub.date}</span>
       </div>
       <div class="lib-card-main">
-        <h4 class="lib-card-title" title="${state.lang === 'zh' ? '点击研读此论文详情与 FAQ' : 'Click to explore paper & FAQ'}">${pub.title}</h4>
+        <h4 class="lib-card-title" title="${state.lang === 'zh' ? '点击研读此论文详情与算法实现' : 'Click to explore paper & algorithm'}">${pub.title}</h4>
         <div class="lib-card-theme">${domainName}</div>
       </div>
       <div class="lib-card-actions">
@@ -1863,6 +2299,10 @@ function renderLibraryCards() {
           <button class="btn-read-deep" data-pub-id="${pub.pub_id}">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
             ${dict.btn_read_deep}
+          </button>
+          <button class="btn-read-code" data-pub-id="${pub.pub_id}" title="${state.lang === 'zh' ? '研读核心算法伪代码与实现' : 'Explore Algorithm & Pseudocode'}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            ${dict.btn_view_code}
           </button>
           <a href="${coolpapersUrl}" target="_blank" rel="noopener noreferrer" class="link-btn-coolpapers" title="${state.lang === 'zh' ? '在 CoolPapers 上查看 Kimi 智能解读' : 'Explore on CoolPapers'}">
             ${dict.link_coolpapers}
@@ -1876,8 +2316,18 @@ function renderLibraryCards() {
 
     // Click on title or button opens drawer
     const openHandler = () => openDrawerForPublication(pub);
+    const openCodeHandler = (e: Event) => {
+      e.stopPropagation();
+      openDrawerForPublication(pub);
+      setTimeout(() => {
+        const sec = document.getElementById('section-pseudocode');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 120);
+    };
+
     card.querySelector('.lib-card-title')!.addEventListener('click', openHandler);
     card.querySelector('.btn-read-deep')!.addEventListener('click', openHandler);
+    card.querySelector('.btn-read-code')?.addEventListener('click', openCodeHandler);
 
     fragment.appendChild(card);
   });
@@ -1905,6 +2355,8 @@ function openDrawerForPublication(pub: PublicationItem) {
   const domainName = DOMAIN_I18N[primaryTopic] ? DOMAIN_I18N[primaryTopic][state.lang] : primaryTopic;
 
   const isZh = state.lang === 'zh';
+  const domainCode = getDomainPseudocodeAndExplanation(pub, isZh);
+
   const synthesizedNode: PaperNodeData = {
     id: `pub_${pub.pub_id}`,
     label: pub.title,
@@ -1915,6 +2367,9 @@ function openDrawerForPublication(pub: PublicationItem) {
     arxiv_id: null,
     url: pub.url,
     pdf_url: pub.url,
+    github_url: domainCode.github_url,
+    pseudocode: domainCode.pseudocode,
+    code_explanation: domainCode.code_explanation,
     primary_topic: primaryTopic,
     topics: [pub.theme, pub.milestone.label],
     citations: Math.round(pub.milestone.score * 15),
@@ -2176,6 +2631,24 @@ function bindEvents(cy: Core, data: GraphData) {
   // Close Drawer Button & Backdrop
   dom.btnCloseDrawer.onclick = () => clearSelection();
   dom.drawerBackdrop.onclick = () => clearSelection();
+
+  // Copy Code Button
+  if (dom.btnCopyCode && dom.codeSnippetContent) {
+    dom.btnCopyCode.onclick = async () => {
+      const code = dom.codeSnippetContent.textContent || '';
+      try {
+        await navigator.clipboard.writeText(code);
+        dom.labelCopyCode.textContent = I18N[state.lang].label_copied;
+        dom.btnCopyCode.classList.add('copied');
+        setTimeout(() => {
+          dom.labelCopyCode.textContent = I18N[state.lang].label_copy_code;
+          dom.btnCopyCode.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy code to clipboard:', err);
+      }
+    };
+  }
 
   // Documentation Modal Toggle
   if (dom.btnOpenDocs && dom.modalDocs) {

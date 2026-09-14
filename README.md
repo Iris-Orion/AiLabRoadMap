@@ -3,11 +3,14 @@
 > **Interactive Technical Roadmaps & Milestone Lineage Hub for Top Global AI Research Labs**  
 > **全球顶尖 AI 实验室技术演进图谱与学术研读中枢**
 
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?logo=github)](https://iris-orion.github.io/AiLabRoadMap/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Vite](https://img.shields.io/badge/Frontend-Vite%20%2B%20TypeScript-646CFF.svg)](https://vitejs.dev/)
 [![Cytoscape](https://img.shields.io/badge/Graph-Cytoscape.js-0074D9.svg)](https://js.cytoscape.org/)
 [![CoolPapers](https://img.shields.io/badge/Powered%20By-CoolPapers-10B981.svg)](https://papers.cool/)
 [![i18n](https://img.shields.io/badge/Language-English%20%7C%20%E4%B8%AD%E6%96%87-8B5CF6.svg)](#)
+
+> 🔗 **在线访问入口 (Live Demo)**: **[https://iris-orion.github.io/AiLabRoadMap/](https://iris-orion.github.io/AiLabRoadMap/)**
 
 ---
 

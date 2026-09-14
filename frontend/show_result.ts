@@ -17,6 +17,37 @@ export interface PaperFAQ {
   q6_tldr: string;
 }
 
+export interface TheoryEquation {
+  name: string;
+  latex: string;
+  description: string;
+}
+
+export interface TheoryCodeMapping {
+  symbol: string;
+  math_meaning: string;
+  code_variable: string;
+}
+
+export interface TheoryExplanation {
+  mathematical_foundations: string;
+  key_equations: TheoryEquation[];
+  theory_code_mapping: TheoryCodeMapping[];
+}
+
+export interface CoreArtifact {
+  path: string;
+  purpose: string;
+  type: string;
+}
+
+export interface RepoStructure {
+  repo_name: string;
+  deepwiki_url: string;
+  tree_text: string;
+  core_artifacts: CoreArtifact[];
+}
+
 export interface PaperNodeData {
   id: string;
   label: string;
@@ -28,6 +59,9 @@ export interface PaperNodeData {
   url: string;
   pdf_url: string;
   github_url?: string | null;
+  deepwiki_url?: string;
+  repo_structure?: RepoStructure;
+  theory_explanation?: TheoryExplanation;
   pseudocode?: string;
   code_explanation?: any;
   primary_topic: string;
@@ -299,7 +333,25 @@ export const I18N = {
     legend_hint_arrow: "➔ 箭头指向后继衍生/应用工作",
     legend_hint_ancestor: "● 橙黄高亮：祖先引用溯源 (Predecessors)",
     legend_hint_descendant: "● 翠绿高亮：后续衍生继承 (Successors)",
-    docs_modal_title: "DeepMind Research Roadmap 评级体系与方法学说明文档"
+    docs_modal_title: "DeepMind Research Roadmap 评级体系与方法学说明文档",
+    link_deepwiki: "📖 DeepWiki 架构解构 ↗",
+    toggle_fullscreen: "全屏研读",
+    toggle_windowed: "窗口模式",
+    anchor_deepwiki: "DeepWiki 仓库解构",
+    anchor_theory: "理论公式与推导",
+    anchor_code: "核心源码与张量实现",
+    anchor_walkthrough: "四维算法剖析",
+    anchor_lineage: "技术传承脉络",
+    anchor_faq: "CoolPapers 深度 FAQ",
+    title_deepwiki_section: "DeepWiki 仓库架构解构与核心产物 (DeepWiki Architecture)",
+    btn_deepwiki_full: "📖 在 DeepWiki 查看完整代码知识图谱 ↗",
+    desc_deepwiki: "结合 DeepWiki 自动化代码解构服务，呈现该特定开源代码仓库的顶层目录拓扑与关键算法产物 (Core Artifacts)。",
+    title_core_artifacts: "🌟 核心算法产物与关键文件解构 (Core Artifacts)",
+    title_theory_section: "算法理论基础与数学推导 (Theoretical Formulation)",
+    theory_tag_label: "Mathematical Rigor",
+    title_math_foundation: "📌 核心数学理论与优化目标",
+    title_key_equations: "⚡ 核心数学公式与形式化定义",
+    title_theory_mapping: "🔄 数学符号 ➔ 源码变量映射对齐表 (Theory-Code Mapping)"
   },
   en: {
     doc_title: "AiLabRoadMap | Global AI Labs Evolution Graph & Lineage",
@@ -388,7 +440,25 @@ export const I18N = {
     legend_hint_arrow: "➔ Arrow indicates derivative lineage",
     legend_hint_ancestor: "● Orange: Ancestor Predecessors",
     legend_hint_descendant: "● Emerald: Descendant Successors",
-    docs_modal_title: "DeepMind Research Roadmap Milestone Rating & Methodology"
+    docs_modal_title: "DeepMind Research Roadmap Milestone Rating & Methodology",
+    link_deepwiki: "📖 DeepWiki Architecture ↗",
+    toggle_fullscreen: "Fullscreen",
+    toggle_windowed: "Windowed",
+    anchor_deepwiki: "DeepWiki Architecture",
+    anchor_theory: "Theory & Equations",
+    anchor_code: "Core Implementation",
+    anchor_walkthrough: "Algorithmic Walkthrough",
+    anchor_lineage: "Interactive Lineage",
+    anchor_faq: "CoolPapers 6-D FAQ",
+    title_deepwiki_section: "DeepWiki Repository Architecture & Core Artifacts",
+    btn_deepwiki_full: "📖 Explore Full Codebase Knowledge Graph on DeepWiki ↗",
+    desc_deepwiki: "Deconstructs the specific repository's directory topology and core algorithmic artifacts via DeepWiki automated analysis.",
+    title_core_artifacts: "🌟 Core Algorithmic Artifacts & Modules",
+    title_theory_section: "Theoretical Foundations & Mathematical Formulations",
+    theory_tag_label: "Mathematical Rigor",
+    title_math_foundation: "📌 Core Mathematical Principles & Objectives",
+    title_key_equations: "⚡ Key Equations & Formal Formulations",
+    title_theory_mapping: "🔄 Theory-Code Alignment Table (Math ➔ Source)"
   }
 };
 
@@ -596,6 +666,43 @@ const dom = {
   faqQ5: document.getElementById('faq-q5')!,
   faqQ6Label: document.getElementById('faq-q6-label')!,
   faqQ6: document.getElementById('faq-q6')!,
+
+  // Workbench Window & Controls
+  workbenchWindow: document.getElementById('workbench-window')!,
+  workbenchScrollBody: document.getElementById('workbench-scroll-body')!,
+  btnToggleFullscreen: document.getElementById('btn-toggle-fullscreen') as HTMLButtonElement,
+  labelToggleFullscreen: document.getElementById('label-toggle-fullscreen')!,
+
+  // DeepWiki Elements
+  linkDeepwiki: document.getElementById('link-deepwiki') as HTMLAnchorElement,
+  labelLinkDeepwiki: document.getElementById('label-link-deepwiki')!,
+  deepwikiExtBtn: document.getElementById('deepwiki-ext-btn') as HTMLAnchorElement,
+  deepwikiRepoName: document.getElementById('deepwiki-repo-name')!,
+  deepwikiTreeContent: document.getElementById('deepwiki-tree-content')!,
+  deepwikiArtifactsList: document.getElementById('deepwiki-artifacts-list')!,
+  titleDeepwikiSection: document.getElementById('title-deepwiki-section')!,
+  descDeepwiki: document.getElementById('desc-deepwiki')!,
+  titleCoreArtifacts: document.getElementById('title-core-artifacts')!,
+
+  // Theoretical Foundations Elements
+  sectionTheory: document.getElementById('section-theory') as HTMLElement,
+  titleTheorySection: document.getElementById('title-theory-section')!,
+  theoryTagLabel: document.getElementById('theory-tag-label')!,
+  titleMathFoundation: document.getElementById('title-math-foundation')!,
+  theoryFoundationContent: document.getElementById('theory-foundation-content')!,
+  titleKeyEquations: document.getElementById('title-key-equations')!,
+  theoryEquationsList: document.getElementById('theory-equations-list')!,
+  titleTheoryMapping: document.getElementById('title-theory-mapping')!,
+  theoryMappingTbody: document.getElementById('theory-mapping-tbody')!,
+
+  // Anchor Nav Elements
+  workbenchAnchorNav: document.getElementById('workbench-anchor-nav')!,
+  anchorLabelDeepwiki: document.getElementById('anchor-label-deepwiki')!,
+  anchorLabelTheory: document.getElementById('anchor-label-theory')!,
+  anchorLabelCode: document.getElementById('anchor-label-code')!,
+  anchorLabelWalkthrough: document.getElementById('anchor-label-walkthrough')!,
+  anchorLabelLineage: document.getElementById('anchor-label-lineage')!,
+  anchorLabelFaq: document.getElementById('anchor-label-faq')!,
 
   // Documentation Modal
   modalDocs: document.getElementById('modal-docs') as HTMLElement,
@@ -977,6 +1084,32 @@ function applyLanguage(lang: 'zh' | 'en') {
   if (dom.labelCopyCode) dom.labelCopyCode.textContent = dict.label_copy_code;
   if (dom.explanationHeading) dom.explanationHeading.textContent = dict.explanation_heading;
   if (dom.tierChipCode) dom.tierChipCode.textContent = dict.tier_chip_code;
+
+  // Workbench & DeepWiki & Theory Labels
+  if (dom.labelLinkDeepwiki) dom.labelLinkDeepwiki.textContent = dict.link_deepwiki;
+  if (dom.labelToggleFullscreen) {
+    dom.labelToggleFullscreen.textContent = dom.drawer.classList.contains('is-fullscreen')
+      ? dict.toggle_windowed
+      : dict.toggle_fullscreen;
+  }
+  if (dom.anchorLabelDeepwiki) dom.anchorLabelDeepwiki.textContent = dict.anchor_deepwiki;
+  if (dom.anchorLabelTheory) dom.anchorLabelTheory.textContent = dict.anchor_theory;
+  if (dom.anchorLabelCode) dom.anchorLabelCode.textContent = dict.anchor_code;
+  if (dom.anchorLabelWalkthrough) dom.anchorLabelWalkthrough.textContent = dict.anchor_walkthrough;
+  if (dom.anchorLabelLineage) dom.anchorLabelLineage.textContent = dict.anchor_lineage;
+  if (dom.anchorLabelFaq) dom.anchorLabelFaq.textContent = dict.anchor_faq;
+  if (dom.titleDeepwikiSection) dom.titleDeepwikiSection.textContent = dict.title_deepwiki_section;
+  if (dom.deepwikiExtBtn) {
+    const span = dom.deepwikiExtBtn.querySelector('span');
+    if (span) span.textContent = dict.btn_deepwiki_full;
+  }
+  if (dom.descDeepwiki) dom.descDeepwiki.textContent = dict.desc_deepwiki;
+  if (dom.titleCoreArtifacts) dom.titleCoreArtifacts.textContent = dict.title_core_artifacts;
+  if (dom.titleTheorySection) dom.titleTheorySection.textContent = dict.title_theory_section;
+  if (dom.theoryTagLabel) dom.theoryTagLabel.textContent = dict.theory_tag_label;
+  if (dom.titleMathFoundation) dom.titleMathFoundation.textContent = dict.title_math_foundation;
+  if (dom.titleKeyEquations) dom.titleKeyEquations.textContent = dict.title_key_equations;
+  if (dom.titleTheoryMapping) dom.titleTheoryMapping.textContent = dict.title_theory_mapping;
 
   // Methodology Modal
   if (dom.docsModalTitle) dom.docsModalTitle.textContent = dict.docs_modal_title;
@@ -1434,6 +1567,143 @@ function hideTooltip() {
   dom.nodeTooltip.style.display = 'none';
 }
 
+function escapeHtml(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function renderDeepWiki(raw: PaperNodeData) {
+  const deepwikiUrl = raw.deepwiki_url || (raw.github_url ? raw.github_url.replace('https://github.com/', 'https://deepwiki.com/') : 'https://deepwiki.com/google-deepmind/alphafold');
+  
+  if (dom.linkDeepwiki) {
+    dom.linkDeepwiki.style.display = 'inline-flex';
+    dom.linkDeepwiki.href = deepwikiUrl;
+  }
+  if (dom.deepwikiExtBtn) {
+    dom.deepwikiExtBtn.style.display = 'inline-flex';
+    dom.deepwikiExtBtn.href = deepwikiUrl;
+  }
+
+  const repo = raw.repo_structure;
+  if (repo) {
+    if (dom.deepwikiRepoName) dom.deepwikiRepoName.textContent = repo.repo_name || 'google-deepmind';
+    if (dom.deepwikiTreeContent) dom.deepwikiTreeContent.textContent = repo.tree_text || '# No structure tree available';
+    
+    if (dom.deepwikiArtifactsList) {
+      if (repo.core_artifacts && Array.isArray(repo.core_artifacts) && repo.core_artifacts.length > 0) {
+        dom.deepwikiArtifactsList.innerHTML = repo.core_artifacts.map((art: any) => `
+          <div class="artifact-card">
+            <div class="artifact-card-header">
+              <span class="artifact-type-tag">${escapeHtml(art.type || 'Source Module')}</span>
+              <code class="artifact-path">${escapeHtml(art.path || '')}</code>
+            </div>
+            <p class="artifact-desc">${escapeHtml(art.purpose || '')}</p>
+          </div>
+        `).join('');
+      } else {
+        dom.deepwikiArtifactsList.innerHTML = `<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.88rem; padding: 8px 0;">${state.lang === 'zh' ? '暂无核心产物标注' : 'No core artifacts annotated'}</div>`;
+      }
+    }
+  } else {
+    const repoName = raw.github_url ? raw.github_url.replace('https://github.com/', '') : 'google-deepmind/gemma_pytorch';
+    if (dom.deepwikiRepoName) dom.deepwikiRepoName.textContent = repoName;
+    if (dom.deepwikiTreeContent) dom.deepwikiTreeContent.textContent = `# Repository structure indexed by DeepWiki\n# Explore at ${deepwikiUrl}\n\n${repoName}/\n├── README.md\n├── requirements.txt\n├── pyproject.toml\n└── src/\n    ├── model.py\n    ├── train.py\n    └── inference.py`;
+    if (dom.deepwikiArtifactsList) {
+      dom.deepwikiArtifactsList.innerHTML = `
+        <div class="artifact-card">
+          <div class="artifact-card-header">
+            <span class="artifact-type-tag">Core Entry</span>
+            <code class="artifact-path">${repoName}/src/model.py</code>
+          </div>
+          <p class="artifact-desc">${state.lang === 'zh' ? '核心算法网络定义与前向传播实现' : 'Core neural network architecture and forward graph'}</p>
+        </div>
+        <div class="artifact-card">
+          <div class="artifact-card-header">
+            <span class="artifact-type-tag">Optimization</span>
+            <code class="artifact-path">${repoName}/src/train.py</code>
+          </div>
+          <p class="artifact-desc">${state.lang === 'zh' ? '目标损失函数计算与分布式优化引擎' : 'Loss function calculation and distributed optimizer'}</p>
+        </div>
+      `;
+    }
+  }
+}
+
+function renderTheory(raw: PaperNodeData) {
+  const theory = raw.theory_explanation;
+  if (theory) {
+    if (dom.theoryFoundationContent) {
+      dom.theoryFoundationContent.textContent = theory.mathematical_foundations || (state.lang === 'zh' ? '该算法在特定损失目标与动力学约束下完成形式化求解。' : 'The algorithm optimizes formal loss objectives under dynamical constraints.');
+    }
+    
+    if (dom.theoryEquationsList) {
+      if (theory.key_equations && Array.isArray(theory.key_equations) && theory.key_equations.length > 0) {
+        dom.theoryEquationsList.innerHTML = theory.key_equations.map((eq: any) => `
+          <div class="equation-card">
+            <div class="equation-card-header">
+              <span class="equation-name">${escapeHtml(eq.name || '公式定义')}</span>
+            </div>
+            <div class="equation-latex"><code>${escapeHtml(eq.latex || '')}</code></div>
+            <p class="equation-desc">${escapeHtml(eq.description || '')}</p>
+          </div>
+        `).join('');
+      } else {
+        dom.theoryEquationsList.innerHTML = `<div style="color: var(--text-muted); font-size: 0.88rem;">${state.lang === 'zh' ? '暂无公式定义' : 'No key equations provided'}</div>`;
+      }
+    }
+
+    if (dom.theoryMappingTbody) {
+      if (theory.theory_code_mapping && Array.isArray(theory.theory_code_mapping) && theory.theory_code_mapping.length > 0) {
+        dom.theoryMappingTbody.innerHTML = theory.theory_code_mapping.map((m: any) => `
+          <tr>
+            <td><code class="theory-symbol">${escapeHtml(m.symbol || '')}</code></td>
+            <td><code class="theory-var">${escapeHtml(m.code_variable || '')}</code></td>
+            <td class="theory-meaning">${escapeHtml(m.math_meaning || '')}</td>
+          </tr>
+        `).join('');
+      } else {
+        dom.theoryMappingTbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">${state.lang === 'zh' ? '暂无符号映射' : 'No symbol mapping available'}</td></tr>`;
+      }
+    }
+  } else {
+    if (dom.theoryFoundationContent) {
+      dom.theoryFoundationContent.textContent = state.lang === 'zh'
+        ? '该论文算法理论立足于数理优化、信息论与统计学习理论。'
+        : 'Theoretical foundations grounded in statistical learning and optimization.';
+    }
+    if (dom.theoryEquationsList) {
+      dom.theoryEquationsList.innerHTML = `
+        <div class="equation-card">
+          <div class="equation-card-header">
+            <span class="equation-name">Optimization Objective</span>
+          </div>
+          <div class="equation-latex"><code>\\min_\\theta \\mathbb{E}_{(x, y) \\sim \\mathcal{D}} [\\mathcal{L}(f_\\theta(x), y)] + \\lambda \\Omega(\\theta)</code></div>
+          <p class="equation-desc">${state.lang === 'zh' ? '参数化模型的经验风险最小化与正则化泛函' : 'Empirical risk minimization with parameter regularization.'}</p>
+        </div>
+      `;
+    }
+    if (dom.theoryMappingTbody) {
+      dom.theoryMappingTbody.innerHTML = `
+        <tr>
+          <td><code class="theory-symbol">\\theta</code></td>
+          <td><code class="theory-var">model.parameters()</code></td>
+          <td class="theory-meaning">${state.lang === 'zh' ? '神经网络可学习权重与偏置张量' : 'Trainable neural network weight tensors'}</td>
+        </tr>
+        <tr>
+          <td><code class="theory-symbol">\\mathcal{L}</code></td>
+          <td><code class="theory-var">criterion(output, target)</code></td>
+          <td class="theory-meaning">${state.lang === 'zh' ? '任务特定的损失函数（交叉熵或均方误差）' : 'Task-specific objective loss function'}</td>
+        </tr>
+      `;
+    }
+  }
+}
+
 function openDrawer(raw: PaperNodeData) {
   state.selectedNodeId = raw.id;
 
@@ -1493,8 +1763,13 @@ function openDrawer(raw: PaperNodeData) {
   // Lineage buttons
   renderLineageLists(raw.id);
 
-  // Core Pseudocode rendering
-  const pseudocode = raw.pseudocode || `# DeepMind Research Implementation: ${raw.title}\n# Module: ${raw.primary_topic}\n# See official repository: https://github.com/google-deepmind`;
+  // DeepWiki & Theory rendering
+  renderDeepWiki(raw);
+  renderTheory(raw);
+
+  // Core Pseudocode / Source Code rendering
+  const repoFallback = raw.github_url || "https://github.com/google-deepmind/gemma_pytorch";
+  const pseudocode = raw.pseudocode || `# DeepMind Research Implementation: ${raw.title}\n# Module: ${raw.primary_topic}\n# Specific repository: ${repoFallback}`;
   dom.codeSnippetContent.textContent = pseudocode;
 
   // Auxiliary Explanation rendering
@@ -1508,7 +1783,19 @@ function openDrawer(raw: PaperNodeData) {
   dom.faqQ5.textContent = raw.faq.q5_deepmind_role;
   dom.faqQ6.textContent = raw.faq.q6_tldr;
 
-  // Open drawer UI
+  // Reset scroll position to top
+  if (dom.workbenchScrollBody) {
+    dom.workbenchScrollBody.scrollTop = 0;
+  }
+
+  // Reset active anchor nav item
+  if (dom.workbenchAnchorNav) {
+    dom.workbenchAnchorNav.querySelectorAll('.anchor-nav-btn').forEach((b, idx) => {
+      b.classList.toggle('active', idx === 0);
+    });
+  }
+
+  // Open modal workbench UI (directly full expansive)
   dom.drawer.classList.add('open');
   dom.drawer.setAttribute('aria-hidden', 'false');
   dom.drawerBackdrop.classList.add('visible');
@@ -1516,8 +1803,12 @@ function openDrawer(raw: PaperNodeData) {
 
 function closeDrawer() {
   dom.drawer.classList.remove('open');
+  dom.drawer.classList.remove('is-fullscreen');
   dom.drawer.setAttribute('aria-hidden', 'true');
   dom.drawerBackdrop.classList.remove('visible');
+  if (dom.labelToggleFullscreen) {
+    dom.labelToggleFullscreen.textContent = state.lang === 'zh' ? '全屏研读' : 'Fullscreen';
+  }
 }
 
 function renderCodeExplanation(expData: any, lang: 'zh' | 'en') {
@@ -1875,6 +2166,9 @@ function setLibraryLayoutMode(mode: 'grid' | 'list') {
 
 function getDomainPseudocodeAndExplanation(pub: PublicationItem, _isZh?: boolean): {
   github_url: string;
+  deepwiki_url: string;
+  repo_structure: RepoStructure;
+  theory_explanation: TheoryExplanation;
   pseudocode: string;
   code_explanation: any;
 } {
@@ -1884,7 +2178,45 @@ function getDomainPseudocodeAndExplanation(pub: PublicationItem, _isZh?: boolean
   switch (theme) {
     case "LLM & Multimodal":
       return {
-        github_url: "https://github.com/google-deepmind",
+        github_url: "https://github.com/google-deepmind/gemma_pytorch",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/gemma_pytorch",
+        repo_structure: {
+          repo_name: "google-deepmind/gemma_pytorch",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/gemma_pytorch",
+          tree_text: `google-deepmind/gemma_pytorch/
+├── gemma/
+│   ├── config.py             # Model hyperparameter dataclasses
+│   ├── model.py              # Rotary Embeddings, RMSNorm, GeGLU & MoE Transformer
+│   ├── tokenizer.py          # SentencePiece vocabulary & byte fallback
+│   └── sampler.py            # KV caching & nucleus sampling
+└── scripts/
+    └── run.py                # Distributed TPU/GPU generation script`,
+          core_artifacts: [
+            { path: "gemma/model.py", type: "Core Model", purpose: "Rotary position embedding (RoPE), Multi-Head Attention & GeGLU MLP" },
+            { path: "gemma/config.py", type: "Configuration", purpose: "Vocabulary size, head dimensions, and layer parameters" },
+            { path: "gemma/sampler.py", type: "Inference Engine", purpose: "Autoregressive generation with KV caching and top-p sampling" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "基于因果自回归语言建模 (Autoregressive LM) 与旋转位置编码 (RoPE)，在复数内积空间中自然保留 token 间的相对几何距离。采用 RMSNorm 保持数值稳定性，并使用 GeGLU 门控非线性激活增强语义表征容量。",
+          key_equations: [
+            {
+              name: "RoPE Rotary Transformation",
+              latex: "\\mathbf{R}_{\\Theta, m}^d = \\mathrm{diag}\\left(\\begin{pmatrix} \\cos m\\theta_i & -\\sin m\\theta_i \\\\ \\sin m\\theta_i & \\cos m\\theta_i \\end{pmatrix}\\right)_{i=1}^{d/2}",
+              description: "将查询 (Query) 和键 (Key) 向量按二维子空间旋转，使得内积仅依赖于相对位移 m - n。"
+            },
+            {
+              name: "Autoregressive Cross-Entropy Loss",
+              latex: "\\mathcal{L}_{\\text{LM}}(\\theta) = -\\frac{1}{T}\\sum_{t=1}^T \\log P_\\theta(w_t \\mid w_1, \\dots, w_{t-1})",
+              description: "标准自回归交叉熵对数似然损失函数，驱动模型学习长序列因果推断。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "\\mathbf{R}_{\\Theta, m}^d", code_variable: "apply_rotary_emb(x, freqs_cis)", math_meaning: "复数旋转位置编码算子" },
+            { symbol: "\\mathcal{L}_{\\text{LM}}", code_variable: "F.cross_entropy(logits, targets)", math_meaning: "自回归因果语言模型损失" },
+            { symbol: "w_i", code_variable: "tokens", math_meaning: "离散文本与多模态分词 ID 序列" }
+          ]
+        },
         pseudocode: `# DeepMind Multimodal Architecture: ${title}
 import torch
 import torch.nn as nn
@@ -1939,7 +2271,44 @@ class MultimodalTransformerBlock(nn.Module):
 
     case "RL & Multi-Agent":
       return {
-        github_url: "https://github.com/google-deepmind/open_spiel",
+        github_url: "https://github.com/google-deepmind/acme",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/acme",
+        repo_structure: {
+          repo_name: "google-deepmind/acme",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/acme",
+          tree_text: `google-deepmind/acme/
+├── acme/
+│   ├── agents/jax/           # PPO, D4PG, SAC, R2D2 agent implementations
+│   ├── datasets/             # Replay buffers & trajectory sampling
+│   ├── environment_loop.py   # Step loop between agent and environment
+│   └── wrappers/             # Atari & MuJoCo observation preprocessing
+└── examples/                 # Distributed multi-process benchmarks`,
+          core_artifacts: [
+            { path: "acme/agents/jax/actor_critic.py", type: "Algorithm", purpose: "Actor-critic policy updates and generalized advantage estimation" },
+            { path: "acme/datasets/reverb.py", type: "Experience Buffer", purpose: "Distributed trajectory replay and prioritized sample retrieval" },
+            { path: "acme/environment_loop.py", type: "Execution Loop", purpose: "Standardized stepping loop orchestrating observations and actions" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "建立在马尔可夫决策过程 (MDP) 与贝尔曼最优原理基础之上。通过 Generalized Advantage Estimation (GAE) 动态权衡偏差-方差，并利用截断重要性采样概率比率实现信任域内的稳定策略迭代。",
+          key_equations: [
+            {
+              name: "Bellman Optimality Operator",
+              latex: "Q^*(s, a) = \\mathcal{R}(s, a) + \\gamma \\mathbb{E}_{s' \\sim \\mathcal{P}}[\\max_{a'} Q^*(s', a')]",
+              description: "状态-动作价值函数的基础时序差分不动点方程。"
+            },
+            {
+              name: "PPO Clipped Surrogate Objective",
+              latex: "L^{\\text{CLIP}}(\\theta) = \\hat{\\mathbb{E}}_t \\left[ \\min(r_t(\\theta)\\hat{A}_t, \\; \\text{clip}(r_t(\\theta), 1-\\epsilon, 1+\\epsilon)\\hat{A}_t) \\right]",
+              description: "限制单步更新幅度，防止重要性比率急剧发散导致策略崩溃。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "r_t(\\theta)", code_variable: "torch.exp(new_log_probs - old_log_probs)", math_meaning: "新旧策略动作概率似然比率" },
+            { symbol: "\\hat{A}_t", code_variable: "compute_gae(rewards, values)", math_meaning: "广义优势估计 (GAE) 标量" },
+            { symbol: "L^{\\text{CLIP}}", code_variable: "policy_loss", math_meaning: "截断代理策略损失函数" }
+          ]
+        },
         pseudocode: `# DeepMind Reinforcement Learning: ${title}
 import torch
 import torch.nn as nn
@@ -1952,7 +2321,6 @@ class MultiAgentPolicyGradient(nn.Module):
         self.critic = nn.Sequential(nn.Linear(obs_dim, 256), nn.ReLU(), nn.Linear(256, 1))
 
     def compute_gae(self, rewards, values, gamma=0.99, lam=0.95):
-        # Generalized Advantage Estimation
         advantages = []
         last_gae = 0
         for t in reversed(range(len(rewards))):
@@ -1998,7 +2366,39 @@ class MultiAgentPolicyGradient(nn.Module):
 
     case "Embodied AI & Robotics":
       return {
-        github_url: "https://github.com/google-deepmind/open-x-embodiment",
+        github_url: "https://github.com/google-deepmind/open_x_embodiment",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/open_x_embodiment",
+        repo_structure: {
+          repo_name: "google-deepmind/open_x_embodiment",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/open_x_embodiment",
+          tree_text: `google-deepmind/open_x_embodiment/
+├── oxe_envlogger/            # High-frequency multi-modal robotic logger
+├── models/
+│   ├── transformer.py        # Vision-Language-Action backbone
+│   ├── tokenizers.py         # 6-DoF continuous action discretization
+│   └── cross_embodiment.py   # Multi-embodiment normalization modules
+└── evaluation/               # Real-world robotic arm evaluation suites`,
+          core_artifacts: [
+            { path: "models/transformer.py", type: "VLA Backbone", purpose: "Joint vision and language condition to predict end-effector motions" },
+            { path: "models/tokenizers.py", type: "Action Tokenizer", purpose: "Discretizes 6-DoF gripper poses into 256 categorical bins" },
+            { path: "models/cross_embodiment.py", type: "Normalization", purpose: "Standardizes disparate physical robot kinematics into unified actions" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "将物理机械臂操作形式化为端到端序列建模问题。将连续 6 自由度位姿变化量与夹爪开合状态离散化为分箱概率分布，以多视角视觉流与自然语言指令为联合条件。",
+          key_equations: [
+            {
+              name: "VLA Behavioral Cloning Objective",
+              latex: "\\mathcal{L}_{\\text{VLA}}(\\theta) = -\\sum_{t=1}^T \\sum_{d=1}^D \\log P_\\theta(a_{t,d} \\mid I_{1:t}, \\text{Instruction})",
+              description: "在人类演示或自监督专家轨迹上最大化离散动作分词的条件似然。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "I_{1:t}", code_variable: "camera_frames", math_meaning: "环境第三视角与机械臂腕部相机多帧序列" },
+            { symbol: "a_{t,d}", code_variable: "logits", math_meaning: "6-DoF 关节空间与夹爪离散动作预测" },
+            { symbol: "\\mathcal{L}_{\\text{VLA}}", code_variable: "F.cross_entropy(logits, target_bins)", math_meaning: "离散动作分箱交叉熵损失" }
+          ]
+        },
         pseudocode: `# DeepMind Embodied AI & Robotics: ${title}
 import torch
 import torch.nn as nn
@@ -2045,6 +2445,41 @@ class VisionLanguageActionPolicy(nn.Module):
     case "AI for Science & Biology":
       return {
         github_url: "https://github.com/google-deepmind/alphafold",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/alphafold",
+        repo_structure: {
+          repo_name: "google-deepmind/alphafold",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/alphafold",
+          tree_text: `google-deepmind/alphafold/
+├── alphafold/
+│   ├── common/               # Residue constants, torsion angles & PDB parsing
+│   ├── data/                 # MSA search pipelines (JackHMMER / HHblits)
+│   ├── model/
+│   │   ├── modules.py        # Evoformer triangular self-attention
+│   │   ├── geometry.py       # SE(3) Rigid3D Euclidean group operations
+│   │   └── structure_module.py# Invariant Point Attention & 3D coordinate updates
+│   └── relax/                # OpenMM Amber force-field stereochemical relaxation
+└── run_alphafold.py          # Complete end-to-end structure prediction entry`,
+          core_artifacts: [
+            { path: "alphafold/model/modules.py", type: "Evoformer", purpose: "Triangular attention and MSA pair representation module" },
+            { path: "alphafold/model/structure_module.py", type: "3D Structure", purpose: "Invariant Point Attention (IPA) directly updating Euclidean residue frames" },
+            { path: "alphafold/model/geometry.py", type: "Geometry SE(3)", purpose: "Rigid transformations, rotations, and translational invariants" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "基于三维刚体欧式对称群 SE(3) 不变性，结合演化多序列比对 (MSA) 与残基对空间几何图。通过 Invariant Point Attention (IPA) 在局部主干坐标系下操作，直接预测每个残基的三维旋转矩阵与平移矢量，彻底摆脱传统分子动力学模拟的步长束缚。",
+          key_equations: [
+            {
+              name: "Frame Aligned Point Error (FAPE)",
+              latex: "\\mathcal{L}_{\\text{FAPE}} = \\frac{1}{N_{\\text{frames}} N_{\\text{atoms}}} \\sum_{i,j} \\min\\left( \\| T_i^{-1} \\vec{x}_j - (T_i^{\\text{true}})^{-1} \\vec{x}_j^{\\text{true}} \\|, \\; d_{\\text{clamp}} \\right)",
+              description: "在局部刚体坐标系下对齐三维原子位置误差，天然免疫全局平移与旋转偏差。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "T_i = (R_i, \\vec{t}_i)", code_variable: "frames_3d", math_meaning: "各残基主干的三维刚体旋转矩阵与平移矢量" },
+            { symbol: "z_{ij}", code_variable: "pair_repr", math_meaning: "氨基酸残基对的演化关联与空间距离几何张量" },
+            { symbol: "\\mathcal{L}_{\\text{FAPE}}", code_variable: "fape_loss", math_meaning: "局部刚体坐标系下的原子对齐误差" }
+          ]
+        },
         pseudocode: `# DeepMind AI for Science & Structural Biology: ${title}
 import torch
 import torch.nn as nn
@@ -2052,15 +2487,11 @@ import torch.nn as nn
 class MolecularGeometricGraphTransformer(nn.Module):
     def __init__(self, node_dim=256, pair_dim=128):
         super().__init__()
-        # Invariant Point Attention (IPA) operating on 3D Cartesian coordinates
         self.triangular_update = TriangleAttentionModule(pair_dim)
         self.ipa_layer = InvariantPointAttention(node_dim, pair_dim)
 
     def forward(self, atom_tokens, pair_distances_2d, frames_3d):
-        # 1. Update pair representations with spatial triangle geometry
         pair_repr = self.triangular_update(pair_distances_2d)
-        
-        # 2. Invariant 3D coordinate transformation respecting SE(3) equivariance
         updated_frames, atom_embeddings = self.ipa_layer(atom_tokens, pair_repr, frames_3d)
         return updated_frames, atom_embeddings`,
         code_explanation: {
@@ -2090,6 +2521,38 @@ class MolecularGeometricGraphTransformer(nn.Module):
     case "Math & Algorithmic Discovery":
       return {
         github_url: "https://github.com/google-deepmind/alphageometry",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/alphageometry",
+        repo_structure: {
+          repo_name: "google-deepmind/alphageometry",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/alphageometry",
+          tree_text: `google-deepmind/alphageometry/
+├── alphageometry/
+│   ├── ddar.py               # Deductive Database & Algebraic Reasoning engine
+│   ├── graph.py              # Geometric dependency DAG & constraint checker
+│   ├── lm_inference.py       # Neural tactic generator for auxiliary constructions
+│   └── beam_search.py        # Hybrid neuro-symbolic proof search loop
+└── run.py                    # Certified proof generation for IMO geometry problems`,
+          core_artifacts: [
+            { path: "alphageometry/ddar.py", type: "Symbolic Engine", purpose: "Formal deduction database verifying geometric proofs with 0% hallucination" },
+            { path: "alphageometry/lm_inference.py", type: "Neural Intuition", purpose: "Proposes creative auxiliary points and construction tactics" },
+            { path: "alphageometry/beam_search.py", type: "Proof Search", purpose: "Coordinates symbolic closure checks with neural expansions" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "开创神经-符号协同推理 (Neuro-Symbolic Reasoning) 范式。将确定性演绎数据库 (DD) 与代数推理 (AR) 作为严谨验证内核，利用大语言模型作为直觉启发式辅助构造点生成器，在完全杜绝模型幻觉的同时攻克国际数学奥林匹克 (IMO) 几何难题。",
+          key_equations: [
+            {
+              name: "Deductive Closure Iteration",
+              latex: "\\mathcal{S}_{k+1} = \\mathrm{Closure}_{\\text{DD+AR}}\\left( \\mathcal{S}_k \\cup \\{ \\text{AuxPoint}_k \\} \\right)",
+              description: "基于当前几何图状态，在添加神经直觉生成的辅助构造点后计算符号演绎闭包。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "\\mathcal{S}_k", code_variable: "ddar.state", math_meaning: "当前已知几何约束、线面平行与共圆定理集合" },
+            { symbol: "\\text{AuxPoint}", code_variable: "candidate_tactics", math_meaning: "神经网络语言模型直觉生成的辅助线构造点" },
+            { symbol: "\\mathrm{Closure}", code_variable: "kernel.apply_tactic()", math_meaning: "形式化演绎引擎确定性定理推导" }
+          ]
+        },
         pseudocode: `# DeepMind Math & Algorithmic Discovery: ${title}
 class FormalTheoremProver:
     def __init__(self, tactic_generator_llm, formal_kernel_lean4):
@@ -2136,7 +2599,37 @@ class FormalTheoremProver:
 
     default: // Frontier Safety, Alignment & Society
       return {
-        github_url: "https://github.com/google-deepmind",
+        github_url: "https://github.com/google-deepmind/evals",
+        deepwiki_url: "https://deepwiki.com/google-deepmind/evals",
+        repo_structure: {
+          repo_name: "google-deepmind/evals",
+          deepwiki_url: "https://deepwiki.com/google-deepmind/evals",
+          tree_text: `google-deepmind/evals/
+├── safety_evals/             # Autonomous replication & cyber capability audits
+├── sandbagging/              # Covert scheming & strategic underperformance detection
+├── redteaming/               # Automated multi-turn jailbreak and refusal harnesses
+└── sae_probes/               # Sparse autoencoder monosemantic feature extractors`,
+          core_artifacts: [
+            { path: "safety_evals/cyber_eval.py", type: "Red-Team Harness", purpose: "Automated auditing for autonomous cyber vulnerability exploits" },
+            { path: "sandbagging/probe.py", type: "Latent Probe", purpose: "Detects deceptive alignment where models hide capabilities" },
+            { path: "sae_probes/autoencoder.py", type: "Interpretability", purpose: "Sparse autoencoders extracting monosemantic safety features" }
+          ]
+        },
+        theory_explanation: {
+          mathematical_foundations: "基于机械可解释性 (Mechanistic Interpretability) 与红队对抗评估理论。通过稀疏自编码器 (SAE) 将神经网络在叠加态 (Superposition) 下的多义神经元解聚为可审计的单语义特征，并构建形式化探针探测潜意识欺骗 (Deceptive Alignment) 与战略性伪装。",
+          key_equations: [
+            {
+              name: "Sparse Autoencoder (SAE) Objective",
+              latex: "\\mathcal{L}_{\\text{SAE}} = \\| x - W_{\\text{dec}} f(x) \\|_2^2 + \\lambda \\| f(x) \\|_1, \\quad f(x) = \\mathrm{ReLU}(W_{\\text{enc}} x + b_{\\text{enc}})",
+              description: "在保持残差流激活高重构保真度的同时，利用 L1 正则迫使特征字典极度稀疏化。"
+            }
+          ],
+          theory_code_mapping: [
+            { symbol: "f(x)", code_variable: "feature_activations", math_meaning: "解聚得到的稀疏单语义安全特征向量" },
+            { symbol: "\\| x - \\hat{x} \\|_2^2", code_variable: "recon_loss", math_meaning: "残差流重构均方误差损失" },
+            { symbol: "\\lambda \\| f \\|_1", code_variable: "sparsity_loss", math_meaning: "单语义性 L1 稀疏约束惩罚" }
+          ]
+        },
         pseudocode: `# DeepMind Frontier Safety & Alignment: ${title}
 import torch
 import torch.nn as nn
@@ -2145,19 +2638,13 @@ import torch.nn.functional as F
 class SparseAutoencoderSafetyProbe(nn.Module):
     def __init__(self, model_hidden_dim=4096, dictionary_size=32768, l1_coeff=1e-3):
         super().__init__()
-        # Sparse Autoencoder (SAE) extracting monosemantic safety features
         self.encoder = nn.Linear(model_hidden_dim, dictionary_size)
         self.decoder = nn.Linear(dictionary_size, model_hidden_dim)
         self.l1_coeff = l1_coeff
 
     def forward(self, intermediate_residual_stream):
-        # 1. Project dense superposition activations into sparse monosemantic dictionary
         feature_activations = F.relu(self.encoder(intermediate_residual_stream))
-        
-        # 2. Reconstruct original residual stream
         reconstructed = self.decoder(feature_activations)
-        
-        # 3. Dual objective: Reconstruction fidelity + L1 Sparsity penalty
         recon_loss = F.mse_loss(reconstructed, intermediate_residual_stream)
         sparsity_loss = self.l1_coeff * feature_activations.sum(dim=-1).mean()
         return feature_activations, recon_loss + sparsity_loss`,

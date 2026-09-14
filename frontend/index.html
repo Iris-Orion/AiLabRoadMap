@@ -618,246 +618,361 @@
         <div class="tooltip-footer">点击节点展开 CoolPapers 深度 6 维 FAQ & 演化链</div>
       </div>
 
-      <!-- Backdrop for mobile / overlay -->
-      <div id="drawer-backdrop" class="drawer-backdrop"></div>
+      <!-- Backdrop overlay for full expanded workbench modal -->
+      <div id="drawer-backdrop" class="workbench-backdrop"></div>
 
-      <!-- Detail Drawer / Modal for Paper FAQ -->
-      <aside id="paper-drawer" class="paper-drawer" aria-hidden="true">
-        <div class="drawer-inner">
-          <!-- Drawer Header -->
-          <div class="drawer-header">
-            <div class="drawer-header-left">
-              <div class="drawer-badges">
+      <!-- Research Paper Full Expansive Workbench Modal (直接全部展开研读工作台) -->
+      <div id="paper-drawer" class="paper-modal-workbench" aria-hidden="true">
+        <div class="workbench-window" id="workbench-window">
+          <!-- Sticky Header with Metadata, Title, and Action Buttons -->
+          <div class="workbench-header">
+            <div class="workbench-header-top">
+              <div class="workbench-badges">
                 <span id="detail-generation" class="badge-gen">Generation</span>
                 <span id="detail-topic" class="badge-topic">Topic</span>
                 <span id="detail-venue" class="badge-venue">Venue</span>
                 <span id="detail-year" class="badge-year">Year</span>
               </div>
-              <h2 id="detail-title" class="drawer-title">论文标题加载中...</h2>
-              <div id="detail-authors" class="drawer-authors">作者列表</div>
-            </div>
-            <button id="btn-close-drawer" class="drawer-close-btn" title="关闭抽屉 (Esc)">&times;</button>
-          </div>
-
-          <!-- Drawer Action Links -->
-          <div class="drawer-links" id="drawer-links">
-            <a id="link-coolpapers" href="#" target="_blank" rel="noopener noreferrer" class="link-btn coolpapers" title="在 CoolPapers 上查看 Kimi 结构化论文研读与解读">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-              <span>⚡ CoolPapers 直达</span>
-            </a>
-            <a id="link-arxiv" href="#" target="_blank" rel="noopener noreferrer" class="link-btn arxiv">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-              </svg>
-              <span>arXiv 详情</span>
-            </a>
-            <a id="link-pdf" href="#" target="_blank" rel="noopener noreferrer" class="link-btn pdf">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              <span>PDF 全文</span>
-            </a>
-            <a id="link-github" href="#" target="_blank" rel="noopener noreferrer" class="link-btn github" style="display:none;" title="查看论文官方或权威开源代码实现">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-              <span>GitHub 源码 ↗</span>
-            </a>
-            <a id="link-deepmind" href="#" target="_blank" rel="noopener noreferrer" class="link-btn official">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-              <span>DeepMind 官网页面</span>
-            </a>
-          </div>
-
-          <!-- Impact Metrics Grid -->
-          <div class="impact-metrics-grid">
-            <div class="metric-card score-card">
-              <div class="metric-card-title" id="metric-title-score">综合影响力评分</div>
-              <div class="metric-card-value highlight" id="metric-score">--</div>
-              <div class="metric-card-hint" id="metric-hint-score">加权综合学术量化指标</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-card-title" id="metric-title-citations">总引用数</div>
-              <div class="metric-card-value" id="metric-citations">--</div>
-              <div class="metric-card-hint" id="metric-hint-citations">Semantic Scholar 索引统计</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-card-title" id="metric-title-influential">高影响力引用</div>
-              <div class="metric-card-value" id="metric-influential">--</div>
-              <div class="metric-card-hint" id="metric-hint-influential">作为核心前驱的重要引用</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-card-title" id="metric-title-velocity">年均引用增速</div>
-              <div class="metric-card-value" id="metric-velocity">--</div>
-              <div class="metric-card-hint" id="metric-hint-velocity">年均学术引用累积速率</div>
-            </div>
-          </div>
-
-          <!-- Interactive Lineage Navigator -->
-          <div class="drawer-section lineage-section">
-            <h3 class="section-title">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="6" cy="6" r="3"></circle>
-                <circle cx="6" cy="18" r="3"></circle>
-                <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
-                <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
-                <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
-              </svg>
-              <span id="lineage-section-title">技术演进脉络关系 (Interactive Lineage)</span>
-            </h3>
-
-            <div class="lineage-columns">
-              <div class="lineage-col">
-                <div class="lineage-label">
-                  <span class="dot-indicator orange"></span>
-                  <span id="lineage-label-pred">直接理论前驱 (Predecessors)</span>
-                </div>
-                <div id="lineage-predecessors" class="lineage-list">
-                  <span class="empty-hint" id="lineage-empty-pred">无内部前驱 (根基突破)</span>
-                </div>
-              </div>
-
-              <div class="lineage-col">
-                <div class="lineage-label">
-                  <span class="dot-indicator emerald"></span>
-                  <span id="lineage-label-succ">直接衍生工作 (Successors)</span>
-                </div>
-                <div id="lineage-successors" class="lineage-list">
-                  <span class="empty-hint" id="lineage-empty-succ">暂无后续衍生节点</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Algorithm Core Pseudocode & Engineering Implementation Section -->
-          <div class="drawer-section pseudocode-section" id="section-pseudocode">
-            <div class="code-section-header">
-              <div class="code-header-left">
-                <h3 class="section-title">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
+              
+              <div class="workbench-window-controls">
+                <!-- Fullscreen / Windowed View Toggle -->
+                <button id="btn-toggle-fullscreen" class="window-ctrl-btn" title="切换全屏/居中展开模式">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
                   </svg>
-                  <span id="code-section-title">算法核心伪代码与工程实现 (Core Pseudocode & Implementation)</span>
-                </h3>
-                <span class="code-lang-tag" id="code-lang-tag">Python / PyTorch / JAX</span>
-              </div>
-              <div class="code-header-actions">
-                <a id="code-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="code-action-btn github-action-btn" style="display:none;" title="在 GitHub 上查看源码">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                  </svg>
-                  <span id="label-code-github">GitHub 源码直达 ↗</span>
-                </a>
-                <button id="btn-copy-code" class="code-action-btn copy-btn" title="一键复制伪代码">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                  <span id="label-copy-code">复制代码</span>
+                  <span id="label-toggle-fullscreen">全屏研读</span>
                 </button>
+                <!-- Close Modal -->
+                <button id="btn-close-drawer" class="window-close-btn" title="关闭窗口 (Esc)">&times;</button>
               </div>
             </div>
 
-            <!-- Code Viewer Wrap -->
-            <div class="code-viewer-wrap">
-              <pre class="code-block"><code id="code-snippet-content"># 伪代码加载中...</code></pre>
-            </div>
+            <h2 id="detail-title" class="workbench-title">论文标题加载中...</h2>
+            <div id="detail-authors" class="workbench-authors">作者列表</div>
 
-            <!-- Auxiliary Explanation Card -->
-            <div class="code-explanation-card">
-              <div class="explanation-title">
-                <span class="exp-icon">💡</span>
-                <span id="explanation-heading">核心算法机制剖析与步骤详解 (Algorithmic Walkthrough)</span>
-              </div>
-              <div class="explanation-body" id="code-explanation-text">
-                <!-- Dynamically rendered -->
-              </div>
-            </div>
-          </div>
-
-          <!-- CoolPapers 6-Dimensional FAQ -->
-          <div class="drawer-section faq-section">
-            <div class="faq-section-header">
-              <h3 class="section-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <!-- Direct Action Links Bar -->
+            <div class="workbench-links-bar" id="drawer-links">
+              <a id="link-coolpapers" href="#" target="_blank" rel="noopener noreferrer" class="link-btn coolpapers" title="在 CoolPapers 上查看 Kimi 结构化深度长文研读">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
-                <span id="faq-section-title">CoolPapers 6 维结构化深度 FAQ</span>
-              </h3>
-              <span class="faq-tag" id="faq-tag-label">LLM Deep Insight</span>
+                <span>⚡ CoolPapers 智能直达</span>
+              </a>
+              <a id="link-github" href="#" target="_blank" rel="noopener noreferrer" class="link-btn github" style="display:none;" title="查看论文对应的特定 GitHub 开源仓库">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span id="label-link-github">GitHub 源码 ↗</span>
+              </a>
+              <a id="link-deepwiki" href="#" target="_blank" rel="noopener noreferrer" class="link-btn deepwiki" style="display:none;" title="在 DeepWiki 上查看该仓库的 AI 架构解构与代码调用链">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span id="label-link-deepwiki">📖 DeepWiki 架构解构 ↗</span>
+              </a>
+              <a id="link-arxiv" href="#" target="_blank" rel="noopener noreferrer" class="link-btn arxiv">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>arXiv 详情</span>
+              </a>
+              <a id="link-pdf" href="#" target="_blank" rel="noopener noreferrer" class="link-btn pdf">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>PDF 全文</span>
+              </a>
+              <a id="link-deepmind" href="#" target="_blank" rel="noopener noreferrer" class="link-btn official">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>DeepMind 官网</span>
+              </a>
             </div>
 
-            <div class="faq-container" id="faq-list">
-              <!-- Q1 -->
-              <div class="faq-card">
-                <div class="faq-q">
-                  <span class="q-badge">Q1</span>
-                  <span class="q-text" id="faq-q1-label">核心问题：试图解决什么痛点或科学问题？现有方法有何局限？</span>
-                </div>
-                <div class="faq-a" id="faq-q1">--</div>
-              </div>
-
-              <!-- Q2 -->
-              <div class="faq-card">
-                <div class="faq-q">
-                  <span class="q-badge">Q2</span>
-                  <span class="q-text" id="faq-q2-label">相关研究与传承：有哪些关键的前驱工作或理论基石？</span>
-                </div>
-                <div class="faq-a" id="faq-q2">--</div>
-              </div>
-
-              <!-- Q3 -->
-              <div class="faq-card">
-                <div class="faq-q">
-                  <span class="q-badge">Q3</span>
-                  <span class="q-text" id="faq-q3-label">核心方法与创新：提出了哪些核心架构、算法创新或关键改进？</span>
-                </div>
-                <div class="faq-a" id="faq-q3">--</div>
-              </div>
-
-              <!-- Q4 -->
-              <div class="faq-card">
-                <div class="faq-q">
-                  <span class="q-badge">Q4</span>
-                  <span class="q-text" id="faq-q4-label">实验与突破指标：在哪些基准数据集上完成验证？取得了哪些突破结果？</span>
-                </div>
-                <div class="faq-a" id="faq-q4">--</div>
-              </div>
-
-              <!-- Q5 -->
-              <div class="faq-card">
-                <div class="faq-q">
-                  <span class="q-badge">Q5</span>
-                  <span class="q-text" id="faq-q5-label">DeepMind 脉络定位：属于哪个技术演进代际？在内部技术栈中起什么作用？</span>
-                </div>
-                <div class="faq-a" id="faq-q5">--</div>
-              </div>
-
-              <!-- Q6 -->
-              <div class="faq-card highlight-tldr">
-                <div class="faq-q">
-                  <span class="q-badge tldr-badge">Q6</span>
-                  <span class="q-text" id="faq-q6-label">一句话总结 (TL;DR)</span>
-                </div>
-                <div class="faq-a tldr-content" id="faq-q6">--</div>
-              </div>
+            <!-- Sticky Anchor Navigation Bar -->
+            <div class="workbench-anchor-nav" id="workbench-anchor-nav">
+              <button class="anchor-nav-btn" data-target="section-deepwiki">
+                <span class="anchor-icon">📁</span> <span id="anchor-label-deepwiki">DeepWiki 仓库解构</span>
+              </button>
+              <button class="anchor-nav-btn" data-target="section-theory">
+                <span class="anchor-icon">📐</span> <span id="anchor-label-theory">理论公式与推导</span>
+              </button>
+              <button class="anchor-nav-btn" data-target="section-pseudocode">
+                <span class="anchor-icon">💻</span> <span id="anchor-label-code">核心源码与张量实现</span>
+              </button>
+              <button class="anchor-nav-btn" data-target="section-walkthrough">
+                <span class="anchor-icon">💡</span> <span id="anchor-label-walkthrough">四维算法剖析</span>
+              </button>
+              <button class="anchor-nav-btn" data-target="section-lineage">
+                <span class="anchor-icon">🕸️</span> <span id="anchor-label-lineage">技术传承脉络</span>
+              </button>
+              <button class="anchor-nav-btn" data-target="section-faq">
+                <span class="anchor-icon">💬</span> <span id="anchor-label-faq">CoolPapers 深度 FAQ</span>
+              </button>
             </div>
           </div>
 
+          <!-- Scrollable Expansive Body (Directly Fully Expanded) -->
+          <div class="workbench-body" id="workbench-scroll-body">
+            <!-- 1. Impact Metrics Grid -->
+            <div class="impact-metrics-grid" id="section-metrics">
+              <div class="metric-card score-card">
+                <div class="metric-card-title" id="metric-title-score">综合影响力评分</div>
+                <div class="metric-card-value highlight" id="metric-score">--</div>
+                <div class="metric-card-hint" id="metric-hint-score">加权综合学术量化指标</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title" id="metric-title-citations">总引用数</div>
+                <div class="metric-card-value" id="metric-citations">--</div>
+                <div class="metric-card-hint" id="metric-hint-citations">Semantic Scholar 索引统计</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title" id="metric-title-influential">高影响力引用</div>
+                <div class="metric-card-value" id="metric-influential">--</div>
+                <div class="metric-card-hint" id="metric-hint-influential">作为核心前驱的重要引用</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-card-title" id="metric-title-velocity">年均引用增速</div>
+                <div class="metric-card-value" id="metric-velocity">--</div>
+                <div class="metric-card-hint" id="metric-hint-velocity">年均学术引用累积速率</div>
+              </div>
+            </div>
+
+            <!-- 2. DeepWiki Repository Architecture & Core Artifacts -->
+            <div class="workbench-section" id="section-deepwiki">
+              <div class="section-header-row">
+                <div class="section-title-wrap">
+                  <span class="section-badge-icon">📁</span>
+                  <h3 class="section-main-title" id="title-deepwiki-section">DeepWiki 仓库架构解构与核心产物 (DeepWiki Architecture)</h3>
+                </div>
+                <a id="deepwiki-ext-btn" href="#" target="_blank" rel="noopener noreferrer" class="deepwiki-pill-link">
+                  <span>📖 在 DeepWiki 查看完整代码知识图谱 ↗</span>
+                </a>
+              </div>
+              <p class="section-desc-text" id="desc-deepwiki">
+                结合 DeepWiki 自动化代码解构服务，呈现该特定开源代码仓库的顶层目录拓扑与关键算法产物 (Core Artifacts)。
+              </p>
+
+              <!-- DeepWiki Repo File Tree Box -->
+              <div class="deepwiki-tree-wrapper">
+                <div class="tree-header">
+                  <span class="tree-header-tag">REPOSITORY TOPOLOGY</span>
+                  <span class="tree-repo-name" id="deepwiki-repo-name">google-deepmind/alphafold</span>
+                </div>
+                <pre class="deepwiki-tree-box"><code id="deepwiki-tree-content"># 仓库目录架构加载中...</code></pre>
+              </div>
+
+              <!-- Core Artifacts Breakdown Cards -->
+              <div class="core-artifacts-section">
+                <h4 class="artifacts-title" id="title-core-artifacts">🌟 核心算法产物与关键文件解构 (Core Artifacts)</h4>
+                <div class="artifacts-grid" id="deepwiki-artifacts-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Theoretical Foundations & Mathematical Formulations -->
+            <div class="workbench-section" id="section-theory">
+              <div class="section-header-row">
+                <div class="section-title-wrap">
+                  <span class="section-badge-icon">📐</span>
+                  <h3 class="section-main-title" id="title-theory-section">算法理论基础与数学推导 (Theoretical Formulation)</h3>
+                </div>
+                <span class="theory-tag" id="theory-tag-label">Mathematical Rigor</span>
+              </div>
+              
+              <!-- Foundations Text -->
+              <div class="theory-foundation-box">
+                <div class="theory-box-title" id="title-math-foundation">📌 核心数学理论与优化目标</div>
+                <p id="theory-foundation-content" class="theory-text">理论分析加载中...</p>
+              </div>
+
+              <!-- Key Equations Block -->
+              <div class="theory-equations-box">
+                <div class="theory-box-title" id="title-key-equations">⚡ 核心数学公式与形式化定义</div>
+                <div id="theory-equations-list" class="equations-list">
+                  <!-- Equations rendered here -->
+                </div>
+              </div>
+
+              <!-- Theory to Code Symbol Mapping Table -->
+              <div class="theory-mapping-box">
+                <div class="theory-box-title" id="title-theory-mapping">🔄 数学符号 ➔ 源码变量映射对齐表 (Theory-Code Mapping)</div>
+                <div class="mapping-table-wrap">
+                  <table class="theory-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%;">数学符号 / 公式</th>
+                        <th style="width: 30%;">代码变量 / 算子</th>
+                        <th style="width: 45%;">物理 / 算法含义</th>
+                      </tr>
+                    </thead>
+                    <tbody id="theory-mapping-tbody">
+                      <!-- Populated dynamically -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Algorithm Core Source Code & Tensor Implementation -->
+            <div class="workbench-section" id="section-pseudocode">
+              <div class="code-section-header">
+                <div class="code-header-left">
+                  <div class="section-title-wrap">
+                    <span class="section-badge-icon">💻</span>
+                    <h3 class="section-main-title" id="code-section-title">核心产物源码片段与张量实现 (Core Implementation)</h3>
+                  </div>
+                  <span class="code-lang-tag" id="code-lang-tag">Python / PyTorch / JAX</span>
+                </div>
+                <div class="code-header-actions">
+                  <a id="code-github-btn" href="#" target="_blank" rel="noopener noreferrer" class="code-action-btn github-action-btn" style="display:none;" title="在特定 GitHub 仓库查看源码">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span id="label-code-github">GitHub 仓库直达 ↗</span>
+                  </a>
+                  <button id="btn-copy-code" class="code-action-btn copy-btn" title="一键复制代码片段">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span id="label-copy-code">复制代码</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Code Viewer Wrap -->
+              <div class="code-viewer-wrap">
+                <pre class="code-block"><code id="code-snippet-content"># 源码加载中...</code></pre>
+              </div>
+            </div>
+
+            <!-- 5. Algorithmic Walkthrough (4 Dimensions) -->
+            <div class="workbench-section" id="section-walkthrough">
+              <div class="section-header-row">
+                <div class="section-title-wrap">
+                  <span class="section-badge-icon">💡</span>
+                  <h3 class="section-main-title" id="explanation-heading">核心算法机制剖析与四维详解 (Algorithmic Walkthrough)</h3>
+                </div>
+              </div>
+
+              <div class="code-explanation-card">
+                <div class="explanation-body" id="code-explanation-text">
+                  <!-- Dynamically rendered -->
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Interactive Lineage Navigator -->
+            <div class="workbench-section" id="section-lineage">
+              <div class="section-header-row">
+                <div class="section-title-wrap">
+                  <span class="section-badge-icon">🕸️</span>
+                  <h3 class="section-main-title" id="lineage-section-title">技术演进脉络关系 (Interactive Lineage)</h3>
+                </div>
+              </div>
+
+              <div class="lineage-columns">
+                <div class="lineage-col">
+                  <div class="lineage-label">
+                    <span class="dot-indicator orange"></span>
+                    <span id="lineage-label-pred">直接理论前驱 (Predecessors)</span>
+                  </div>
+                  <div id="lineage-predecessors" class="lineage-list">
+                    <span class="empty-hint" id="lineage-empty-pred">无内部前驱 (根基突破)</span>
+                  </div>
+                </div>
+
+                <div class="lineage-col">
+                  <div class="lineage-label">
+                    <span class="dot-indicator emerald"></span>
+                    <span id="lineage-label-succ">直接衍生工作 (Successors)</span>
+                  </div>
+                  <div id="lineage-successors" class="lineage-list">
+                    <span class="empty-hint" id="lineage-empty-succ">暂无后续衍生节点</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. CoolPapers 6-Dimensional FAQ -->
+            <div class="workbench-section" id="section-faq">
+              <div class="faq-section-header">
+                <div class="section-title-wrap">
+                  <span class="section-badge-icon">💬</span>
+                  <h3 class="section-main-title" id="faq-section-title">CoolPapers 6 维结构化深度 FAQ</h3>
+                </div>
+                <span class="faq-tag" id="faq-tag-label">LLM Deep Insight</span>
+              </div>
+
+              <div class="faq-container" id="faq-list">
+                <!-- Q1 -->
+                <div class="faq-card">
+                  <div class="faq-q">
+                    <span class="q-badge">Q1</span>
+                    <span class="q-text" id="faq-q1-label">核心问题：试图解决什么痛点或科学问题？现有方法有何局限？</span>
+                  </div>
+                  <div class="faq-a" id="faq-q1">--</div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-card">
+                  <div class="faq-q">
+                    <span class="q-badge">Q2</span>
+                    <span class="q-text" id="faq-q2-label">相关研究与传承：有哪些关键的前驱工作或理论基石？</span>
+                  </div>
+                  <div class="faq-a" id="faq-q2">--</div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-card">
+                  <div class="faq-q">
+                    <span class="q-badge">Q3</span>
+                    <span class="q-text" id="faq-q3-label">核心方法与创新：提出了哪些核心架构、算法创新或关键改进？</span>
+                  </div>
+                  <div class="faq-a" id="faq-q3">--</div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-card">
+                  <div class="faq-q">
+                    <span class="q-badge">Q4</span>
+                    <span class="q-text" id="faq-q4-label">实验与突破指标：在哪些基准数据集上完成验证？取得了哪些突破结果？</span>
+                  </div>
+                  <div class="faq-a" id="faq-q4">--</div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-card">
+                  <div class="faq-q">
+                    <span class="q-badge">Q5</span>
+                    <span class="q-text" id="faq-q5-label">DeepMind 脉络定位：属于哪个技术演进代际？在内部技术栈中起什么作用？</span>
+                  </div>
+                  <div class="faq-a" id="faq-q5">--</div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="faq-card highlight-tldr">
+                  <div class="faq-q">
+                    <span class="q-badge tldr-badge">Q6</span>
+                    <span class="q-text" id="faq-q6-label">一句话总结 (TL;DR)</span>
+                  </div>
+                  <div class="faq-a tldr-content" id="faq-q6">--</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </aside>
+      </div>
     </main>
   </div>
 

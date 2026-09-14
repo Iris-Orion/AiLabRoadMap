@@ -946,11 +946,12 @@ function applyLanguage(lang: 'zh' | 'en') {
 
 async function loadGraphData(): Promise<GraphData> {
   const candidateUrls = [
-    '/data/graph_data.json',
     './data/graph_data.json',
-    '../data/graph_data.json',
+    'data/graph_data.json',
+    '/data/graph_data.json',
+    './graph_data.json',
     '/graph_data.json',
-    './graph_data.json'
+    '../data/graph_data.json'
   ];
 
   for (const url of candidateUrls) {
@@ -974,11 +975,13 @@ async function loadGraphData(): Promise<GraphData> {
 
 async function loadPublicationsData(): Promise<PublicationItem[]> {
   const candidateUrls = [
-    '/data/deepmind_publications_analysis.json',
     './data/deepmind_publications_analysis.json',
-    '../data/deepmind_publications_analysis.json',
+    'data/deepmind_publications_analysis.json',
+    './data/deepmind_all_publications.json',
+    'data/deepmind_all_publications.json',
+    '/data/deepmind_publications_analysis.json',
     '/data/deepmind_all_publications.json',
-    './data/deepmind_all_publications.json'
+    '../data/deepmind_publications_analysis.json'
   ];
 
   for (const url of candidateUrls) {

@@ -1,0 +1,21 @@
+{
+  "name": "deepmind-roadmap-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "cytoscape": "^3.30.4",
+    "cytoscape-dagre": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/cytoscape": "^3.21.9",
+    "@types/cytoscape-dagre": "^2.3.3",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}

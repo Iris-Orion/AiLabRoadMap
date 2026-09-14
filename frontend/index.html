@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepMind Research Roadmap | 演化脉络与学术图谱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="app" class="app-layout">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.8" class="logo-ring" />
+            <path d="M7 14C7 10.134 10.134 7 14 7C17.866 7 21 10.134 21 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="14" cy="14" r="3.5" fill="currentColor" class="logo-dot" />
+            <circle cx="21" cy="14" r="2" fill="currentColor" class="logo-satellite" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title-wrap">
+            <h1 class="brand-title" id="brand-title">AiLabRoadMap</h1>
+            <span class="badge-status online" id="badge-status" title="Multi-Lab Knowledge Hub">
+              <span class="status-dot"></span> <span id="status-text">Hub Active</span>
+            </span>
+          </div>
+          <p class="brand-subtitle" id="brand-subtitle">全球顶尖 AI 实验室技术演进图谱与学术中枢</p>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Overview -->
+      <div class="header-metrics">
+        <div class="metric-pill">
+          <span class="metric-label" id="metric-label-papers">里程碑拓扑</span>
+          <span class="metric-val" id="stat-papers">39</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-label" id="metric-label-pubs">官方收录文献</span>
+          <span class="metric-val" id="stat-total-pubs">262</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-label" id="metric-label-edges">传承演化链</span>
+          <span class="metric-val" id="stat-edges">39</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-label" id="metric-label-years">时间跨度</span>
+          <span class="metric-val" id="stat-years">2013-2026</span>
+        </div>
+      </div>
+
+      <!-- View Switcher (Multi-Lab Hub + DeepMind Views) -->
+      <div class="view-switch-nav">
+        <button id="btn-view-hub" class="view-tab-btn active" title="查看所有 AI 实验室演进总览与索引">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span id="tab-hub-label">🏛️ AI Labs 总览</span>
+        </button>
+        <button id="btn-view-graph" class="view-tab-btn" title="交互式 DAG 拓扑演进图谱 (DeepMind)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          <span id="tab-graph-label">DeepMind 拓扑图谱</span>
+        </button>
+        <button id="btn-view-library" class="view-tab-btn" title="浏览 DeepMind 官方 262 篇论文全览与细分研读">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span id="tab-library-label">DeepMind 研读库 (262)</span>
+        </button>
+      </div>
+
+      <!-- Action Toolbar -->
+      <div class="header-actions">
+        <!-- Language Switcher Button -->
+        <button id="btn-lang" class="icon-btn lang-btn" title="切换语言 / Switch Language" aria-label="Toggle Language">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-label">EN</span>
+        </button>
+
+        <button id="btn-open-docs" class="icon-btn doc-btn" title="查看评级体系与说明文档" aria-label="Open Methodology Documentation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span id="btn-docs-label">评级说明文档</span>
+        </button>
+
+        <button id="btn-fit" class="icon-btn" title="适应画布视角 (Fit View)" aria-label="Fit View">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+          </svg>
+          <span id="btn-fit-label">居中适配</span>
+        </button>
+
+        <button id="btn-layout-toggle" class="icon-btn" title="切换布局朝向 (从左至右 / 从上至下)" aria-label="Toggle Layout Orientation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 5h7M4 12h11M4 19h16M18 5l3 3-3 3" />
+          </svg>
+          <span id="layout-direction-label">水平演进 (LR)</span>
+        </button>
+
+        <!-- Theme Toggle Button (Default Light, click for Dark) -->
+        <button id="btn-theme" class="icon-btn" title="切换暗色 / 亮色主题" aria-label="Toggle Theme">
+          <svg id="theme-icon-sun" class="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg id="theme-icon-moon" class="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span id="theme-label">暗色模式</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sub-Control Filter Bar (For DAG View) -->
+    <nav class="app-controlbar" id="dag-controlbar">
+      <!-- Search Box -->
+      <div class="control-group search-group">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="input-search" placeholder="搜索论文标题、作者、TL;DR 核心关键词..." autocomplete="off" />
+          <button id="btn-clear-search" class="clear-btn" title="清空搜索" style="display:none;">&times;</button>
+        </div>
+      </div>
+
+      <!-- Topic Filters -->
+      <div class="control-group topic-group">
+        <span class="group-label" id="label-dag-topics">研究主题：</span>
+        <div class="topic-chips" id="topic-chips">
+          <button class="chip active" data-topic="ALL" id="chip-topic-all">全部主题</button>
+          <button class="chip" data-topic="LLM & Multimodal">
+            <span class="color-dot topic-llm"></span> <span class="chip-text">大语言模型与多模态</span>
+          </button>
+          <button class="chip" data-topic="RL & Multi-Agent">
+            <span class="color-dot topic-rl"></span> <span class="chip-text">强化学习与智能体</span>
+          </button>
+          <button class="chip" data-topic="Embodied AI & Robotics">
+            <span class="color-dot topic-robotics"></span> <span class="chip-text">具身智能与世界模型</span>
+          </button>
+          <button class="chip" data-topic="AI for Science & Biology">
+            <span class="color-dot topic-bio"></span> <span class="chip-text">科学智能与生物物理</span>
+          </button>
+          <button class="chip" data-topic="Math & Algorithmic Discovery">
+            <span class="color-dot topic-math"></span> <span class="chip-text">算法发现与数学推理</span>
+          </button>
+          <button class="chip" data-topic="Frontier Safety, Alignment & Society">
+            <span class="color-dot topic-safety"></span> <span class="chip-text">前沿安全、对齐与社会</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeline Slider -->
+      <div class="control-group timeline-group">
+        <div class="timeline-meta">
+          <span class="group-label" id="label-timeline">时间线推演：</span>
+          <span class="year-indicator"><span id="timeline-prefix">截至</span> <strong id="year-display">2026</strong> <span id="timeline-suffix">年</span></span>
+        </div>
+        <div class="slider-wrapper">
+          <span class="slider-boundary">2013</span>
+          <input type="range" id="timeline-slider" min="2013" max="2026" value="2026" step="1" />
+          <span class="slider-boundary">2026</span>
+        </div>
+      </div>
+
+      <!-- Impact Switch -->
+      <div class="control-group switch-group">
+        <label class="toggle-switch-label" title="仅高亮顶刊 (Nature/Science) 与顶尖影响力论文 (Impact Score ≥ 93)">
+          <input type="checkbox" id="check-impact-focus" />
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+          <span class="switch-text" id="label-impact-focus">🌟 顶尖成果聚焦</span>
+        </label>
+      </div>
+    </nav>
+
+    <!-- Main Workspace: Graph Canvas + Publications Library + Drawer -->
+    <main class="app-workspace">
+      <!-- AI Labs Global Hub / Overview Page -->
+      <section id="hub-view" class="hub-view">
+        <div class="hub-scroll-wrap">
+          <div class="hub-container">
+            <!-- Hero Section -->
+            <div class="hub-hero">
+              <div class="hub-hero-badge">
+                <span class="hub-pulse-dot"></span>
+                <span id="hub-hero-badge-text">全球顶尖 AI 实验室前沿演进图谱 · Multi-Lab AI Evolution Hub</span>
+              </div>
+              <h2 class="hub-hero-title">AiLabRoadMap</h2>
+              <p class="hub-hero-desc" id="hub-hero-desc">
+                系统性梳理全球顶尖人工智能实验室（Google DeepMind、OpenAI、Anthropic、Meta FAIR、Microsoft Research 等）的技术演化拓扑、划时代里程碑与权威学术评级，打通前驱传承与 CoolPapers 深度论文研读。
+              </p>
+              
+              <!-- Global Metrics Bar -->
+              <div class="hub-stats-row">
+                <div class="hub-stat-item">
+                  <span class="hub-stat-val">5</span>
+                  <span class="hub-stat-label" id="hub-stat-labs">顶尖实验室纳入</span>
+                </div>
+                <div class="hub-stat-divider"></div>
+                <div class="hub-stat-item">
+                  <span class="hub-stat-val">262+</span>
+                  <span class="hub-stat-label" id="hub-stat-papers">已精选收录文献</span>
+                </div>
+                <div class="hub-stat-divider"></div>
+                <div class="hub-stat-item">
+                  <span class="hub-stat-val">12</span>
+                  <span class="hub-stat-label" id="hub-stat-milestones">Tier S 划时代里程碑</span>
+                </div>
+                <div class="hub-stat-divider"></div>
+                <div class="hub-stat-item">
+                  <span class="hub-stat-val">2013-2026</span>
+                  <span class="hub-stat-label" id="hub-stat-timeline">演化时间跨度</span>
+                </div>
+                <div class="hub-stat-divider"></div>
+                <div class="hub-stat-item">
+                  <span class="hub-stat-val">100%</span>
+                  <span class="hub-stat-label" id="hub-stat-coolpapers">CoolPapers FAQ 直达</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Labs Directory Section -->
+            <div class="hub-section-header">
+              <div>
+                <h3 class="hub-section-title" id="hub-labs-title">🏛️ 实验室演化图谱索引 (AI Labs Directory)</h3>
+                <p class="hub-section-subtitle" id="hub-labs-subtitle">选择研究机构深入探索其核心里程碑、技术代际传承脉络与学术论文库</p>
+              </div>
+            </div>
+
+            <div class="hub-labs-grid">
+              <!-- 1. Google DeepMind (Live) -->
+              <div class="lab-card active-featured">
+                <div class="lab-card-top">
+                  <div class="lab-card-header">
+                    <div class="lab-icon-wrap dm-brand">
+                      <svg viewBox="0 0 28 28" width="30" height="30" fill="none">
+                        <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="2" />
+                        <path d="M7 14C7 10.134 10.134 7 14 7C17.866 7 21 10.134 21 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        <circle cx="14" cy="14" r="3.5" fill="currentColor" />
+                      </svg>
+                    </div>
+                    <div class="lab-meta-wrap">
+                      <div class="lab-title-row">
+                        <h4 class="lab-name">Google DeepMind</h4>
+                        <span class="lab-status-badge live" id="lab-badge-dm">● 核心子集已上线 (Live)</span>
+                      </div>
+                      <span class="lab-submeta" id="lab-submeta-dm">London & Mountain View · 深度强化学习与通用多模态开拓者</span>
+                    </div>
+                  </div>
+                  <p class="lab-desc" id="lab-desc-dm">
+                    从 Atari DQN、AlphaGo、AlphaFold 1/2/3 蛋白质物理折叠，跨越至原生多模态 Gemini 1.5、全球气象大模型 GraphCast 与超级智能理论纲领 (From AGI to ASI)。
+                  </p>
+                  
+                  <div class="lab-highlights">
+                    <span class="hl-tag">AlphaGo</span>
+                    <span class="hl-tag">AlphaFold 3</span>
+                    <span class="hl-tag">Gemini 1.5</span>
+                    <span class="hl-tag">GraphCast</span>
+                    <span class="hl-tag">RoboCat</span>
+                    <span class="hl-tag">From AGI to ASI</span>
+                    <span class="hl-tag">Visual General Intelligence</span>
+                  </div>
+                </div>
+
+                <div class="lab-stats-mini">
+                  <div class="mini-stat"><b id="lab-dm-stat-milestones">39</b> <span id="lab-dm-stat-label-m">拓扑节点</span></div>
+                  <div class="mini-stat"><b id="lab-dm-stat-pubs">262</b> <span id="lab-dm-stat-label-p">官方文献</span></div>
+                  <div class="mini-stat"><b>6</b> <span id="lab-dm-stat-label-t">前沿领域</span></div>
+                  <div class="mini-stat"><b>2013-2026</b> <span id="lab-dm-stat-label-y">演化时间线</span></div>
+                </div>
+
+                <div class="lab-card-actions">
+                  <button class="lab-btn-primary" id="btn-enter-dm-graph">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    <span id="btn-text-dm-graph">进入演化拓扑图谱 (DAG) ➔</span>
+                  </button>
+                  <button class="lab-btn-secondary" id="btn-enter-dm-library">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span id="btn-text-dm-lib">浏览 262 篇论文研读库 ➔</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 2. OpenAI (Upcoming) -->
+              <div class="lab-card upcoming">
+                <div class="lab-card-top">
+                  <div class="lab-card-header">
+                    <div class="lab-icon-wrap openai-brand">
+                      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                        <path d="M22.28 9.82a5.98 5.98 0 0 0-.51-4.91 6.05 6.05 0 0 0-6.51-2.9 6.06 6.06 0 0 0-10.28 2.17 5.98 5.98 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.98 5.98 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.51 2.9A5.98 5.98 0 0 0 13.26 24a6.06 6.06 0 0 0 5.77-4.2 5.99 5.99 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.08zm-9.02 12.61a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.8.8 0 0 0 .39-.68v-6.74l2.02 1.17a.07.07 0 0 1 .04.05v5.58a4.5 4.5 0 0 1-4.49 4.5zm-9.66-4.13a4.47 4.47 0 0 1-.53-3.01l.14.08 4.78 2.76a.77.77 0 0 0 .78 0l5.84-3.37v2.33a.08.08 0 0 1-.03.06L9.74 19.95a4.5 4.5 0 0 1-6.14-1.65zM2.34 7.9a4.48 4.48 0 0 1 2.37-1.98V11.6a.77.77 0 0 0 .38.68l5.82 3.35-2.02 1.17a.08.08 0 0 1-.07 0L4.01 14A4.5 4.5 0 0 1 2.34 7.9zm16.6 3.85L13.1 8.36l2.02-1.16a.08.08 0 0 1 .07 0l4.83 2.79a4.49 4.49 0 0 1-.68 8.1v-5.67a.79.79 0 0 0-.4-.67zm2.01-3.02l-.14-.08-4.77-2.78a.78.78 0 0 0-.79 0L9.41 9.23V6.9a.07.07 0 0 1 .03-.06l4.83-2.79a4.5 4.5 0 0 1 6.68 4.66zM8.31 12.86l-2.02-1.16a.08.08 0 0 1-.04-.06V6.07a4.5 4.5 0 0 1 7.38-3.45l-.14.08-4.79 2.76a.8.8 0 0 0-.39.68zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/>
+                      </svg>
+                    </div>
+                    <div class="lab-meta-wrap">
+                      <div class="lab-title-row">
+                        <h4 class="lab-name">OpenAI</h4>
+                        <span class="lab-status-badge upcoming" id="lab-badge-openai">⏳ 规划构建中 (Roadmap Upcoming)</span>
+                      </div>
+                      <span class="lab-submeta" id="lab-submeta-openai">San Francisco · 生成式预训练范式与强化学习推理</span>
+                    </div>
+                  </div>
+                  <p class="lab-desc" id="lab-desc-openai">
+                    确立以 Transformer 为核心的 Scaling Laws 扩展假说与 RLHF 人类偏好对齐范式。从早期 Gym、PPO 强化学习到 ChatGPT、GPT-4o，以及测试时强化学习推理跃迁 (OpenAI o1 / Strawberry)。
+                  </p>
+                  <div class="lab-highlights">
+                    <span class="hl-tag">GPT-4o</span>
+                    <span class="hl-tag">OpenAI o1 (Strawberry)</span>
+                    <span class="hl-tag">Sora</span>
+                    <span class="hl-tag">CLIP</span>
+                    <span class="hl-tag">DALL-E 3</span>
+                    <span class="hl-tag">InstructGPT / RLHF</span>
+                    <span class="hl-tag">Whisper</span>
+                  </div>
+                </div>
+
+                <div class="lab-card-actions">
+                  <button class="lab-btn-preview" data-lab="openai">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span id="btn-text-preview-openai">查看 OpenAI 规划预告与核心脉络 ➔</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 3. Anthropic (Upcoming) -->
+              <div class="lab-card upcoming">
+                <div class="lab-card-top">
+                  <div class="lab-card-header">
+                    <div class="lab-icon-wrap anthropic-brand">
+                      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    </div>
+                    <div class="lab-meta-wrap">
+                      <div class="lab-title-row">
+                        <h4 class="lab-name">Anthropic</h4>
+                        <span class="lab-status-badge upcoming" id="lab-badge-anthropic">⏳ 规划构建中 (Roadmap Upcoming)</span>
+                      </div>
+                      <span class="lab-submeta" id="lab-submeta-anthropic">San Francisco · 宪法式对齐与机械可解释性</span>
+                    </div>
+                  </div>
+                  <p class="lab-desc" id="lab-desc-anthropic">
+                    专注前沿大模型安全防御、机械可解释性与对齐研究。提出宪法式 AI (Constitutional AI / RLAIF) 体系，深入单语义神经元与潜在睡眠智能体机制，构建业界高智能与高安全性兼备的 Claude 3.5 旗舰。
+                  </p>
+                  <div class="lab-highlights">
+                    <span class="hl-tag">Claude 3.5 Sonnet</span>
+                    <span class="hl-tag">Constitutional AI (RLAIF)</span>
+                    <span class="hl-tag">Monosemanticity</span>
+                    <span class="hl-tag">Toy Models of Superposition</span>
+                    <span class="hl-tag">Sleeper Agents</span>
+                  </div>
+                </div>
+
+                <div class="lab-card-actions">
+                  <button class="lab-btn-preview" data-lab="anthropic">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span id="btn-text-preview-anthropic">查看 Anthropic 规划预告与核心脉络 ➔</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 4. Meta AI / FAIR (Upcoming) -->
+              <div class="lab-card upcoming">
+                <div class="lab-card-top">
+                  <div class="lab-card-header">
+                    <div class="lab-icon-wrap meta-brand">
+                      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 12c-2-3-4-5-7-5s-5 3-5 7 3 7 6 7c3 0 5-3 6-5 1 2 3 5 6 5 3 0 6-3 6-7s-2-7-5-7-5 2-6 5z" />
+                      </svg>
+                    </div>
+                    <div class="lab-meta-wrap">
+                      <div class="lab-title-row">
+                        <h4 class="lab-name">Meta AI (FAIR)</h4>
+                        <span class="lab-status-badge upcoming" id="lab-badge-meta">⏳ 规划构建中 (Roadmap Upcoming)</span>
+                      </div>
+                      <span class="lab-submeta" id="lab-submeta-meta">Menlo Park & New York · 全球开源基石与计算机视觉先驱</span>
+                    </div>
+                  </div>
+                  <p class="lab-desc" id="lab-desc-meta">
+                    全球开源基础大模型生态最核心的推动者。打造开发者基石 LLaMA 1~3.1 系列，开创通用分割大模型 SAM 1/2 与自监督视觉表示 DINOv2，支撑 PyTorch 深度学习工业标准。
+                  </p>
+                  <div class="lab-highlights">
+                    <span class="hl-tag">LLaMA 3.1</span>
+                    <span class="hl-tag">Segment Anything (SAM 2)</span>
+                    <span class="hl-tag">DINOv2</span>
+                    <span class="hl-tag">PyTorch</span>
+                    <span class="hl-tag">SeamlessM4T</span>
+                    <span class="hl-tag">OPT</span>
+                  </div>
+                </div>
+
+                <div class="lab-card-actions">
+                  <button class="lab-btn-preview" data-lab="meta">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span id="btn-text-preview-meta">查看 Meta AI 规划预告与核心脉络 ➔</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 5. Microsoft Research (Upcoming) -->
+              <div class="lab-card upcoming">
+                <div class="lab-card-top">
+                  <div class="lab-card-header">
+                    <div class="lab-icon-wrap msr-brand">
+                      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                        <rect x="2" y="2" width="9" height="9" />
+                        <rect x="13" y="2" width="9" height="9" />
+                        <rect x="2" y="13" width="9" height="9" />
+                        <rect x="13" y="13" width="9" height="9" />
+                      </svg>
+                    </div>
+                    <div class="lab-meta-wrap">
+                      <div class="lab-title-row">
+                        <h4 class="lab-name">Microsoft Research (MSR)</h4>
+                        <span class="lab-status-badge upcoming" id="lab-badge-msr">⏳ 规划构建中 (Roadmap Upcoming)</span>
+                      </div>
+                      <span class="lab-submeta" id="lab-submeta-msr">Redmond & Cambridge · 高质量小模型与分布式加速基石</span>
+                    </div>
+                  </div>
+                  <p class="lab-desc" id="lab-desc-msr">
+                    高数据质量小语言模型 (SLM) 与分布式架构先锋。提出“教科书级合成数据”理念训练 Phi 系列高效大模型，开发 DeepSpeed 分布式训练框架与 AutoGen 多智能体框架，奠定长残差连接 (ResNet) 历史基石。
+                  </p>
+                  <div class="lab-highlights">
+                    <span class="hl-tag">Phi-3.5 Mini/Vision</span>
+                    <span class="hl-tag">Orca 1/2</span>
+                    <span class="hl-tag">DeepSpeed Engine</span>
+                    <span class="hl-tag">AutoGen Multi-Agent</span>
+                    <span class="hl-tag">GraphRAG</span>
+                    <span class="hl-tag">ResNet Heritage</span>
+                  </div>
+                </div>
+
+                <div class="lab-card-actions">
+                  <button class="lab-btn-preview" data-lab="msr">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span id="btn-text-preview-msr">查看 Microsoft Research 规划预告 ➔</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Platform Mission & Methodology Banner -->
+            <div class="hub-features-section">
+              <h3 class="hub-section-title" id="hub-feat-title">✨ AiLabRoadMap 核心设计理念与体系</h3>
+              <div class="hub-features-grid">
+                <div class="hub-feat-card">
+                  <div class="feat-icon">🕸️</div>
+                  <h4 id="feat-title-1">有向无环拓扑脉络 (DAG Lineage)</h4>
+                  <p id="feat-desc-1">超越简单论文列表，用拓扑有向图展现理论基石突破与后续衍生工作的技术演化链，揭示研究代际演进逻辑。</p>
+                </div>
+                <div class="hub-feat-card">
+                  <div class="feat-icon">⚡</div>
+                  <h4 id="feat-title-2">CoolPapers 6 维结构化深度 FAQ</h4>
+                  <p id="feat-desc-2">提炼每篇入选成果的核心痛点、前驱传承、算法架构、验证实验、战略代际与 TL;DR，一键直达 Kimi 智能长文解读。</p>
+                </div>
+                <div class="hub-feat-card">
+                  <div class="feat-icon">🌟</div>
+                  <h4 id="feat-title-3">打破时滞的多维影响力评级</h4>
+                  <p id="feat-desc-3">结合 Semantic Scholar、顶刊顶会加权与范式革新补偿，科学划分 Tier S 划时代、Tier A 基石、Tier B 前沿与 Tier C 专业贡献。</p>
+                </div>
+                <div class="hub-feat-card">
+                  <div class="feat-icon">🌐</div>
+                  <h4 id="feat-title-4">开放共享与全站双语适配</h4>
+                  <p id="feat-desc-4">全界面中英文无缝切换，高质感浅色与暗色学术主题，支持平铺与紧凑双布局自由浏览，面向全球开源社区开放共建。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cytoscape Container -->
+      <div id="cy" class="cy-container" aria-label="Research Roadmap Graph" style="display: none;"></div>
+
+      <!-- Publications Library View (Toggled via nav tab) -->
+      <section id="library-view" class="library-view" style="display: none;">
+        <!-- Library Toolbar -->
+        <div class="lib-toolbar">
+          <div class="lib-toolbar-top">
+            <div class="lib-search-box">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="lib-search-input" placeholder="输入论文标题、领域、研究关键词快速研读..." />
+              <button id="lib-clear-search" class="clear-btn" style="display:none;">&times;</button>
+            </div>
+
+            <div class="lib-status-info">
+              <span class="lib-count-badge" id="lib-matched-count">共 262 篇官方论文</span>
+              <div class="lib-layout-switch" id="lib-layout-switch" role="group" aria-label="Layout View Toggle">
+                <button id="btn-layout-grid" class="layout-toggle-btn active" title="平铺卡片展示">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                  <span id="label-layout-grid">平铺</span>
+                </button>
+                <button id="btn-layout-list" class="layout-toggle-btn" title="紧凑列表展示">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                  <span id="label-layout-list">列表</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tier Quick Filter Chips -->
+          <div class="lib-filter-row">
+            <span class="filter-label" id="lib-tier-label">Milestone 等级：</span>
+            <div class="lib-chips-wrap" id="lib-tier-chips">
+              <button class="lib-chip active" data-tier="ALL" id="tier-chip-all">全部评级 (262)</button>
+              <button class="lib-chip tier-s-chip" data-tier="Tier S" id="tier-chip-s">🌟 Tier S 划时代里程碑 (12)</button>
+              <button class="lib-chip tier-a-chip" data-tier="Tier A" id="tier-chip-a">🔷 Tier A 核心基石 (16)</button>
+              <button class="lib-chip tier-b-chip" data-tier="Tier B" id="tier-chip-b">🟢 Tier B 重要前沿 (17)</button>
+              <button class="lib-chip tier-c-chip" data-tier="Tier C" id="tier-chip-c">⚪ Tier C 专业贡献 (217)</button>
+            </div>
+          </div>
+
+          <!-- Year Filter Chips -->
+          <div class="lib-filter-row">
+            <span class="filter-label" id="lib-year-label">发表年份：</span>
+            <div class="lib-chips-wrap" id="lib-year-chips">
+              <button class="lib-chip active" data-year="ALL" id="year-chip-all">全部年份</button>
+              <button class="lib-chip" data-year="2026">2026 年 (25 篇)</button>
+              <button class="lib-chip" data-year="2025">2025 年 (48 篇)</button>
+              <button class="lib-chip" data-year="2024">2024 年 (110 篇)</button>
+              <button class="lib-chip" data-year="2023">2023 年 (79 篇)</button>
+            </div>
+          </div>
+
+          <!-- Theme Filter Chips (Unified with DAG Topics) -->
+          <div class="lib-filter-row">
+            <span class="filter-label" id="lib-theme-label">前沿领域集群：</span>
+            <div class="lib-chips-wrap" id="lib-theme-chips">
+              <button class="lib-chip active" data-theme="ALL" id="lib-theme-all">全部领域</button>
+              <button class="lib-chip" data-theme="LLM & Multimodal"><span class="color-dot topic-llm"></span> <span class="chip-text">大语言模型与多模态 (97)</span></button>
+              <button class="lib-chip" data-theme="RL & Multi-Agent"><span class="color-dot topic-rl"></span> <span class="chip-text">强化学习与智能体 (31)</span></button>
+              <button class="lib-chip" data-theme="Embodied AI & Robotics"><span class="color-dot topic-robotics"></span> <span class="chip-text">具身智能与世界模型 (14)</span></button>
+              <button class="lib-chip" data-theme="AI for Science & Biology"><span class="color-dot topic-bio"></span> <span class="chip-text">科学智能与生物物理 (12)</span></button>
+              <button class="lib-chip" data-theme="Math & Algorithmic Discovery"><span class="color-dot topic-math"></span> <span class="chip-text">算法发现与数学推理 (5)</span></button>
+              <button class="lib-chip" data-theme="Frontier Safety, Alignment & Society"><span class="color-dot topic-safety"></span> <span class="chip-text">前沿安全、对齐与社会 (103)</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library Content Scroll Grid -->
+        <div class="lib-scroll-area">
+          <div id="lib-cards-grid" class="lib-cards-grid">
+            <!-- Rendered by show_result.ts -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Graph Floating Legend -->
+      <div class="floating-legend">
+        <div class="legend-header">
+          <span class="legend-title" id="legend-title">图谱图例说明</span>
+          <span class="legend-badge">DAG 拓扑</span>
+        </div>
+        <div class="legend-content">
+          <div class="legend-section">
+            <div class="legend-subtitle" id="legend-domains-title">主题类别</div>
+            <div class="legend-item"><span class="legend-swatch topic-llm"></span> <span id="legend-text-llm">大语言模型与多模态</span></div>
+            <div class="legend-item"><span class="legend-swatch topic-rl"></span> <span id="legend-text-rl">强化学习与智能体</span></div>
+            <div class="legend-item"><span class="legend-swatch topic-robotics"></span> <span id="legend-text-robotics">具身智能与世界模型</span></div>
+            <div class="legend-item"><span class="legend-swatch topic-bio"></span> <span id="legend-text-bio">科学智能与生物物理</span></div>
+            <div class="legend-item"><span class="legend-swatch topic-math"></span> <span id="legend-text-math">算法发现与数学推理</span></div>
+            <div class="legend-item"><span class="legend-swatch topic-safety"></span> <span id="legend-text-safety">前沿安全、对齐与社会</span></div>
+          </div>
+          <div class="legend-divider"></div>
+          <div class="legend-section">
+            <div class="legend-subtitle" id="legend-hints-title">节点与连线交互</div>
+            <div class="legend-hint">
+              <span class="hint-symbol">◯</span> <span id="legend-hint-size">节点尺寸 ∝ 引用影响力评分</span>
+            </div>
+            <div class="legend-hint">
+              <span class="hint-symbol">➔</span> <span id="legend-hint-arrow">箭头指向后继衍生/应用工作</span>
+            </div>
+            <div class="legend-hint">
+              <span class="hint-symbol highlight-orange">●</span> <span id="legend-hint-ancestor">橙黄高亮：祖先引用溯源 (Predecessors)</span>
+            </div>
+            <div class="legend-hint">
+              <span class="hint-symbol highlight-emerald">●</span> <span id="legend-hint-descendant">翠绿高亮：后续衍生继承 (Successors)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Node Hover Tooltip -->
+      <div id="node-tooltip" class="node-tooltip" style="display:none;">
+        <div class="tooltip-header">
+          <span class="tooltip-topic" id="tt-topic">Topic</span>
+          <span class="tooltip-year" id="tt-year">2020</span>
+        </div>
+        <h4 class="tooltip-title" id="tt-title">Paper Title</h4>
+        <div class="tooltip-meta">
+          <span class="tt-metric">🌟 影响分: <b id="tt-score">95</b></span>
+          <span class="tt-metric">📚 引用: <b id="tt-citations">12,000</b></span>
+        </div>
+        <p class="tooltip-tldr" id="tt-tldr">TL;DR summary...</p>
+        <div class="tooltip-footer">点击节点展开 CoolPapers 深度 6 维 FAQ & 演化链</div>
+      </div>
+
+      <!-- Backdrop for mobile / overlay -->
+      <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+      <!-- Detail Drawer / Modal for Paper FAQ -->
+      <aside id="paper-drawer" class="paper-drawer" aria-hidden="true">
+        <div class="drawer-inner">
+          <!-- Drawer Header -->
+          <div class="drawer-header">
+            <div class="drawer-header-left">
+              <div class="drawer-badges">
+                <span id="detail-generation" class="badge-gen">Generation</span>
+                <span id="detail-topic" class="badge-topic">Topic</span>
+                <span id="detail-venue" class="badge-venue">Venue</span>
+                <span id="detail-year" class="badge-year">Year</span>
+              </div>
+              <h2 id="detail-title" class="drawer-title">论文标题加载中...</h2>
+              <div id="detail-authors" class="drawer-authors">作者列表</div>
+            </div>
+            <button id="btn-close-drawer" class="drawer-close-btn" title="关闭抽屉 (Esc)">&times;</button>
+          </div>
+
+          <!-- Drawer Action Links -->
+          <div class="drawer-links" id="drawer-links">
+            <a id="link-coolpapers" href="#" target="_blank" rel="noopener noreferrer" class="link-btn coolpapers" title="在 CoolPapers 上查看 Kimi 结构化论文研读与解读">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>⚡ CoolPapers 直达</span>
+            </a>
+            <a id="link-arxiv" href="#" target="_blank" rel="noopener noreferrer" class="link-btn arxiv">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>arXiv 详情</span>
+            </a>
+            <a id="link-pdf" href="#" target="_blank" rel="noopener noreferrer" class="link-btn pdf">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>PDF 全文</span>
+            </a>
+            <a id="link-deepmind" href="#" target="_blank" rel="noopener noreferrer" class="link-btn official">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span>DeepMind 官网页面</span>
+            </a>
+          </div>
+
+          <!-- Impact Metrics Grid -->
+          <div class="impact-metrics-grid">
+            <div class="metric-card score-card">
+              <div class="metric-card-title" id="metric-title-score">综合影响力评分</div>
+              <div class="metric-card-value highlight" id="metric-score">--</div>
+              <div class="metric-card-hint" id="metric-hint-score">加权综合学术量化指标</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-card-title" id="metric-title-citations">总引用数</div>
+              <div class="metric-card-value" id="metric-citations">--</div>
+              <div class="metric-card-hint" id="metric-hint-citations">Semantic Scholar 索引统计</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-card-title" id="metric-title-influential">高影响力引用</div>
+              <div class="metric-card-value" id="metric-influential">--</div>
+              <div class="metric-card-hint" id="metric-hint-influential">作为核心前驱的重要引用</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-card-title" id="metric-title-velocity">年均引用增速</div>
+              <div class="metric-card-value" id="metric-velocity">--</div>
+              <div class="metric-card-hint" id="metric-hint-velocity">年均学术引用累积速率</div>
+            </div>
+          </div>
+
+          <!-- Interactive Lineage Navigator -->
+          <div class="drawer-section lineage-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="6" cy="6" r="3"></circle>
+                <circle cx="6" cy="18" r="3"></circle>
+                <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+              </svg>
+              <span id="lineage-section-title">技术演进脉络关系 (Interactive Lineage)</span>
+            </h3>
+
+            <div class="lineage-columns">
+              <div class="lineage-col">
+                <div class="lineage-label">
+                  <span class="dot-indicator orange"></span>
+                  <span id="lineage-label-pred">直接理论前驱 (Predecessors)</span>
+                </div>
+                <div id="lineage-predecessors" class="lineage-list">
+                  <span class="empty-hint" id="lineage-empty-pred">无内部前驱 (根基突破)</span>
+                </div>
+              </div>
+
+              <div class="lineage-col">
+                <div class="lineage-label">
+                  <span class="dot-indicator emerald"></span>
+                  <span id="lineage-label-succ">直接衍生工作 (Successors)</span>
+                </div>
+                <div id="lineage-successors" class="lineage-list">
+                  <span class="empty-hint" id="lineage-empty-succ">暂无后续衍生节点</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CoolPapers 6-Dimensional FAQ -->
+          <div class="drawer-section faq-section">
+            <div class="faq-section-header">
+              <h3 class="section-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                <span id="faq-section-title">CoolPapers 6 维结构化深度 FAQ</span>
+              </h3>
+              <span class="faq-tag" id="faq-tag-label">LLM Deep Insight</span>
+            </div>
+
+            <div class="faq-container" id="faq-list">
+              <!-- Q1 -->
+              <div class="faq-card">
+                <div class="faq-q">
+                  <span class="q-badge">Q1</span>
+                  <span class="q-text" id="faq-q1-label">核心问题：试图解决什么痛点或科学问题？现有方法有何局限？</span>
+                </div>
+                <div class="faq-a" id="faq-q1">--</div>
+              </div>
+
+              <!-- Q2 -->
+              <div class="faq-card">
+                <div class="faq-q">
+                  <span class="q-badge">Q2</span>
+                  <span class="q-text" id="faq-q2-label">相关研究与传承：有哪些关键的前驱工作或理论基石？</span>
+                </div>
+                <div class="faq-a" id="faq-q2">--</div>
+              </div>
+
+              <!-- Q3 -->
+              <div class="faq-card">
+                <div class="faq-q">
+                  <span class="q-badge">Q3</span>
+                  <span class="q-text" id="faq-q3-label">核心方法与创新：提出了哪些核心架构、算法创新或关键改进？</span>
+                </div>
+                <div class="faq-a" id="faq-q3">--</div>
+              </div>
+
+              <!-- Q4 -->
+              <div class="faq-card">
+                <div class="faq-q">
+                  <span class="q-badge">Q4</span>
+                  <span class="q-text" id="faq-q4-label">实验与突破指标：在哪些基准数据集上完成验证？取得了哪些突破结果？</span>
+                </div>
+                <div class="faq-a" id="faq-q4">--</div>
+              </div>
+
+              <!-- Q5 -->
+              <div class="faq-card">
+                <div class="faq-q">
+                  <span class="q-badge">Q5</span>
+                  <span class="q-text" id="faq-q5-label">DeepMind 脉络定位：属于哪个技术演进代际？在内部技术栈中起什么作用？</span>
+                </div>
+                <div class="faq-a" id="faq-q5">--</div>
+              </div>
+
+              <!-- Q6 -->
+              <div class="faq-card highlight-tldr">
+                <div class="faq-q">
+                  <span class="q-badge tldr-badge">Q6</span>
+                  <span class="q-text" id="faq-q6-label">一句话总结 (TL;DR)</span>
+                </div>
+                <div class="faq-a tldr-content" id="faq-q6">--</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Methodology & Milestone Rating Documentation Modal -->
+  <div id="modal-docs" class="docs-modal-backdrop" style="display: none;">
+    <div class="docs-modal-window">
+      <div class="docs-modal-header">
+        <div class="docs-header-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <h3>DeepMind Research Roadmap 评级体系与方法学说明文档</h3>
+        </div>
+        <button id="btn-close-docs" class="docs-close-btn" title="关闭说明文档 (Esc)">&times;</button>
+      </div>
+
+      <div class="docs-modal-body">
+        <!-- Section 1: Background & Purpose -->
+        <section class="docs-section">
+          <h4>一、 评级体系构建背景与初衷</h4>
+          <p>学术界单纯依赖“绝对引用量”评价研究成果存在固有缺陷：<strong>时间滞后性</strong>（新近发表的最前沿突破往往引用量尚未充分累积）与<strong>学术马太效应</strong>。本评级体系结合 <em>Semantic Scholar</em> 权威学术图谱、<em>Nature / Science</em> 顶级同行评审背书、Google DeepMind 内部官方战略布局，系统性制定了一套科学、立体的 Milestone 影响力等级评定标准，旨在清晰刻画从早期基础模型、超人博弈到通用人工智能 (AGI) 及超级智能 (ASI) 的完整演进脉络。</p>
+        </section>
+
+        <!-- Section 2: Milestone Tiers Detailed -->
+        <section class="docs-section">
+          <h4>二、 Milestone 四层级评定维度与准则</h4>
+          
+          <div class="doc-tier-box tier-s">
+            <div class="doc-tier-header">
+              <span class="doc-tier-badge s">🌟 Tier S: 划时代里程碑 (Landmark Milestone)</span>
+              <span class="doc-tier-score">综合评分：92 ~ 100 分</span>
+            </div>
+            <div class="doc-tier-content">
+              <p><strong>【判定准则】</strong> 确立全新通用人工智能范式、重塑全球学术界与工业界技术路线、或在国际顶级期刊（<em>Nature / Science</em> 正刊）发表的战略级奠基突破。</p>
+              <p><strong>【核心特征】</strong> 具备全行业颠覆性，产生长周期学术传承链，被公认为技术演进拐点。</p>
+              <p><strong>【入选代表作 (12 篇)】</strong></p>
+              <ul>
+                <li>《Visual General Intelligence: A White Paper》(2026.08) - 确立视觉通用智能与语言大模型并列的 AGI 双引擎终极架构</li>
+                <li>《From AGI to ASI》(2026.06) - 官方超级智能学术跃迁总纲领与安全红线标准</li>
+                <li>《GraphCast: Learned Global Weather Forecasting》(2023.11, Science 正刊) - 颠覆全球数值天气预报计算范式</li>
+                <li>《Accurate proteome-wide missense variant effect prediction with AlphaMissense》(2023.09, Science 正刊) - 全人类错义突变致病性预测</li>
+                <li>《AutoRT: Embodied Foundation Models for Large Scale Orchestration》(2024.01) - 机器人宪法与多机机群物理编排</li>
+                <li>《RoboCat: A Self-Improving Foundation Agent for Robotic Manipulation》(2023.12) - 首个自给自足闭环自进化的具身基础模型</li>
+                <li>《Achieving Human Level Competitive Robot Table Tennis》(2024.08) - 敏捷高对抗体育竞技达到业余人类冠军水准</li>
+                <li>《Advancing Biomedical Understanding with Multimodal Gemini (Med-Gemini)》(2024.05) - 临床医学超高精度原生多模态</li>
+                <li>《Gemini Embedding》(2025.03), 《Super-Exponential Regret for AlphaGo》(2024.05), 《Equivariant MuZero》(2023.12), 《AlphaZero Extremal Graphs》(2023.11)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="doc-tier-box tier-a">
+            <div class="doc-tier-header">
+              <span class="doc-tier-badge a">🔷 Tier A: 核心基石与重大突破 (Key Foundation)</span>
+              <span class="doc-tier-score">综合评分：80 ~ 91 分</span>
+            </div>
+            <div class="doc-tier-content">
+              <p><strong>【判定准则】</strong> 对核心模型架构、底层动力学解构、前沿超级对齐防御或基础重大工程控制产生关键奠基作用的研究成果。</p>
+              <p><strong>【核心特征】</strong> 解决了前沿演进中的关键结构性瓶颈，为 Tier S 里程碑的诞生提供核心理论与算法支撑。</p>
+              <p><strong>【入选代表作 (16 篇)】</strong></p>
+              <ul>
+                <li>《Towards Structural Understanding of LLM Overthinking》(2026.07) - 揭示长推理思维链中注意力饱和与过思考坍塌机理</li>
+                <li>《Image Generators are Generalist Vision Learners》(2026.04) - 统一生成式与判别式视觉理解理论假说</li>
+                <li>《TRecViT: A Recurrent Video Transformer》(2026.01) - 常数显存处理超长时序流式视频</li>
+                <li>《Gram: Assessing sabotage propensities via automated alignment auditing》(2026.05) - 自动化红队审计防御模型隐蔽破坏</li>
+                <li>《Realistic honeypot evaluations for scheming propensity》(2026.05) - 蜜罐诱饵机制主动探测模型阴谋倾向</li>
+                <li>《A moral Turing test》(2026.08), 《Solipsistic superintelligence is unlikely to be cooperative》(2026.06)</li>
+                <li>《Towards Practical RL for Tokamak Magnetic Control》(2024.03) - 可控核聚变托卡马克磁场约束强化学习</li>
+                <li>《TxGemma: Efficient and Agentic LLMs for Therapeutics》(2025.04) - 药物新药研发代理模型</li>
+                <li>《AlphaTensor for Optimizing Quantum Computations》(2024.02), 《Simplicity and Complexity in Combinatorial Optimization》(2026.02)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="doc-tier-box tier-b">
+            <div class="doc-tier-header">
+              <span class="doc-tier-badge b">🟢 Tier B: 重要前沿进展 (Major Advance)</span>
+              <span class="doc-tier-score">综合评分：68 ~ 79 分</span>
+            </div>
+            <div class="doc-tier-content">
+              <p><strong>【判定准则】</strong> 在人机认知协同、视频提示词工程、多机器人紧凑控制、生成检测与价值对齐等垂直方向取得实质性应用突破。</p>
+              <p><strong>【入选代表作 (17 篇)】</strong></p>
+              <ul>
+                <li>《Designing Proactive Thought Partners for Writing》(2026.09) - 主动介入激发人类灵感的新型协同思维伙伴</li>
+                <li>《Visual prompt engineering for video models》(2026.07) - 视频生成模型提示词工程学</li>
+                <li>《RoboBallet: Planning for Multi-Robot Reaching with GNN and RL》(2025.09) - 密集多机械臂防碰撞毫秒级规划</li>
+                <li>《Real-Time Group Dynamics with LLM Facilitation》(2026.06) - 实时群体决策促成与社会学协调</li>
+                <li>《AI-Generated Video Detection via Perceptual Straightening》(2025.09) - 生成视频伪造感知检测</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="doc-tier-box tier-c">
+            <div class="doc-tier-header">
+              <span class="doc-tier-badge c">⚪ Tier C: 专业贡献与专项评估 (Standard Contribution)</span>
+              <span class="doc-tier-score">综合评分：55 ~ 67 分</span>
+            </div>
+            <div class="doc-tier-content">
+              <p><strong>【判定准则】</strong> 专注于特定数据分布评估、垂类领域消融验证、行为经济学实验及工程调优的扎实学术贡献（共 217 篇）。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Formulation -->
+        <section class="docs-section">
+          <h4>三、 影响力量化计算加权模型</h4>
+          <p>为确保科学性与可比性，每篇论文的综合影响力得分（0 ~ 100）由以下核心因子综合加权评定：</p>
+          <div class="math-card">
+            <code>Impact Score = w₁·C_norm + w₂·IC_ratio + w₃·V_norm + w₄·Venue_coeff + w₅·Paradigm_bonus</code>
+          </div>
+          <ul>
+            <li><strong>C_norm</strong>：对数标准化权威学术引用量（Log-scaled Citation Count）。</li>
+            <li><strong>IC_ratio</strong>：高影响力引用比例（Influential Citation Ratio，表征后续工作对其核心继承程度）。</li>
+            <li><strong>V_norm</strong>：年均引用爆发速度（Citation Velocity，消除发表较早论文的自然时间红利）。</li>
+            <li><strong>Venue_coeff</strong>：期刊/会议顶级评级权重（<em>Nature/Science</em> 系数 1.35，<em>NeurIPS/ICML/ICLR/CVPR</em> 系数 1.20）。</li>
+            <li><strong>Paradigm_bonus</strong>：全新理论体系开创加成（如开创世界模型、VGI、神经符号 IMO 推理等）。</li>
+          </ul>
+        </section>
+
+        <!-- Section 4: CoolPapers Integration -->
+        <section class="docs-section">
+          <h4>四、 CoolPapers (papers.cool) 直达与 6 维 FAQ 研读指引</h4>
+          <p>为便利研究人员深度研读：</p>
+          <ul>
+            <li>本站所有论文卡片与详情抽屉均配备 <strong>CoolPapers ⚡ 直达链接</strong>，优先直通对应 arXiv 论文的 Kimi 深度解读页面，无 arXiv 编号论文则自动匹配 CoolPapers 语义搜索。</li>
+            <li>每篇论文均配有参考 CoolPapers 标准设计的 <strong>6 维结构化深度 FAQ</strong>（包含核心问题 Q1、技术传承 Q2、创新方法 Q3、验证实验 Q4、DeepMind 代际定位 Q5 与 TL;DR Q6），便于在 30 秒内快速提炼学术精髓。</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Lab Roadmap Preview Modal -->
+  <div id="modal-lab-preview" class="docs-modal-backdrop" style="display: none;">
+    <div class="docs-modal-window lab-preview-modal-window">
+      <div class="docs-modal-header">
+        <div class="docs-header-title-wrap">
+          <span id="preview-lab-icon" style="font-size: 1.3rem;">🏛️</span>
+          <h3 id="preview-lab-title">实验室路线图规划预告</h3>
+        </div>
+        <button id="btn-close-preview" class="docs-close-btn" title="关闭 (Esc)">&times;</button>
+      </div>
+      <div class="docs-modal-body" id="preview-lab-body">
+        <!-- Injected via TypeScript -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./show_result.ts"></script>
+</body>
+</html>

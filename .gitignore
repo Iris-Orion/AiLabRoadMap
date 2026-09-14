@@ -1,0 +1,45 @@
+# ==============================================================================
+# AiLabRoadMap - Git Ignore Specification
+# ==============================================================================
+
+# Python Environments & Bytecode
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# Node.js Dependencies & Cache
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local Cache & Data Scrapes
+data/cache/
+*.log
+
+# Sensitive Dev Logs & Conversation History
+readme.txt
+scratch/
+.system_generated/
+*.bak
+*.tmp
+
+# Operating System & IDE Files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo

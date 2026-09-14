@@ -1,0 +1,1817 @@
+{
+  "meta": {
+    "title": "Google DeepMind Research Roadmap & Tech Lineage (2013-2026)",
+    "updated_at": "2026-09-14",
+    "total_papers": 39,
+    "total_citations": 166245,
+    "year_range": [
+      2013,
+      2026
+    ],
+    "topics": [
+      "LLM & Multimodal",
+      "RL & Multi-Agent",
+      "Embodied AI & Robotics",
+      "AI for Science & Biology",
+      "Math & Algorithmic Discovery",
+      "Frontier Safety, Alignment & Society"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "dqn_2013",
+      "label": "DQN (2013)",
+      "title": "Playing Atari with Deep Reinforcement Learning",
+      "authors": [
+        "Volodymyr Mnih",
+        "Koray Kavukcuoglu",
+        "David Silver",
+        "Demis Hassabis"
+      ],
+      "year": 2013,
+      "venue": "NIPS 2013 Workshop",
+      "arxiv_id": "1312.5602",
+      "url": "https://arxiv.org/abs/1312.5602",
+      "pdf_url": "https://arxiv.org/pdf/1312.5602.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Deep RL",
+        "Atari",
+        "Q-Learning",
+        "Experience Replay"
+      ],
+      "citations": 28450,
+      "influential_citations": 2980,
+      "annual_citation_velocity": 2580,
+      "impact_score": 98,
+      "generation": "Gen 1: 深度强化学习奠基期 (2013-2015)",
+      "tldr": "端到端结合高维卷积与强化学习，仅凭原始屏幕像素掌握超人类 Atari 游戏策略。",
+      "faq": {
+        "q1_problem": "传统强化学习在高维感知输入（如原始像素）中面临严重的维度灾难与样本相关性导致的训练崩溃问题。",
+        "q2_lineage": "传承经典 Q-learning 算法与 TD 时序差分误差，首创 Experience Replay 经验回放机制打破数据时序相关性。",
+        "q3_innovation": "提出 Deep Q-Network (DQN) 架构，以深度卷积作为非线性价值函数逼近器，并周期性冻结目标网络权重。",
+        "q4_experiments": "在 7 款经典 Atari 2600 游戏中全线大幅击败以往强化学习模型并在多款游戏中超越人类专业玩家。",
+        "q5_deepmind_role": "DeepMind 开山之作与成名代表作，直接促成了 Google 对 DeepMind 的里程碑式收购并开启了现代深度强化学习时代。",
+        "q6_tldr": "端到端结合高维卷积与强化学习，仅凭原始屏幕像素掌握超人类 Atari 游戏策略。"
+      }
+    },
+    {
+      "id": "nature_dqn_2015",
+      "label": "Nature DQN (2015)",
+      "title": "Human-level control through deep reinforcement learning",
+      "authors": [
+        "Volodymyr Mnih",
+        "Koray Kavukcuoglu",
+        "David Silver",
+        "Shane Legg",
+        "Demis Hassabis"
+      ],
+      "year": 2015,
+      "venue": "Nature 518, 529-533",
+      "arxiv_id": "1312.5602",
+      "url": "https://www.nature.com/articles/nature14236",
+      "pdf_url": "https://arxiv.org/pdf/1312.5602.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Deep Q-Networks",
+        "Reinforcement Learning",
+        "Atari 2600"
+      ],
+      "citations": 26500,
+      "influential_citations": 2800,
+      "annual_citation_velocity": 2400,
+      "impact_score": 99,
+      "generation": "Gen 1: 深度强化学习奠基期 (2013-2015)",
+      "tldr": "在 49 款 Atari 游戏中系统性确立通用超人类水平控制基准，登上 Nature 封面。",
+      "faq": {
+        "q1_problem": "单一学习算法如何在几十种视觉与动作机制截然不同的未知交互环境中统一达到人类操作水准？",
+        "q2_lineage": "2013 年 NIPS 版 DQN 的完整泛化版，确立了强化学习算法通用性检验的黄金基准标准。",
+        "q3_innovation": "严格规范超参数一致性，使用同一套网络结构与学习率在全部 49 款游戏中独立无人类干预训练。",
+        "q4_experiments": "在超过一半的 Atari 游戏中超越专业人类玩家得分，并在《打砖块》等游戏中自主发现挖隧道的最优物理策略。",
+        "q5_deepmind_role": "首篇登上 Nature 正刊封面的深度学习控制研究，奠定了 DeepMind 在国际顶尖科学界的学术地位。",
+        "q6_tldr": "在 49 款 Atari 游戏中系统性确立通用超人类水平控制基准，登上 Nature 封面。"
+      }
+    },
+    {
+      "id": "a3c_2016",
+      "label": "A3C (2016)",
+      "title": "Asynchronous Methods for Deep Reinforcement Learning",
+      "authors": [
+        "Volodymyr Mnih",
+        "Adrià Puigdomènech Badia",
+        "Mehdi Mirza",
+        "Alex Graves",
+        "Timothy Lillicrap",
+        "Tim Harley",
+        "David Silver",
+        "Koray Kavukcuoglu"
+      ],
+      "year": 2016,
+      "venue": "ICML 2016",
+      "arxiv_id": "1602.01783",
+      "url": "https://arxiv.org/abs/1602.01783",
+      "pdf_url": "https://arxiv.org/pdf/1602.01783.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Asynchronous RL",
+        "Actor-Critic",
+        "Multi-threading",
+        "Continuous Control"
+      ],
+      "citations": 7800,
+      "influential_citations": 890,
+      "annual_citation_velocity": 780,
+      "impact_score": 91,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "异步多线程更新范式取代显式经验回放池，大幅缩短训练周期并支持连续控制。",
+      "faq": {
+        "q1_problem": "DQN 高度依赖大规模内存经验回放池（Replay Buffer），消耗大量显存且难以支持连续动作空间与分布式加速。",
+        "q2_lineage": "继承 Policy Gradient 与 Actor-Critic 范式，吸纳分布式异步并发梯度更新思想。",
+        "q3_innovation": "在单台多核 CPU 上运行多个并行的智能体实例探索不同环境分支，天然解构时序相关性。",
+        "q4_experiments": "仅耗费单台标准多核 CPU，训练速度即达到以往 GPU 版 DQN 的数倍，并在 3D 迷宫及物理控制任务中取得优异泛化。",
+        "q5_deepmind_role": "确立了 Actor-Critic 算法在工程高并发训练上的主导地位，为后续大规模自博弈架构打下基础设施基础。",
+        "q6_tldr": "异步多线程更新范式取代显式经验回放池，大幅缩短训练周期并支持连续控制。"
+      }
+    },
+    {
+      "id": "wavenet_2016",
+      "label": "WaveNet (2016)",
+      "title": "WaveNet: A Generative Model for Raw Audio",
+      "authors": [
+        "Aäron van den Oord",
+        "Sander Dieleman",
+        "Heiko Schwarz",
+        "Karen Simonyan",
+        "Alex Graves",
+        "Martin Riedmiller",
+        "Mike Chrzanowski",
+        "Oriol Vinyals"
+      ],
+      "year": 2016,
+      "venue": "arXiv preprint arXiv:1609.03499",
+      "arxiv_id": "1609.03499",
+      "url": "https://arxiv.org/abs/1609.03499",
+      "pdf_url": "https://arxiv.org/pdf/1609.03499.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Audio Generation",
+        "Dilated Convolutions",
+        "Autoregressive Models",
+        "Speech Synthesis"
+      ],
+      "citations": 6200,
+      "influential_citations": 680,
+      "annual_citation_velocity": 620,
+      "impact_score": 92,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "因果扩张卷积自回归生成原始音频波形，将全球机器语音自然度提升至接近人类发音。",
+      "faq": {
+        "q1_problem": "传统拼接式与参数化语音合成生成的声音生硬机械，无法建模高采样率下极其复杂的声学长程时序依赖。",
+        "q2_lineage": "承袭自回归生成建模思想（PixelCNN），将其推广至 1D 连续高频声学物理信号。",
+        "q3_innovation": "设计了因果扩张卷积（Dilated Causal Convolutions），以指数级感受野捕获上万采样点的长程上下文。",
+        "q4_experiments": "在英文与中文语音 MOS（平均主观意见分）测试中将机器语音与真实人声的差距缩小 50% 以上。",
+        "q5_deepmind_role": "DeepMind 技术落地 Google 核心生态（Google Assistant 语音合成引擎）的最经典商用突破之一。",
+        "q6_tldr": "因果扩张卷积自回归生成原始音频波形，将全球机器语音自然度提升至接近人类发音。"
+      }
+    },
+    {
+      "id": "alphago_2016",
+      "label": "AlphaGo (2016)",
+      "title": "Mastering the game of Go with deep neural networks and tree search",
+      "authors": [
+        "David Silver",
+        "Aja Huang",
+        "Chris J. Maddison",
+        "Arthur Guez",
+        "Laurent Sifre",
+        "George van den Driessche",
+        "Julian Schrittwieser",
+        "Ioannis Antonoglou",
+        "Veda Panneershelvam",
+        "Marc Lanctot",
+        "Sander Dieleman",
+        "John Nham",
+        "Nal Kalchbrenner",
+        "Ilya Sutskever",
+        "Timothy Lillicrap",
+        "Madeleine Leach",
+        "Koray Kavukcuoglu",
+        "Thore Graepel",
+        "Demis Hassabis"
+      ],
+      "year": 2016,
+      "venue": "Nature 529, 484-489",
+      "arxiv_id": null,
+      "url": "https://www.nature.com/articles/nature16961",
+      "pdf_url": "https://www.nature.com/articles/nature16961.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Monte Carlo Tree Search",
+        "Value Networks",
+        "Policy Networks",
+        "Computer Go"
+      ],
+      "citations": 19400,
+      "influential_citations": 2350,
+      "annual_citation_velocity": 2400,
+      "impact_score": 99,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "深度神经网络结合蒙特卡洛树搜索，击败世界围棋冠军，人工智能史诗级转折点。",
+      "faq": {
+        "q1_problem": "围棋拥有高达 10^170 的可能状态空间，传统穷举与静态估值函数在围棋中彻底失效，曾被认为 10 年内无法攻克。",
+        "q2_lineage": "将经典蒙特卡洛树搜索（MCTS）与现代深度卷积神经网络深度融合，结合人类专家棋谱监督与强化学习自博弈。",
+        "q3_innovation": "分治设计走子网络（Policy Network 缩小搜索宽度）与价值网络（Value Network 削减搜索深度），实现直觉式推演。",
+        "q4_experiments": "以 5:0 击败欧洲围棋冠军樊麾，随后在首尔以 4:1 击败世界围棋冠军李世石职业九段。",
+        "q5_deepmind_role": "DeepMind 全球声誉巅峰之作，掀起了全球第三次人工智能技术研发与公众认知浪潮。",
+        "q6_tldr": "深度神经网络结合蒙特卡洛树搜索，击败世界围棋冠军，人工智能史诗级转折点。"
+      }
+    },
+    {
+      "id": "rainbow_2017",
+      "label": "Rainbow (2017)",
+      "title": "Rainbow: Combining Improvements in Deep Reinforcement Learning",
+      "authors": [
+        "Matteo Hessel",
+        "Joseph Modayil",
+        "Hado van Hasselt",
+        "Tom Schaul",
+        "Georg Ostrovski",
+        "Will Dabney",
+        "Dan Horgan",
+        "Bilal Piot",
+        "Mohammad Gheshlaghi Azar",
+        "David Silver"
+      ],
+      "year": 2017,
+      "venue": "AAAI 2018",
+      "arxiv_id": "1710.02298",
+      "url": "https://arxiv.org/abs/1710.02298",
+      "pdf_url": "https://arxiv.org/pdf/1710.02298.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Rainbow",
+        "DQN",
+        "Prioritized Replay",
+        "Distributional RL",
+        "Noisy Nets"
+      ],
+      "citations": 3200,
+      "influential_citations": 380,
+      "annual_citation_velocity": 380,
+      "impact_score": 88,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "融汇 DQN 演化历程中的六大核心强化机制，打造单智能体强化学习最高集大成者。",
+      "faq": {
+        "q1_problem": "自 2015 年以来 DQN 涌现了多项独立算法增强（Double Q、优先回放、Dueling 等），但它们能否正交协同缺乏系统验证。",
+        "q2_lineage": "集大成汇聚：Double DQN、Prioritized Replay、Dueling Networks、Multi-step Learning、Distributional RL、Noisy Nets。",
+        "q3_innovation": "系统性集成 6 种改进并进行完备的消融实验（Ablation Study），证明了各机制在样本效率与终极性能上的互补性。",
+        "q4_experiments": "在 57 款 Atari 游戏中大幅刷新 SOTA 性能，并在学习速度与数据效率上实现压倒性领先。",
+        "q5_deepmind_role": "终结了早期 DQN 琐碎改进的碎片化探索，为价值型深度强化学习确立了终极集大成基线。",
+        "q6_tldr": "融汇 DQN 演化历程中的六大核心强化机制，打造单智能体强化学习最高集大成者。"
+      }
+    },
+    {
+      "id": "alphago_zero_2017",
+      "label": "AlphaGo Zero (2017)",
+      "title": "Mastering the game of Go without human knowledge",
+      "authors": [
+        "David Silver",
+        "Julian Schrittwieser",
+        "Karen Simonyan",
+        "Ioannis Antonoglou",
+        "Aja Huang",
+        "Arthur Guez",
+        "Thomas Hubert",
+        "Lucas Baker",
+        "Matthew Lai",
+        "Adrian Bolton",
+        "Yutian Chen",
+        "Timothy Lillicrap",
+        "Fan Hui",
+        "Laurent Sifre",
+        "George van den Driessche",
+        "Thore Graepel",
+        "Demis Hassabis"
+      ],
+      "year": 2017,
+      "venue": "Nature 550, 354-359",
+      "arxiv_id": null,
+      "url": "https://www.nature.com/articles/nature24270",
+      "pdf_url": "https://www.nature.com/articles/nature24270.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Tabula Rasa",
+        "Pure Reinforcement Learning",
+        "Self-Play",
+        "Residual Networks"
+      ],
+      "citations": 12800,
+      "influential_citations": 1450,
+      "annual_citation_velocity": 1400,
+      "impact_score": 98,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "彻底抛弃人类棋谱，以白纸自博弈实现纯粹自我进化，100:0 击败初代 AlphaGo。",
+      "faq": {
+        "q1_problem": "依赖人类专家示范数据不仅成本高昂，且会将人类固有的思维盲区和次优习惯植入智能体，限制其超人类潜力。",
+        "q2_lineage": "AlphaGo 架构的革命性飞跃，摆脱任何人类知识（除基本游戏胜负规则外）。",
+        "q3_innovation": "将策略网络与价值网络统一到单一大规模残差网络（ResNet），使用纯粹的 MCTS 自博弈强化学习闭环更新。",
+        "q4_experiments": "仅训练 3 天即以 100:0 零封击败曾战胜李世石的 AlphaGo Lee，并在 40 天内超越 AlphaGo Master。",
+        "q5_deepmind_role": "证明了从零开始（Tabula Rasa）通过强化学习能够发现超越数千年人类文明积累的全新高阶策略与定式。",
+        "q6_tldr": "彻底抛弃人类棋谱，以白纸自博弈实现纯粹自我进化，100:0 击败初代 AlphaGo。"
+      }
+    },
+    {
+      "id": "alphazero_2017",
+      "label": "AlphaZero (2017)",
+      "title": "Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm",
+      "authors": [
+        "David Silver",
+        "Thomas Hubert",
+        "Julian Schrittwieser",
+        "Ioannis Antonoglou",
+        "Matthew Lai",
+        "Arthur Guez",
+        "Marc Lanctot",
+        "Laurent Sifre",
+        "Dharshan Kumaran",
+        "Thore Graepel",
+        "Timothy Lillicrap",
+        "Karen Simonyan",
+        "Demis Hassabis"
+      ],
+      "year": 2017,
+      "venue": "Science 362, 1140-1144",
+      "arxiv_id": "1712.01815",
+      "url": "https://www.science.org/doi/10.1126/science.aar6404",
+      "pdf_url": "https://arxiv.org/pdf/1712.01815.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "General Game Playing",
+        "Self-Play RL",
+        "Chess",
+        "Shogi",
+        "Go"
+      ],
+      "citations": 6800,
+      "influential_citations": 750,
+      "annual_citation_velocity": 750,
+      "impact_score": 97,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "单一通用自博弈算法统一横扫国际象棋、将棋与围棋全部经典完全信息博弈。",
+      "faq": {
+        "q1_problem": "棋类算法（如国际象棋 Stockfish、将棋 Elmo）高度依赖专有棋种的人工设计估值规则与特定搜索启发式，无法跨领域泛化。",
+        "q2_lineage": "将 AlphaGo Zero 的自博弈范式脱胎换骨为不绑定任何特定棋盘与棋规的纯粹通用框架。",
+        "q3_innovation": "同一套算法代码在完全不改动超参数的前提下，仅输入基本规则，数小时内自学登顶各棋类巅峰。",
+        "q4_experiments": "在国际象棋中数小时内压倒性击败世界计算机象棋锦标赛冠军 Stockfish，展现出极富浪漫主义的弃子进攻战术。",
+        "q5_deepmind_role": "确立了完全信息博弈领域“通用强化学习算法 > 人工精心打造专用系统”的技术转折点。",
+        "q6_tldr": "单一通用自博弈算法统一横扫国际象棋、将棋与围棋全部经典完全信息博弈。"
+      }
+    },
+    {
+      "id": "alphafold1_2018",
+      "label": "AlphaFold 1 (2018)",
+      "title": "Improved protein structure prediction using potentials from deep learning",
+      "authors": [
+        "Andrew W. Senior",
+        "Richard Evans",
+        "John Jumper",
+        "James Kirkpatrick",
+        "Laurent Sifre",
+        "Tim Green",
+        "Demis Hassabis"
+      ],
+      "year": 2018,
+      "venue": "Nature 577, 706-710",
+      "arxiv_id": null,
+      "url": "https://www.nature.com/articles/s41586-019-1923-7",
+      "pdf_url": "https://www.nature.com/articles/s41586-019-1923-7.pdf",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Protein Folding",
+        "CASP13",
+        "Distance Distributions",
+        "Structural Biology"
+      ],
+      "citations": 3400,
+      "influential_citations": 420,
+      "annual_citation_velocity": 480,
+      "impact_score": 95,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "首次在国际蛋白质结构预测评估（CASP13）中夺冠，拉开 AI 解决五十年生物难题序幕。",
+      "faq": {
+        "q1_problem": "仅凭一维氨基酸序列直接预测三维蛋白质立体结构困扰了全球结构生物学界整整半个世纪。",
+        "q2_lineage": "汲取生物进化多序列比对（MSA）与协方差共变分析理论，融合深度卷积神经网络拟合残基距离概率分布。",
+        "q3_innovation": "预测氨基酸残基对之间的成对距离概率分布，通过梯度下降连续最小化物理能量势能势函数。",
+        "q4_experiments": "在 CASP13 国际盲测竞赛中取得断层第一，总成绩大幅超越其余全球顶尖传统生物物理计算实验室。",
+        "q5_deepmind_role": "DeepMind 从虚拟游戏竞技向解决重大现实世界科学命题（AI for Science）转型的关键标志性工作。",
+        "q6_tldr": "首次在国际蛋白质结构预测评估（CASP13）中夺冠，拉开 AI 解决五十年生物难题序幕。"
+      }
+    },
+    {
+      "id": "alphastar_2019",
+      "label": "AlphaStar (2019)",
+      "title": "Grandmaster level in StarCraft II using multi-agent reinforcement learning",
+      "authors": [
+        "Oriol Vinyals",
+        "Igor Babuschkin",
+        "Wojciech M. Czarnecki",
+        "David Silver"
+      ],
+      "year": 2019,
+      "venue": "Nature 575, 350-354",
+      "arxiv_id": "1912.06680",
+      "url": "https://www.nature.com/articles/s41586-019-1724-z",
+      "pdf_url": "https://arxiv.org/pdf/1912.06680.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Multi-Agent RL",
+        "League Training",
+        "Imperfect Information",
+        "StarCraft II"
+      ],
+      "citations": 2300,
+      "influential_citations": 280,
+      "annual_citation_velocity": 320,
+      "impact_score": 93,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "攻克非完全信息、超长时域与高维组合动作空间的即时战略游戏《星际争霸 2》达到宗师级。",
+      "faq": {
+        "q1_problem": "战争迷雾（非完全信息）、数千动作组合即时决策、长达数万步的时空信度分配使传统强化学习遭遇维度与反制策略震荡。",
+        "q2_lineage": "继承 A3C 与 AlphaGo 的自博弈，引入博弈论中的纳什均衡与多智能体群体演化（AlphaStar League）。",
+        "q3_innovation": "构建包含主智能体与各类探险/剥削智能体（Exploiters）的虚拟联赛机制，克服策略自闭与剪刀石头布式策略环。",
+        "q4_experiments": "在 Battle.net 官方天梯匿名实战中达到人类宗师级（Grandmaster，全球前 0.15% 顶级高手），并击败世界职业选手。",
+        "q5_deepmind_role": "将强化学习求解前沿推进至复杂的连续时间、部分可观测多智能体对抗领域。",
+        "q6_tldr": "攻克非完全信息、超长时域与高维组合动作空间的即时战略游戏《星际争霸 2》达到宗师级。"
+      }
+    },
+    {
+      "id": "muzero_2019",
+      "label": "MuZero (2019)",
+      "title": "Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model",
+      "authors": [
+        "Julian Schrittwieser",
+        "Ioannis Antonoglou",
+        "Thomas Hubert",
+        "Karen Simonyan",
+        "David Silver"
+      ],
+      "year": 2019,
+      "venue": "Nature 588, 604-609",
+      "arxiv_id": "1911.08265",
+      "url": "https://www.nature.com/articles/s41586-020-03051-4",
+      "pdf_url": "https://arxiv.org/pdf/1911.08265.pdf",
+      "primary_topic": "RL & Multi-Agent",
+      "topics": [
+        "Model-Based RL",
+        "World Model",
+        "Latent Planning",
+        "Value Equivalence"
+      ],
+      "citations": 2800,
+      "influential_citations": 360,
+      "annual_citation_velocity": 410,
+      "impact_score": 96,
+      "generation": "Gen 2: 超人博弈与自博弈时代 (2016-2019)",
+      "tldr": "摆脱对游戏已知环境物理规则的依赖，通过隐空间自学可预测世界模型自主规划。",
+      "faq": {
+        "q1_problem": "AlphaZero 需要显式给定真实世界的规则模拟器；而真实世界大多数场景规则未知且无法精确建模像素细节。",
+        "q2_lineage": "AlphaZero 规划能力与基于模型强化学习（Model-Based RL）的终极融合。",
+        "q3_innovation": "仅预测与规划直接相关的三要素（价值、策略、即时奖励），无需求解和重构高维环境的无关物理像素。",
+        "q4_experiments": "在不知道规则的前提下，于围棋、国际象棋、将棋及全部 57 款复杂视觉 Atari 游戏中均达到超越 AlphaZero 的性能。",
+        "q5_deepmind_role": "确立了隐空间世界模型（Latent World Model）用于端到端推演规划的全新理论基石。",
+        "q6_tldr": "摆脱对游戏已知环境物理规则的依赖，通过隐空间自学可预测世界模型自主规划。"
+      }
+    },
+    {
+      "id": "alphafold2_2020",
+      "label": "AlphaFold 2 (2020)",
+      "title": "Highly accurate protein structure prediction with AlphaFold",
+      "authors": [
+        "John Jumper",
+        "Richard Evans",
+        "Alexander Pritzel",
+        "Tim Green",
+        "Michael Figurnov",
+        "Olaf Ronneberger",
+        "Demis Hassabis"
+      ],
+      "year": 2020,
+      "venue": "Nature 596, 583-589",
+      "arxiv_id": null,
+      "url": "https://www.nature.com/articles/s41586-021-03819-2",
+      "pdf_url": "https://www.nature.com/articles/s41586-021-03819-2.pdf",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Evoformer",
+        "3D Invariant Attention",
+        "Protein Structure",
+        "CASP14"
+      ],
+      "citations": 24800,
+      "influential_citations": 3200,
+      "annual_citation_velocity": 4500,
+      "impact_score": 100,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "原子级精度端到端解决蛋白质折叠世纪难题，颠覆现代分子生物学与药物研发，获诺贝尔奖。",
+      "faq": {
+        "q1_problem": "传统 X 射线晶体学与冷冻电镜解析蛋白质三维空间构象耗时数年且成本巨大，严重制约全球生命科学与疾病研究进程。",
+        "q2_lineage": "完全颠覆初代 AF1 的卷积优化管线，开创基于 Transformer 注意力的端到端几何网络架构。",
+        "q3_innovation": "发明 Evoformer 处理 MSA 协同进化与残基间对偶关系，并设计直接在欧氏空间操作坐标的 SE(3) 不变性结构模块（Structure Module）。",
+        "q4_experiments": "在 CASP14 评估中中位骨架预测误差达到令人难以置信的 0.96 埃（原子尺度误差），被官方独立评审团判定为该问题已获彻底解决。",
+        "q5_deepmind_role": "AI 赋能重大科学最辉煌的丰碑，2024 年诺贝尔化学奖核心支撑成果，开源了人类已知的两亿多个蛋白质结构数据库。",
+        "q6_tldr": "原子级精度端到端解决蛋白质折叠世纪难题，颠覆现代分子生物学与药物研发，获诺贝尔奖。"
+      }
+    },
+    {
+      "id": "chinchilla_2022",
+      "label": "Chinchilla (2022)",
+      "title": "Training Compute-Optimal Large Language Models",
+      "authors": [
+        "Jordan Hoffmann",
+        "Sebastian Borgeaud",
+        "Arthur Mensch",
+        "Elena Buchatskaya",
+        "Trevor Cai",
+        "Eliza Rutherford",
+        "Diego de Las Casas",
+        "Demis Hassabis"
+      ],
+      "year": 2022,
+      "venue": "NeurIPS 2022",
+      "arxiv_id": "2203.15556",
+      "url": "https://arxiv.org/abs/2203.15556",
+      "pdf_url": "https://arxiv.org/pdf/2203.15556.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Chinchilla Scaling Laws",
+        "Compute-Optimal",
+        "Data vs Model Size",
+        "LLM Scaling"
+      ],
+      "citations": 2900,
+      "influential_citations": 410,
+      "annual_citation_velocity": 650,
+      "impact_score": 96,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "重塑全球大模型缩放法则，证明以往模型严重训练不足，确立数据量与参数量等比例扩增的黄金律。",
+      "faq": {
+        "q1_problem": "OpenAI 早期缩放定律倾向于快速扩张模型参数而相对忽视训练数据量，导致大模型显存占用庞大且推理成本极高。",
+        "q2_lineage": "对 Kaplan 等人 2020 年经验缩放法则的纠偏与深刻重构。",
+        "q3_innovation": "在给定总浮点运算预算（FLOPs）下，建立严格的三种独立测算模型，证明模型参数量与训练 Token 数应当以 1:1 等比例同步增长。",
+        "q4_experiments": "70B 参数的 Chinchilla 在消耗 4 倍 Token（1.4T tokens）训练后，全线击败了参数量高达 280B 的 Gopher 以及 175B 的 GPT-3。",
+        "q5_deepmind_role": "直接启发并催生了后续 LLaMA、Mistral 等全球开源轻量高能模型的研发，成为工业界大模型训练遵循的算力最优标准。",
+        "q6_tldr": "重塑全球大模型缩放法则，证明以往模型严重训练不足，确立数据量与参数量等比例扩增的黄金律。"
+      }
+    },
+    {
+      "id": "flamingo_2022",
+      "label": "Flamingo (2022)",
+      "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+      "authors": [
+        "Jean-Baptiste Alayrac",
+        "Jeff Donahue",
+        "Pauline Luc",
+        "Antoine Miech",
+        "Iain Barr",
+        "Yana Hasson",
+        "Karel Lenc",
+        "Arthur Mensch",
+        "Katie Millican",
+        "Malcolm Reynolds",
+        "Roman Ring",
+        "Eliza Rutherford",
+        "Serkan Cabi",
+        "Tengda Han",
+        "Zhitao Gong",
+        "Sina Samangooei",
+        "Marianne Monteiro",
+        "Jacob Menick",
+        "Sebastian Borgeaud",
+        "Andrew Brock",
+        "Aida Nematzadeh",
+        "Sahand Sharifzadeh",
+        "Mikolaj Binkowski",
+        "Ricardo Barreira",
+        "Oriol Vinyals",
+        "Andrew Zisserman",
+        "Karen Simonyan"
+      ],
+      "year": 2022,
+      "venue": "NeurIPS 2022",
+      "arxiv_id": "2204.14198",
+      "url": "https://arxiv.org/abs/2204.14198",
+      "pdf_url": "https://arxiv.org/pdf/2204.14198.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Visual Language Model",
+        "Few-Shot Learning",
+        "Perceiver Resampler",
+        "Cross-Attention"
+      ],
+      "citations": 2600,
+      "influential_citations": 350,
+      "annual_citation_velocity": 600,
+      "impact_score": 95,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "多模态大模型里程碑，冻结预训练 LLM 桥接视觉特征，确立现代视觉-语言跨模态架构基础。",
+      "faq": {
+        "q1_problem": "既往视觉问答系统通常需要针对每个具体下游视觉任务进行微调，无法像纯文本 LLM 那样进行少样本（Few-Shot）上下文学习。",
+        "q2_lineage": "将大规模冻结文本模型与视觉特征编码器通过跨注意力桥接。",
+        "q3_innovation": "提出 Perceiver Resampler 架构将任意分辨率图像/视频转换为固定数量视觉 Token，并在冻结 LLM 层间插入门控跨注意力层（Gated Cross-Attention）。",
+        "q4_experiments": "仅需少量示例提示，在开放域视觉问答（VQAv2）、图像描述（COCO）等 16 项主流基准上刷新多样本学习纪录。",
+        "q5_deepmind_role": "奠定了现代视觉-语言大模型（VLM）的核心模块设计，直接孕育了后续 Gemini 等原生多模态系统。",
+        "q6_tldr": "多模态大模型里程碑，冻结预训练 LLM 桥接视觉特征，确立现代视觉-语言跨模态架构基础。"
+      }
+    },
+    {
+      "id": "gato_2022",
+      "label": "Gato (2022)",
+      "title": "A Generalist Agent",
+      "authors": [
+        "Scott Reed",
+        "Konrad Zolna",
+        "Emilio Parisotto",
+        "Sergio Gomez Colmenarejo",
+        "Alexander Novikov",
+        "Gabriel Barth-Maron",
+        "Mai Gimenez",
+        "Yutian Chen",
+        "Jost Tobias Springenberg",
+        "Tom Le Paine",
+        "Sumanth Dathathri",
+        "Nando de Freitas"
+      ],
+      "year": 2022,
+      "venue": "Transactions on Machine Learning Research (TMLR 2022)",
+      "arxiv_id": "2205.06175",
+      "url": "https://arxiv.org/abs/2205.06175",
+      "pdf_url": "https://arxiv.org/pdf/2205.06175.pdf",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Generalist Agent",
+        "Multi-Modal Multi-Task",
+        "Tokenized Actions",
+        "Embodied AI"
+      ],
+      "citations": 1450,
+      "influential_citations": 190,
+      "annual_citation_velocity": 340,
+      "impact_score": 93,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "单一通用模型同时处理玩 Atari、机械臂堆叠积木、图像对话与文本问答等 604 项异构任务。",
+      "faq": {
+        "q1_problem": "既往通用模型多局限于纯文本或纯视觉生成，物理交互、具身控制与对话推演被长久割裂在完全独立的专用模型中。",
+        "q2_lineage": "将序列转换（Transformer）与自回归预测拓展至现实世界物理执行机构动作空间。",
+        "q3_innovation": "将文本、按键、连续关节扭矩、按钮操作和图像全部编码为平坦的一维离散 Token 流，使用同一个 Transformer 进行统一自回归建模。",
+        "q4_experiments": "单一参数网络无需切换结构，在 604 项跨越虚拟与现实环境的异构任务中，超 450 项任务达到专家级基准水平。",
+        "q5_deepmind_role": "通向具身通用人工智能（Embodied AGI）的标杆性尝试，拉开了通用机器人大脑基础模型的演进大幕。",
+        "q6_tldr": "单一通用模型同时处理玩 Atari、机械臂堆叠积木、图像对话与文本问答等 604 项异构任务。"
+      }
+    },
+    {
+      "id": "rt1_2022",
+      "label": "RT-1 (2022)",
+      "title": "RT-1: Robotics Transformer for Real-World Control at Scale",
+      "authors": [
+        "Anthony Brohan",
+        "Noah Brown",
+        "Justice Carbajal",
+        "Yevgen Chebotar",
+        "Joseph Dabis",
+        "Chelsea Finn",
+        "Keerthana Gopalakrishnan",
+        "Karol Hausman",
+        "Alex Irpan",
+        "Demis Hassabis"
+      ],
+      "year": 2022,
+      "venue": "Robotics: Science and Systems (RSS 2023)",
+      "arxiv_id": "2212.06817",
+      "url": "https://arxiv.org/abs/2212.06817",
+      "pdf_url": "https://arxiv.org/pdf/2212.06817.pdf",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Robotics Transformer",
+        "Real-World Robotics",
+        "Tokenized Control",
+        "Imitation Learning"
+      ],
+      "citations": 1100,
+      "influential_citations": 140,
+      "annual_citation_velocity": 290,
+      "impact_score": 91,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "在大规模真实世界多任务多物体上训练 Transformer，实现高泛化性低延迟机械臂控制。",
+      "faq": {
+        "q1_problem": "真实物理环境具有极高的不确定性与摩擦碰撞误差，传统机器人强化学习策略很难在非结构化厨房/办公室环境中稳定执行自然语言指令。",
+        "q2_lineage": "将 Gato 的动作离散化理念进一步落地于高度工业级的真实机器人操控系统。",
+        "q3_innovation": "收集超过 13 万条真实世界机器人轨迹数据，采用 TokenLearner 进行高效视觉注意力压缩，保持 3Hz 闭环稳定实时控制。",
+        "q4_experiments": "在超过 700 项真实机械臂任务中展示了 97% 的极高成功率，并对未见过的物体和未见过的物理背景表现出强泛化适应。",
+        "q5_deepmind_role": "确立了机器人领域大规模多任务数据驱动（Robotics Foundation Model）的工程落地标准范式。",
+        "q6_tldr": "在大规模真实世界多任务多物体上训练 Transformer，实现高泛化性低延迟机械臂控制。"
+      }
+    },
+    {
+      "id": "alphadev_2023",
+      "label": "AlphaDev (2023)",
+      "title": "Faster sorting algorithms discovered using deep reinforcement learning",
+      "authors": [
+        "Daniel J. Mankowitz",
+        "Andrea Michi",
+        "Anton Zhernov",
+        "Marco Gelmi",
+        "Marco Selvi",
+        "Cosmin Paduraru",
+        "Demis Hassabis"
+      ],
+      "year": 2023,
+      "venue": "Nature 618, 257-263",
+      "arxiv_id": null,
+      "url": "https://www.nature.com/articles/s41586-023-06004-9",
+      "pdf_url": "https://www.nature.com/articles/s41586-023-06004-9.pdf",
+      "primary_topic": "Math & Algorithmic Discovery",
+      "topics": [
+        "Assembly Optimization",
+        "Sorting Algorithm",
+        "Reinforcement Learning",
+        "LLVM"
+      ],
+      "citations": 680,
+      "influential_citations": 85,
+      "annual_citation_velocity": 210,
+      "impact_score": 92,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "使用深度强化学习自主发现人类未曾设想的底层汇编排序算法，直接合并入标准 C++ 基础库。",
+      "faq": {
+        "q1_problem": "排序等计算机核心底层基础算法已经历数十年人类工程师的极致打磨，常规高级代码优化已触及性能天花板。",
+        "q2_lineage": "将 AlphaZero / MuZero 的蒙特卡洛规划思想迁移至底层汇编级单周期指令序列搜索。",
+        "q3_innovation": "将算法生成建模为汇编单指令拼装的单人博弈游戏（AssemblyGame），直接针对真实 CPU 执行耗时与正确性奖励进行强化学习。",
+        "q4_experiments": "发现了突破人类思维定势的跳转与分支预测技巧，使简短排序序列执行速度提升达 70%，在标准 C++ 库中使数百万开发者直接受益。",
+        "q5_deepmind_role": "证明了强化学习可以打破人类认知盲区，自主重构计算机系统最底层的软件工程基石。",
+        "q6_tldr": "使用深度强化学习自主发现人类未曾设想的底层汇编排序算法，直接合并入标准 C++ 基础库。"
+      }
+    },
+    {
+      "id": "rt2_2023",
+      "label": "RT-2 (2023)",
+      "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+      "authors": [
+        "Anthony Brohan",
+        "Noah Brown",
+        "Justice Carbajal",
+        "Yevgen Chebotar",
+        "Xi Chen",
+        "Karol Hausman",
+        "Alex Irpan",
+        "Brian Ichter",
+        "Demis Hassabis"
+      ],
+      "year": 2023,
+      "venue": "CoRL 2023",
+      "arxiv_id": "2307.15818",
+      "url": "https://arxiv.org/abs/2307.15818",
+      "pdf_url": "https://arxiv.org/pdf/2307.15818.pdf",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "VLA Model",
+        "Vision-Language-Action",
+        "Web-scale Knowledge Transfer",
+        "Embodied AI"
+      ],
+      "citations": 980,
+      "influential_citations": 125,
+      "annual_citation_velocity": 310,
+      "impact_score": 94,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "首创视觉-语言-动作 (VLA) 新范式，将互联网海量多模态常识无缝转移至机器人物理控制。",
+      "faq": {
+        "q1_problem": "既往机器人模型欠缺高阶语义常识与概念推理能力，无法理解抽象概念（例如“捡起即将融化的恐龙玩具”或“把垃圾丢进可回收箱”）。",
+        "q2_lineage": "将大模型（PaLM-E / Flamingo）与机器人轨迹动作控制模型（RT-1）有机熔合。",
+        "q3_innovation": "直接在互联网规模的视觉-文本大模型架构中将 6 自由度机械臂末端动作表达为特殊的文字 Token 并进行端到端联合预训练。",
+        "q4_experiments": "展示了惊人的跨模态常识泛化：能准确识别象征性符号、名人照片或抽象比喻，并在未接触过的语义场景中完成精准抓取。",
+        "q5_deepmind_role": "确立了具身智能领域最主流的 VLA（视觉-语言-动作）大模型研究技术范式。",
+        "q6_tldr": "首创视觉-语言-动作 (VLA) 新范式，将互联网海量多模态常识无缝转移至机器人物理控制。"
+      }
+    },
+    {
+      "id": "alphamissense_2023",
+      "label": "AlphaMissense (2023)",
+      "title": "Accurate proteome-wide missense variant effect prediction with AlphaMissense",
+      "authors": [
+        "Jun Cheng",
+        "Guido Novati",
+        "Joshua Pan",
+        "Clara Bycroft",
+        "Akshay Živković",
+        "Alexander Pritzel",
+        "Demis Hassabis",
+        "John Jumper"
+      ],
+      "year": 2023,
+      "venue": "Science 381 (6664), eadg7492",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/21083/",
+      "pdf_url": "https://www.science.org/doi/10.1126/science.adg7492",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Missense Variants",
+        "Variant Effect Prediction",
+        "Clinical Genetics",
+        "AlphaFold Adaptation"
+      ],
+      "citations": 1150,
+      "influential_citations": 160,
+      "annual_citation_velocity": 420,
+      "impact_score": 96,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "精准预测人类蛋白质组全量错义突变致病性，覆盖 2.16 亿突变位点，发表于 Science 正刊。",
+      "faq": {
+        "q1_problem": "在人类已发现的数以千万计氨基酸突变中，99% 以上属于致病机理不明的“未知临床意义变异（VUS）”，制约罕见病确诊与基因治疗靶点发现。",
+        "q2_lineage": "基于 AlphaFold 结构预测网络与海量未标注蛋白质序列演化语料库进行深层适应性训练。",
+        "q3_innovation": "利用结构与上下文序列联合掩码自监督学习，无监督地学习野生型与突变体在空间构象及进化稳定性上的差异能量差。",
+        "q4_experiments": "对人类 2.16 亿个可能的错义突变中的 89% 作出了高置信度致病或良性分类（32% 致病，57% 良性），大幅刷新 ClinVar 盲测分类精度。",
+        "q5_deepmind_role": "将 AlphaFold 的结构智能深度延伸至精准人类医学诊断与突变致病靶点筛选。",
+        "q6_tldr": "精准预测人类蛋白质组全量错义突变致病性，覆盖 2.16 亿突变位点，发表于 Science 正刊。"
+      }
+    },
+    {
+      "id": "graphcast_2023",
+      "label": "GraphCast (2023)",
+      "title": "GraphCast: Learned Global Weather Forecasting",
+      "authors": [
+        "Remi Lam",
+        "Alvaro Sanchez-Gonzalez",
+        "Matthew Willson",
+        "Peter Wirnsberger",
+        "Meire Fortunato",
+        "Ferran Alet",
+        "Suman Ravuri",
+        "Demis Hassabis"
+      ],
+      "year": 2023,
+      "venue": "Science 382 (6677), 1416-1421",
+      "arxiv_id": "2212.12794",
+      "url": "https://deepmind.google/research/publications/22598/",
+      "pdf_url": "https://www.science.org/doi/10.1126/science.adi2336",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Weather Forecasting",
+        "Graph Neural Networks",
+        "Climate Modeling",
+        "Atmospheric Dynamics"
+      ],
+      "citations": 1380,
+      "influential_citations": 185,
+      "annual_citation_velocity": 490,
+      "impact_score": 98,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "单台 TPU 不到 1 分钟即可完成未来 10 天高精度全球中期天气预报，性能全面战胜欧洲中期天气预报中心数值模型。",
+      "faq": {
+        "q1_problem": "传统数值天气预报（NWP）依靠超级计算机求解复杂的纳维-斯托克斯流体偏微分方程，单次耗费数小时且算力成本极度昂贵。",
+        "q2_lineage": "借鉴图神经网络（GNN）在网格物理场模拟中的成功经验，构建多层次多面体地球拓扑网格。",
+        "q3_innovation": "提出 Encoder-Processor-Decoder 架构，在自适应细分的 icosahedron 图结构上进行消息传递，直接建模三维大气物理场。",
+        "q4_experiments": "在欧洲气象局 ECMWF 评估的 1380 个变量指标中，GraphCast 在超过 90% 的测试用例上胜过全球公认最好的高分辨率黄金物理模型 HRES。",
+        "q5_deepmind_role": "入选 2023 年度全球顶级科学突破，奠定了 AI 颠覆传统流体与数值物理科学计算的不可逆趋势。",
+        "q6_tldr": "单台 TPU 不到 1 分钟即可完成未来 10 天高精度全球中期天气预报，性能全面战胜欧洲中期天气预报中心数值模型。"
+      }
+    },
+    {
+      "id": "robocat_2023",
+      "label": "RoboCat (2023)",
+      "title": "RoboCat: A Self-Improving Foundation Agent for Robotic Manipulation",
+      "authors": [
+        "Konrad Zolna",
+        "Jost Tobias Springenberg",
+        "Alexander Novikov",
+        "Serkan Cabi",
+        "Demis Hassabis"
+      ],
+      "year": 2023,
+      "venue": "DeepMind Research Milestone (Dec 2023)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/35829/",
+      "pdf_url": "https://deepmind.google/research/publications/35829/",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Self-Improving Agent",
+        "Robotic Manipulation",
+        "Cross-Embodiment",
+        "Autonomous Data Collection"
+      ],
+      "citations": 420,
+      "influential_citations": 55,
+      "annual_citation_velocity": 170,
+      "impact_score": 94,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "首个具备跨机械臂自我提升闭环的具身基础模型，仅需 100-1000 次自给自足试错即可掌握全新操作技能。",
+      "faq": {
+        "q1_problem": "机器人系统每次更换机械臂型号或遇到新操作任务时，都需要重新耗费巨资人工采集成千上万条专家示教。",
+        "q2_lineage": "继承 Gato 多模态 Token 动作框架与自监督在线适应范式。",
+        "q3_innovation": "设计跨实体（Cross-embodiment）自进化循环：用初始模型驱动机械臂自主探索，自主过滤有效经验并迭代反哺微调自身。",
+        "q4_experiments": "在单指与双指夹爪等多种异构机械臂本体上测试，成功快速掌握搭积木、插孔、抓取复杂未知几何物体等数十项新技能。",
+        "q5_deepmind_role": "展示了具身基础模型摆脱对海量人工示教依赖、迈向自主成长进化的可能路径。",
+        "q6_tldr": "首个具备跨机械臂自我提升闭环的具身基础模型，仅需 100-1000 次自给自足试错即可掌握全新操作技能。"
+      }
+    },
+    {
+      "id": "gemini_2023",
+      "label": "Gemini 1.0 (2023)",
+      "title": "Gemini: A Family of Highly Capable Multimodal Models",
+      "authors": [
+        "Gemini Team",
+        "Google",
+        "Google DeepMind"
+      ],
+      "year": 2023,
+      "venue": "arXiv preprint arXiv:2312.11805",
+      "arxiv_id": "2312.11805",
+      "url": "https://deepmind.google/research/publications/26234/",
+      "pdf_url": "https://arxiv.org/pdf/2312.11805.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Native Multimodal",
+        "Gemini Ultra",
+        "MMLU Superhuman",
+        "Cross-Modal Pretraining"
+      ],
+      "citations": 3800,
+      "influential_citations": 490,
+      "annual_citation_velocity": 1300,
+      "impact_score": 98,
+      "generation": "Gen 3: 大模型与基础科学革命 (2020-2023)",
+      "tldr": "全球首个在 MMLU 达到 90.0% 超越人类专家水平的旗舰原生多模态大模型系列。",
+      "faq": {
+        "q1_problem": "既有多模态大模型普遍采用“拼接打补丁”架构（纯文本 LLM + 外挂视觉编码器），模态间存在语义摩擦，跨视觉、音频、文本的统一推理能力薄弱。",
+        "q2_lineage": "承袭 Chinchilla 最佳缩放法则与 Flamingo 原生多模态感知思想，融合前沿工程基础设施与安全对齐。",
+        "q3_innovation": "从预训练第一天起就在文本、代码、图像、音频、视频等多源模态联合训练，实现原生端到端统一表征与跨模态推理。",
+        "q4_experiments": "Gemini Ultra 在基准测试 MMLU 上斩获 90.04% 得分，成为首个在人类专家知识基准上超越人类专家的 AI 模型。",
+        "q5_deepmind_role": "Google 与 DeepMind 两大团队全面合并后的旗舰战略技术底座，确立了原生多模态的技术演化新标准。",
+        "q6_tldr": "全球首个在 MMLU 达到 90.0% 超越人类专家水平的旗舰原生多模态大模型系列。"
+      }
+    },
+    {
+      "id": "autort_2024",
+      "label": "AutoRT (2024)",
+      "title": "AutoRT: Embodied Foundation Models for Large Scale Orchestration of Robotic Agents",
+      "authors": [
+        "Michael Ahn",
+        "Debidatta Dwibedi",
+        "Chelsea Finn",
+        "Montse Gonzalez Arenas",
+        "Keerthana Gopalakrishnan",
+        "Karol Hausman",
+        "Brian Ichter",
+        "Alex Irpan"
+      ],
+      "year": 2024,
+      "venue": "DeepMind Research Milestone (Jan 2024)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/48151/",
+      "pdf_url": "https://deepmind.google/research/publications/48151/",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Embodied Orchestration",
+        "Fleet Robotics",
+        "Robot Constitution",
+        "Autonomous Data Collection"
+      ],
+      "citations": 280,
+      "influential_citations": 40,
+      "annual_citation_velocity": 150,
+      "impact_score": 93,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "利用大语言模型指挥协同由数十台机器人组成的机群，引入机器人宪法安全护栏自主采集海量数据。",
+      "faq": {
+        "q1_problem": "在现实建筑与办公区部署机器人机群时，缺乏自主寻找有价值任务、调度协同以及确保人机环境绝对安全的自动化中枢。",
+        "q2_lineage": "将 VLM（视觉语言理解）与 RT-1/RT-2 动作底层执行器结合，由 LLM 升维担任最高指挥官。",
+        "q3_innovation": "设计“机器人宪法（Robot Constitution）”充当最高行为护栏，指挥数十台异构机器人在真实建筑内自主寻找任务、分配工作与采集训练样本。",
+        "q4_experiments": "在长达 7 个月的真实部署中，由多智能体网络自动协调多达 20 多台机器人同时在办公园区作业，采集了超 77,000 次真实试验数据。",
+        "q5_deepmind_role": "迈出了多机器人分布式物理编排（Robotics Fleet Orchestration）与常态化安全自运行的突破性一步。",
+        "q6_tldr": "利用大语言模型指挥协同由数十台机器人组成的机群，引入机器人宪法安全护栏自主采集海量数据。"
+      }
+    },
+    {
+      "id": "alphageometry_2024",
+      "label": "AlphaGeometry (2024)",
+      "title": "Solving olympiad geometry without human demonstrations",
+      "authors": [
+        "Trieu H. Trinh",
+        "Yuhuai Wu",
+        "Quoc V. Le",
+        "He He",
+        "Thang Luong"
+      ],
+      "year": 2024,
+      "venue": "Nature 625, 476-482",
+      "arxiv_id": "2404.06405",
+      "url": "https://www.nature.com/articles/s41586-023-06747-5",
+      "pdf_url": "https://www.nature.com/articles/s41586-023-06747-5.pdf",
+      "primary_topic": "Math & Algorithmic Discovery",
+      "topics": [
+        "Automated Theorem Proving",
+        "Neuro-Symbolic Reasoning",
+        "Olympiad Geometry",
+        "Synthetic Data"
+      ],
+      "citations": 520,
+      "influential_citations": 75,
+      "annual_citation_velocity": 240,
+      "impact_score": 96,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "神经符号协同推演，在限时内解答 25 道国际数学奥林匹克 (IMO) 几何难题，达人类金牌选手水平。",
+      "faq": {
+        "q1_problem": "定理证明需要极度严谨的形式逻辑推演，而大语言模型存在固有幻觉且缺乏直觉性添加辅助线（Auxiliary Construction）的启发式探索能力。",
+        "q2_lineage": "将类神经网络的“直觉猜测”与符号演绎引擎的“严谨证明”深度融合。",
+        "q3_innovation": "合成 1 亿条完全不含人类示范的纯自生成几何命题数据，神经语言模型预测何时何地添加何种辅助线，符号推演引擎负责机械式严谨化简。",
+        "q4_experiments": "在基准 30 道 IMO 几何历史真题中限时答对 25 道，远超此前最先进计算方法的 10 道，达到人类 IMO 金牌选手的实战解题水准。",
+        "q5_deepmind_role": "登上 Nature 封面，确立了神经-符号互补推演（Neuro-Symbolic AI）解决高阶复杂逻辑的不可替代性。",
+        "q6_tldr": "神经符号协同推演，在限时内解答 25 道国际数学奥林匹克 (IMO) 几何难题，达人类金牌选手水平。"
+      }
+    },
+    {
+      "id": "genie_2024",
+      "label": "Genie (2024)",
+      "title": "Genie: Generative Interactive Environments",
+      "authors": [
+        "Jake Bruce",
+        "Michael Dennis",
+        "Ashley Edwards",
+        "Jack Parker-Holder",
+        "Yujin Tang",
+        "Alex Zacherl",
+        "Tim Rocktäschel"
+      ],
+      "year": 2024,
+      "venue": "arXiv preprint arXiv:2402.15391",
+      "arxiv_id": "2402.15391",
+      "url": "https://arxiv.org/abs/2402.15391",
+      "pdf_url": "https://arxiv.org/pdf/2402.15391.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "World Models",
+        "Interactive Video Generation",
+        "Latent Action Modeling",
+        "Controllable Worlds"
+      ],
+      "citations": 390,
+      "influential_citations": 48,
+      "annual_citation_velocity": 190,
+      "impact_score": 93,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "从互联网无标注游戏视频中自监督学习潜在动作空间，将单张静态图片转换为可逐帧操控的交互式虚拟世界。",
+      "faq": {
+        "q1_problem": "训练通用具身与交互式智能体严重缺乏多样化的虚拟交互环境，人工开发游戏引擎耗时费力且场景维度受限。",
+        "q2_lineage": "延续 MuZero 隐式世界模型与现代时空扩散变换器（Spatiotemporal Diffusion）的交叉演进。",
+        "q3_innovation": "在完全没有按键记录标签的几十万小时视频中，通过自编码自监督推断离散的潜动作（Latent Action），并联合自回归生成下一个环境帧。",
+        "q4_experiments": "能够根据任意手绘草图或单张现实照片，即时生成并以键盘/手柄实时操控角色的 2D 横版平台冒险虚拟世界。",
+        "q5_deepmind_role": "首次实现了由纯粹数据自学习、完全可交互运行的生成式世界模型（Foundation World Model）。",
+        "q6_tldr": "从互联网无标注游戏视频中自监督学习潜在动作空间，将单张静态图片转换为可逐帧操控的交互式虚拟世界。"
+      }
+    },
+    {
+      "id": "gemini_1_5_2024",
+      "label": "Gemini 1.5 Pro (2024)",
+      "title": "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
+      "authors": [
+        "Gemini Team",
+        "Google",
+        "Google DeepMind"
+      ],
+      "year": 2024,
+      "venue": "arXiv preprint arXiv:2403.05530",
+      "arxiv_id": "2403.05530",
+      "url": "https://arxiv.org/abs/2403.05530",
+      "pdf_url": "https://arxiv.org/pdf/2403.05530.pdf",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Long Context",
+        "Mixture of Experts",
+        "1M+ Tokens",
+        "Needle In A Haystack"
+      ],
+      "citations": 1650,
+      "influential_citations": 210,
+      "annual_citation_velocity": 850,
+      "impact_score": 97,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "突破 100 万至 200 万超长原生多模态上下文窗口，并在长程检索中达成近乎 100% 的大海捞针召回率。",
+      "faq": {
+        "q1_problem": "大模型在长文本输入下显存与算力呈二次方爆炸增长，且极易出现“迷失在中间（Lost in the middle）”的严重信息遗忘与幻觉。",
+        "q2_lineage": "深度升级 Gemini 1.0 的稠密架构，引入高效稀疏专家混合（Sparse MoE）架构与新一代注意力机制。",
+        "q3_innovation": "在保持高吞吐推理的同时，将稳定处理多模态数据的原生上下文上限推向数百万级 Token，可一次性容纳数小时视频或百万行代码。",
+        "q4_experiments": "在 100 万 token 级别的文本、音频、视频“大海捞针（NIAH）”测试中实现高达 99.7% 的召回准确度，并具备仅凭一本语法书在上下文中自学冷门语言的能力。",
+        "q5_deepmind_role": "彻底改写了全球大模型长文本处理与上下文原生推理的技术代差标准。",
+        "q6_tldr": "突破 100 万至 200 万超长原生多模态上下文窗口，并在长程检索中达成近乎 100% 的大海捞针召回率。"
+      }
+    },
+    {
+      "id": "sima_2024",
+      "label": "SIMA (2024)",
+      "title": "Scaling Instructable Agents Across Diverse Simulated Environments",
+      "authors": [
+        "SIMA Team",
+        "Google DeepMind"
+      ],
+      "year": 2024,
+      "venue": "arXiv preprint arXiv:2404.10179",
+      "arxiv_id": "2404.10179",
+      "url": "https://arxiv.org/abs/2404.10179",
+      "pdf_url": "https://arxiv.org/pdf/2404.10179.pdf",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Instructable Agents",
+        "3D Virtual Worlds",
+        "Embodied Language Grounding",
+        "SIMA"
+      ],
+      "citations": 260,
+      "influential_citations": 32,
+      "annual_citation_velocity": 130,
+      "impact_score": 92,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "面向 3D 虚拟世界的通用可教导智能体，通过人类纯视听与键鼠接口跨越十款商业 3D 大作听从语言指挥。",
+      "faq": {
+        "q1_problem": "既往游戏 AI 严重依赖特定游戏的专用内部 API 数据通道与硬编码底层接口，无法将技能迁移至全新的开放式 3D 世界。",
+        "q2_lineage": "结合了 Gato 的通用动作序列化思想与大语言模型的人类意图理解能力。",
+        "q3_innovation": "完全像人类一样仅通过原始屏幕画面输入，输出标准的键盘与鼠标指令，在《无人深空》、《模拟山羊》等风格迥异的游戏中听从日常英语指令交互。",
+        "q4_experiments": "在多个商业游戏中成功执行“砍树造避难所”、“寻找水源”、“驾驶飞船”等包含上百步长程时空连续因果链的任务。",
+        "q5_deepmind_role": "从单一游戏定制 AI 走向真正通用 3D 虚拟空间伴随协作智能体（Generalist Agent）的先驱之作。",
+        "q6_tldr": "面向 3D 虚拟世界的通用可教导智能体，通过人类纯视听与键鼠接口跨越十款商业 3D 大作听从语言指挥。"
+      }
+    },
+    {
+      "id": "med_gemini_2024",
+      "label": "Med-Gemini (2024)",
+      "title": "Advancing Biomedical Understanding with Multimodal Gemini",
+      "authors": [
+        "Khaled Saab",
+        "Tao Tu",
+        "Wei-Hung Weng",
+        "Ming-Zher Poh",
+        "Demis Hassabis",
+        "Vivek Natarajan"
+      ],
+      "year": 2024,
+      "venue": "DeepMind Research Milestone (May 2024)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/87645/",
+      "pdf_url": "https://deepmind.google/research/publications/87645/",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Biomedical AI",
+        "Med-Gemini",
+        "Clinical Reasoning",
+        "Multimodal Diagnostics"
+      ],
+      "citations": 340,
+      "influential_citations": 45,
+      "annual_citation_velocity": 180,
+      "impact_score": 93,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "在 MedQA (USMLE) 上刷出 91.1% 的全球最高分，实现对电子病历、病理切片及多模态临床影像的端到端超人类理解。",
+      "faq": {
+        "q1_problem": "临床医疗决策需要高度可靠的临床循证医学推理，同时需要统一理解核磁共振、胸透切片和数十页的晦涩病历文本，传统模型泛化不足且容易产生致命幻觉。",
+        "q2_lineage": "基于 Gemini 1.5 架构，融入医学知识引导与自适应检索推理策略。",
+        "q3_innovation": "设计不确定性感知的主动网络搜索验证链，联合训练放射影像编码器与临床语言模块。",
+        "q4_experiments": "在全套美国执业医师考试基准 MedQA 上取得 91.1% 破纪录得分，并在基因检测报告解读与复杂外科病例分析中大幅领先既有医学专用系统。",
+        "q5_deepmind_role": "展现了通用原生多模态架构在最具挑战的专业严苛领域（临床医疗健康）的核心落地能力。",
+        "q6_tldr": "在 MedQA (USMLE) 上刷出 91.1% 的全球最高分，实现对电子病历、病理切片及多模态临床影像的端到端超人类理解。"
+      }
+    },
+    {
+      "id": "alphafold_3_2024",
+      "label": "AlphaFold 3 (2024)",
+      "title": "Accurate structure prediction of biomolecular interactions with AlphaFold 3",
+      "authors": [
+        "Josh Abramson",
+        "Jonas Adler",
+        "Jack Dunger",
+        "Richard Evans",
+        "Tim Green",
+        "Alexander Pritzel",
+        "Olaf Ronneberger",
+        "John Jumper",
+        "Demis Hassabis"
+      ],
+      "year": 2024,
+      "venue": "Nature 630, 493-500",
+      "arxiv_id": "2405.05254",
+      "url": "https://www.nature.com/articles/s41586-024-07487-w",
+      "pdf_url": "https://www.nature.com/articles/s41586-024-07487-w.pdf",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "AlphaFold 3",
+        "Diffusion Model",
+        "Biomolecular Interactions",
+        "DNA/RNA Complexes"
+      ],
+      "citations": 890,
+      "influential_citations": 120,
+      "annual_citation_velocity": 450,
+      "impact_score": 99,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "引入扩散去噪架构，跨越至包含蛋白质、DNA、RNA、配体与离子的全生命复合物空间结构统一预测，发表于 Nature 正刊。",
+      "faq": {
+        "q1_problem": "生命活动不是单一孤立蛋白质能够完成的，药物发现的核心在于小分子配体、抗体与核酸间的联合结合构象，而以往工具仅能预测纯蛋白质结构。",
+        "q2_lineage": "对 AlphaFold 2 的重大架构升级，以生成式扩散模型重构空间几何模块。",
+        "q3_innovation": "弃用传统 MSA 预处理管线以极大简化特征工程，直接在原子笛卡尔坐标空间运行 3D 扩散去噪过程，统一处理所有生物大分子与修饰键。",
+        "q4_experiments": "在蛋白质-小分子结合、抗体-抗原结合等多项预测准确率上，比全球任何现有最佳专用物理与计算化学工具提高至少 50%。",
+        "q5_deepmind_role": "将 AI 预测范围从单纯结构生物学推进至靶向新药分子设计与生命化学反应全景建模。",
+        "q6_tldr": "引入扩散去噪架构，跨越至包含蛋白质、DNA、RNA、配体与离子的全生命复合物空间结构统一预测，发表于 Nature 正刊。"
+      }
+    },
+    {
+      "id": "alphaproof_2024",
+      "label": "AlphaProof (2024)",
+      "title": "AI achieves silver-medal standard solving International Mathematical Olympiad problems",
+      "authors": [
+        "AlphaProof Team",
+        "AlphaGeometry Team",
+        "Google DeepMind"
+      ],
+      "year": 2024,
+      "venue": "DeepMind Research Milestone (July 2024)",
+      "arxiv_id": "2408.00118",
+      "url": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+      "pdf_url": "https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/",
+      "primary_topic": "Math & Algorithmic Discovery",
+      "topics": [
+        "Formal Mathematical Proof",
+        "Lean Theorem Prover",
+        "RL for Proofs",
+        "IMO Silver Medal"
+      ],
+      "citations": 230,
+      "influential_citations": 35,
+      "annual_citation_velocity": 120,
+      "impact_score": 98,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "基于 Lean 形式化证明语言与强化学习，在 2024 国际数学奥林匹克 (IMO) 斩获 28 分官方银牌基准。",
+      "faq": {
+        "q1_problem": "高阶代数、组合数学与数论证明需要漫长而毫无容错空间的抽象形式化逻辑链条，普通大模型极易在推演中产生伪证或循环论证。",
+        "q2_lineage": "将 AlphaZero 的自博弈强化学习搜索框架引入形式化交互式定理证明器（Lean）。",
+        "q3_innovation": "训练预训练模型将非结构化自然语言数学问题自动形式化为 Lean 代码，并通过构建自博弈证明网络不断搜寻并验证正确的引理路径。",
+        "q4_experiments": "在 2024 年官方 IMO 现考真题中解出包含极为困难的第 6 题在内的 4 道题目（满分 42 分斩获 28 分），达到人类银牌基准。",
+        "q5_deepmind_role": "数学史上首次实现机器在最严谨的形式化验证体系下达到国际顶级人类数学选手的竞赛水准。",
+        "q6_tldr": "基于 Lean 形式化证明语言与强化学习，在 2024 国际数学奥林匹克 (IMO) 斩获 28 分官方银牌基准。"
+      }
+    },
+    {
+      "id": "table_tennis_2024",
+      "label": "Robot Table Tennis (2024)",
+      "title": "Achieving Human Level Competitive Robot Table Tennis",
+      "authors": [
+        "David B. D'Ambrosio",
+        "Jannik Fritsch",
+        "Jan Peters",
+        "Martin Riedmiller",
+        "Demis Hassabis"
+      ],
+      "year": 2024,
+      "venue": "DeepMind Research Milestone (August 2024)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/107741/",
+      "pdf_url": "https://deepmind.google/research/publications/107741/",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Competitive Robotics",
+        "Table Tennis",
+        "High-speed Dynamic Control",
+        "Human-Robot Interaction"
+      ],
+      "citations": 190,
+      "influential_citations": 25,
+      "annual_citation_velocity": 100,
+      "impact_score": 92,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "首个在真实世界达到业余竞技人类水平的乒乓球机器人，在 29 场与人类选手的实战对决中胜率达 45%。",
+      "faq": {
+        "q1_problem": "乒乓球要求机械臂在毫秒级时间内对高速旋转、变线球路作出精确感知、敏捷步态调整与毫米级击球控制，传统机器人难以应对高速动态不确定性。",
+        "q2_lineage": "结合低延迟强化学习控制器、分层策略调度与自适应对手建模网络。",
+        "q3_innovation": "构建分层策略库（正手快攻、反手搓球、接发球）并使用高层元控制器根据对手打球弱点实时动态切换战术。",
+        "q4_experiments": "在对阵从未交手过的人类选手的 29 场正式比赛中胜率达 45%，击败了所有初级选手并在中级选手中赢下大部分比赛。",
+        "q5_deepmind_role": "标志着强化学习赋能的真实物理机器人首次在高动态、高对抗的敏捷人机体育运动中达到具有竞争力的人类水准。",
+        "q6_tldr": "首个在真实世界达到业余竞技人类水平的乒乓球机器人，在 29 场与人类选手的实战对决中胜率达 45%。"
+      }
+    },
+    {
+      "id": "txgemma_2025",
+      "label": "TxGemma (2025)",
+      "title": "TxGemma: Efficient and Agentic LLMs for Therapeutics",
+      "authors": [
+        "DeepMind Health & Bio Team",
+        "Google DeepMind"
+      ],
+      "year": 2025,
+      "venue": "DeepMind Research Milestone (April 2025)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/153799/",
+      "pdf_url": "https://deepmind.google/research/publications/153799/",
+      "primary_topic": "AI for Science & Biology",
+      "topics": [
+        "Therapeutics",
+        "TxGemma",
+        "Agentic LLM",
+        "Drug Discovery"
+      ],
+      "citations": 95,
+      "influential_citations": 15,
+      "annual_citation_velocity": 95,
+      "impact_score": 89,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "专为生物新药研发打造的轻量代理化大模型，高效统筹小分子性质预测与药效靶点验证。",
+      "faq": {
+        "q1_problem": "药物化学研发涉及繁琐的湿实验数据检索、分子性质评估与临床试验方案设计，现有大模型欠缺精确生物化学物理常识且调用代价高昂。",
+        "q2_lineage": "继承 Gemma 高效轻量开源架构与 AlphaFold 3 / AlphaMissense 药物计算资产。",
+        "q3_innovation": "引入专门针对药物化学与靶点动力学优化的 Agentic 工具调用机制，无缝结合对接模拟工具（Docking）与毒性预测器。",
+        "q4_experiments": "在药物溶解度、代谢稳定性、血脑屏障透过率等 20 多项 ADMET 预测基准上刷新轻量大模型精度极限。",
+        "q5_deepmind_role": "推进 AI 驱动药物发现（AIDD）从单纯空间构象计算向自主探索型药物研发智能体（Therapeutic Agent）升级。",
+        "q6_tldr": "专为生物新药研发打造的轻量代理化大模型，高效统筹小分子性质预测与药效靶点验证。"
+      }
+    },
+    {
+      "id": "roboballet_2025",
+      "label": "RoboBallet (2025)",
+      "title": "RoboBallet: Planning for Multi-Robot Reaching with Graph Neural Networks and Reinforcement Learning",
+      "authors": [
+        "Robotics Team",
+        "Google DeepMind"
+      ],
+      "year": 2025,
+      "venue": "DeepMind Research Milestone (September 2025)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/111579/",
+      "pdf_url": "https://deepmind.google/research/publications/111579/",
+      "primary_topic": "Embodied AI & Robotics",
+      "topics": [
+        "Multi-Robot Planning",
+        "Graph Neural Networks",
+        "Collision Avoidance",
+        "GNN-RL"
+      ],
+      "citations": 65,
+      "influential_citations": 8,
+      "annual_citation_velocity": 65,
+      "impact_score": 74,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "结合图神经网络与强化学习，解决多机械臂紧凑共存场景下的高频无碰撞运动规划协同。",
+      "faq": {
+        "q1_problem": "在高度拥挤的现代智能工厂或实验室中，多台机械臂共享作业空间极易发生空间干涉与碰撞死锁，传统轨迹规划难以实时重规划。",
+        "q2_lineage": "融合图神经网络的拓扑关系感知与多智能体强化学习的去中心化即时决策。",
+        "q3_innovation": "将多机械臂物理关节与障碍物建模为动态时空交互图，实时预测碰撞概率并在线微调运动前瞻轨迹。",
+        "q4_experiments": "在 6 台工业机械臂密集交织作业仿真与真机测试中，将路径规划计算时延压低至毫秒级，实现零碰撞平滑作业。",
+        "q5_deepmind_role": "进一步补齐 DeepMind 具身控制在大规模多机器人高密度协同场景下的工业级算法储备。",
+        "q6_tldr": "结合图神经网络与强化学习，解决多机械臂紧凑共存场景下的高频无碰撞运动规划协同。"
+      }
+    },
+    {
+      "id": "trecvit_2026",
+      "label": "TRecViT (2026)",
+      "title": "TRecViT: A Recurrent Video Transformer",
+      "authors": [
+        "Vision & Video Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "DeepMind Research Milestone (January 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/122591/",
+      "pdf_url": "https://deepmind.google/research/publications/122591/",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Video Transformer",
+        "Recurrent Architecture",
+        "Long Video Understanding",
+        "Efficient Attention"
+      ],
+      "citations": 45,
+      "influential_citations": 6,
+      "annual_citation_velocity": 45,
+      "impact_score": 88,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "突破长时序视频计算瓶颈的循环视频变换器，以常数级显存实现超长视频流式理解与因果建模。",
+      "faq": {
+        "q1_problem": "标准 Transformer 处理高帧率长视频时，全局时空自注意力机制的显存复杂度呈帧数平方级爆炸，无法支持数小时监控或车载长流处理。",
+        "q2_lineage": "将现代注意力机制与循环神经网络（RNN）隐状态时序记忆精髓深度重构结合。",
+        "q3_innovation": "设计具有自适应状态遗忘与门控记忆流的循环单元，仅保留高阶动态事件表征，实现流式前向传递。",
+        "q4_experiments": "在 ActivityNet 与 LongVideo-Bench 等基准上以不到既往模型 1/4 的显存消耗达成更优的事件时空定位精度。",
+        "q5_deepmind_role": "为物理世界持续视觉感知与未来自动驾驶/全天候智能体奠定底层高能效视觉架构基础。",
+        "q6_tldr": "突破长时序视频计算瓶颈的循环视频变换器，以常数级显存实现超长视频流式理解与因果建模。"
+      }
+    },
+    {
+      "id": "vision_learners_2026",
+      "label": "Vision Learners (2026)",
+      "title": "Image Generators are Generalist Vision Learners",
+      "authors": [
+        "Generative Vision Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "DeepMind Research Milestone (April 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/240658/",
+      "pdf_url": "https://deepmind.google/research/publications/240658/",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Generative Pretraining",
+        "Generalist Vision",
+        "Diffusion Representations",
+        "Visual Perception"
+      ],
+      "citations": 55,
+      "influential_citations": 8,
+      "annual_citation_velocity": 55,
+      "impact_score": 89,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "证实高质量图像生成模型的潜空间天然蕴含通用视觉理解，统一生成与判别两大视觉阵营。",
+      "faq": {
+        "q1_problem": "长期以来，计算机视觉领域判别式模型（如 ViT/DINO）与生成式模型（如扩散模型）各自为战，生成模型常被误认为仅擅长“画图”而不懂“语义结构”。",
+        "q2_lineage": "继承生成式自监督学习哲学（如语言领域的 GPT 自回归预训练与图像扩散）。",
+        "q3_innovation": "系统证明通过无监督扩散生成学到的内部隐藏特征层天然包含了精准的深度几何、语义分割以及光流对应关系。",
+        "q4_experiments": "无需针对下游做侵入式微调，直接提取生成网络中间层即可在零样本深度估计、语义分割等判别任务上匹敌甚至超越传统专用判别模型。",
+        "q5_deepmind_role": "打通了视觉生成与视觉认知的界限，确立了生成即理解（Generative is Understanding）的核心新假说。",
+        "q6_tldr": "证实高质量图像生成模型的潜空间天然蕴含通用视觉理解，统一生成与判别两大视觉阵营。"
+      }
+    },
+    {
+      "id": "from_agi_to_asi_2026",
+      "label": "From AGI to ASI (2026)",
+      "title": "From AGI to ASI",
+      "authors": [
+        "Shane Legg",
+        "Frontier Safety & Strategy Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "DeepMind Research Milestone (June 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/239142/",
+      "pdf_url": "https://deepmind.google/research/publications/239142/",
+      "primary_topic": "Frontier Safety, Alignment & Society",
+      "topics": [
+        "AGI",
+        "ASI",
+        "Superintelligence",
+        "Frontier Alignment",
+        "Recursive Self-Improvement"
+      ],
+      "citations": 120,
+      "influential_citations": 25,
+      "annual_citation_velocity": 120,
+      "impact_score": 98,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "确立从通用人工智能迈向超级智能的学术评估标准、跃迁机制与前沿安全护栏终极路线图。",
+      "faq": {
+        "q1_problem": "全球在讨论 AGI（通用人工智能）向 ASI（超级智能）演进时缺乏可操作、可证伪的严谨科学定义与系统化风险推演阶梯。",
+        "q2_lineage": "由 DeepMind 联合创始人 Shane Legg 等团队领衔，承袭通用智能理论评估与可证伪智能测度体系。",
+        "q3_innovation": "提出从 AGI 到 ASI 跨越的四大驱动支柱：自主科学假设形成、算法自我迭代优化、跨模态物理世界掌控与多智能体群体超协同。",
+        "q4_experiments": "系统分析了自我递归进化（Recursive Self-Improvement）的速率极限与临界安全控制协议，给出系统性防护要求。",
+        "q5_deepmind_role": "Google DeepMind 针对超级智能（ASI）时代发布的总纲领级学术报告，统领未来 5-10 年前沿攻防技术布局。",
+        "q6_tldr": "确立从通用人工智能迈向超级智能的学术评估标准、跃迁机制与前沿安全护栏终极路线图。"
+      }
+    },
+    {
+      "id": "overthinking_2026",
+      "label": "Overthinking Dynamics (2026)",
+      "title": "Towards Structural Understanding of LLM Overthinking",
+      "authors": [
+        "Reasoning Dynamics Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "DeepMind Research Milestone (July 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/203490/",
+      "pdf_url": "https://deepmind.google/research/publications/203490/",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "LLM Reasoning",
+        "Overthinking",
+        "Chain-of-Thought Dynamics",
+        "Attention Saturation"
+      ],
+      "citations": 70,
+      "influential_citations": 12,
+      "annual_citation_velocity": 70,
+      "impact_score": 87,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "深入解构大模型推理中思维链过长导致的“过度思考”动力学崩溃机理，提出结构化早停与纠偏方法。",
+      "faq": {
+        "q1_problem": "近期推理大模型（如 CoT 推理）盲目增加思考步骤往往会导致模型在简单问题上陷入循环质疑与无效反思，反而诱发答案错误与性能退化。",
+        "q2_lineage": "对语言模型注意力动力学与长程推理表示坍塌现象的深入结构化剖析。",
+        "q3_innovation": "发现内部层间注意力饱和（Attention Saturation）与高阶概念漂移的动力学指标，建立预测模型过思考崩溃点的预警探针。",
+        "q4_experiments": "在复杂数学与逻辑测试集上，结合动态早停机制不仅减少了 40% 的冗余推理 Token，还将最终解题正确率提升了 8.5%。",
+        "q5_deepmind_role": "为下一代自适应长程推理大模型提供了关键的理论依据与反过度思考（Anti-Overthinking）架构指引。",
+        "q6_tldr": "深入解构大模型推理中思维链过长导致的“过度思考”动力学崩溃机理，提出结构化早停与纠偏方法。"
+      }
+    },
+    {
+      "id": "thought_partners_2026",
+      "label": "Thought Partners (2026)",
+      "title": "Designing Proactive Thought Partners for Writing",
+      "authors": [
+        "Human-AI Collaboration Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "DeepMind Research Milestone (September 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/265605/",
+      "pdf_url": "https://deepmind.google/research/publications/265605/",
+      "primary_topic": "Frontier Safety, Alignment & Society",
+      "topics": [
+        "Proactive AI",
+        "Thought Partners",
+        "Human-AI Alignment",
+        "Cognitive Collaboration"
+      ],
+      "citations": 25,
+      "influential_citations": 3,
+      "annual_citation_velocity": 25,
+      "impact_score": 78,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "打破被动式 Chatbot 局限，提出能在人类写作构思过程中主动洞察盲点、激发灵感的主动式思维伙伴设计哲学。",
+      "faq": {
+        "q1_problem": "现有人工智能助手高度受限于“人类提问-模型回答”的被动反馈范式，无法在人类认知疲劳或产生认知盲区时提供主动、前瞻的思维启发。",
+        "q2_lineage": "从传统人机回话系统（Chatbots）演进至认知协同多智能体与共创伙伴系统。",
+        "q3_innovation": "构建基于人类工作记忆负荷与行文意图推断的主动介入模型，自主权衡“何时保持静默”与“何时主动进言”，最大化人类创作自主权。",
+        "q4_experiments": "与专业作家、学术研究人员及剧本编剧展开实地双盲对照实验，显著提升了深度创作中的非线性联想与结构连贯性。",
+        "q5_deepmind_role": "2026 年 9 月最新发表成果，开启了人机共生协作（Human-AI Co-Evolution）的新范式篇章。",
+        "q6_tldr": "打破被动式 Chatbot 局限，提出能在人类写作构思过程中主动洞察盲点、激发灵感的主动式思维伙伴设计哲学。"
+      }
+    },
+    {
+      "id": "visual_gi_whitepaper_2026",
+      "label": "Visual GI (2026)",
+      "title": "Visual General Intelligence: A White Paper",
+      "authors": [
+        "Visual Intelligence Team",
+        "Google DeepMind"
+      ],
+      "year": 2026,
+      "venue": "Google DeepMind Strategic White Paper (August 2026)",
+      "arxiv_id": null,
+      "url": "https://deepmind.google/research/publications/270149/",
+      "pdf_url": "https://deepmind.google/research/publications/270149/",
+      "primary_topic": "LLM & Multimodal",
+      "topics": [
+        "Visual General Intelligence",
+        "VGI",
+        "World Models",
+        "Spatial Intelligence",
+        "Strategic Roadmap"
+      ],
+      "citations": 110,
+      "influential_citations": 20,
+      "annual_citation_velocity": 110,
+      "impact_score": 98,
+      "generation": "Gen 4: 原生多模态与自主智能体前沿 (2024-2026)",
+      "tldr": "2026 年战略白皮书，确立视觉通用智能 (VGI) 是通往 AGI 的决定性双引擎之一，统一几何、物理动力学与视觉生成。",
+      "faq": {
+        "q1_problem": "当前以文本为主导的语言模型缺乏对物理世界三维空间几何、因果动力学与直觉物理规律的深刻理解，纯语言 AGI 面临“莫拉维克悖论”瓶颈。",
+        "q2_lineage": "融合了 Flamingo、Veo、Genie 与通用自监督视觉表征的全部战略精髓。",
+        "q3_innovation": "正式提出“视觉通用智能（Visual General Intelligence, VGI）”理论体系，将空间感知、4D 物理世界生成、潜空间推演与动作执行确立为统一的视觉大一统架构。",
+        "q4_experiments": "全面定义了衡量视觉通用智能的 5 大维度基准（物理一致性、时间因果闭环、空间几何推断、少样本迁移与具身执行）。",
+        "q5_deepmind_role": "Google DeepMind 2026 年最具分量的战略纲领性白皮书，确立了视觉智能与语言智能并驾齐驱的 AGI 核心技术底色。",
+        "q6_tldr": "2026 年战略白皮书，确立视觉通用智能 (VGI) 是通往 AGI 的决定性双引擎之一，统一几何、物理动力学与视觉生成。"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "dqn_2013",
+      "target": "nature_dqn_2015",
+      "relation": "extends",
+      "description": "Nature 版 DQN 将算法泛化至全部 49 款 Atari 游戏并确立人类水平控制基准"
+    },
+    {
+      "source": "dqn_2013",
+      "target": "a3c_2016",
+      "relation": "foundation_for",
+      "description": "A3C 引入多线程异步更新范式取代经验回放池，提高训练吞吐"
+    },
+    {
+      "source": "dqn_2013",
+      "target": "alphago_2016",
+      "relation": "foundation_for",
+      "description": "AlphaGo 的价值网络与策略表征深度继承了 DQN 的深度表征思想"
+    },
+    {
+      "source": "nature_dqn_2015",
+      "target": "rainbow_2017",
+      "relation": "extends",
+      "description": "Rainbow 融汇 DQN 演化进程中的 6 项独立强化机制成为最高集大成者"
+    },
+    {
+      "source": "alphago_2016",
+      "target": "alphago_zero_2017",
+      "relation": "extends",
+      "description": "AlphaGo Zero 彻底抛弃人类棋谱，以白纸自博弈实现纯粹自我进化"
+    },
+    {
+      "source": "alphago_zero_2017",
+      "target": "alphazero_2017",
+      "relation": "extends",
+      "description": "AlphaZero 将单一围棋算法统一泛化至国际象棋、将棋等所有完全信息博弈"
+    },
+    {
+      "source": "alphazero_2017",
+      "target": "alphastar_2019",
+      "relation": "foundation_for",
+      "description": "AlphaStar 将博弈前沿推向非完全信息、高维动作空间的即时战略竞技"
+    },
+    {
+      "source": "alphazero_2017",
+      "target": "muzero_2019",
+      "relation": "extends",
+      "description": "MuZero 摆脱对游戏已知规则的依赖，学会通过隐空间世界模型自主规划"
+    },
+    {
+      "source": "alphazero_2017",
+      "target": "alphadev_2023",
+      "relation": "foundation_for",
+      "description": "AlphaDev 将自博弈规划范式跨界应用至底层汇编级快速排序算法发现"
+    },
+    {
+      "source": "muzero_2019",
+      "target": "gato_2022",
+      "relation": "cites",
+      "description": "Gato 借鉴了 MuZero 将离散与连续动作统一序列化自回归规划的思路"
+    },
+    {
+      "source": "muzero_2019",
+      "target": "genie_2024",
+      "relation": "foundation_for",
+      "description": "Genie 承袭了 MuZero 潜动作建模思想，打造可交互的无监督世界模型"
+    },
+    {
+      "source": "wavenet_2016",
+      "target": "chinchilla_2022",
+      "relation": "cites",
+      "description": "自回归时间序列建模理念从连续音频拓展至语言序列"
+    },
+    {
+      "source": "chinchilla_2022",
+      "target": "gemini_2023",
+      "relation": "foundation_for",
+      "description": "Gemini 深度贯彻并延展了 Chinchilla 提出的最优算力缩放法则与预训练架构"
+    },
+    {
+      "source": "flamingo_2022",
+      "target": "gato_2022",
+      "relation": "cites",
+      "description": "Gato 吸纳了 Flamingo 将多模态感知统一离散化表征的跨模态范式"
+    },
+    {
+      "source": "flamingo_2022",
+      "target": "rt2_2023",
+      "relation": "foundation_for",
+      "description": "RT-2 将多模态语义常识赋予机械臂，催生 VLA 视觉-语言-动作新范式"
+    },
+    {
+      "source": "flamingo_2022",
+      "target": "gemini_2023",
+      "relation": "extends",
+      "description": "Gemini 将外挂跨模态升级为彻底的原生多模态统一联合预训练"
+    },
+    {
+      "source": "gemini_2023",
+      "target": "gemini_1_5_2024",
+      "relation": "extends",
+      "description": "Gemini 1.5 引入高效稀疏 MoE 架构与突破百万级的超长上下文窗口"
+    },
+    {
+      "source": "gemini_2023",
+      "target": "med_gemini_2024",
+      "relation": "foundation_for",
+      "description": "Med-Gemini 将 Gemini 原生多模态能力落地于临床医学与超高精度医疗问答"
+    },
+    {
+      "source": "gemini_1_5_2024",
+      "target": "overthinking_2026",
+      "relation": "foundation_for",
+      "description": "超长上下文与深度推理暴露出过度思考动力学失衡，引发过思考解构研究"
+    },
+    {
+      "source": "gemini_2023",
+      "target": "from_agi_to_asi_2026",
+      "relation": "foundation_for",
+      "description": "基础模型全面达到人类专家水准，促使 DeepMind 布局从 AGI 到 ASI 跃迁战略"
+    },
+    {
+      "source": "flamingo_2022",
+      "target": "genie_2024",
+      "relation": "foundation_for",
+      "description": "多模态感知与交互式视频生成结合催生可操控虚拟世界"
+    },
+    {
+      "source": "genie_2024",
+      "target": "trecvit_2026",
+      "relation": "foundation_for",
+      "description": "TRecViT 优化了超长视频时空因果建模的计算效率瓶颈"
+    },
+    {
+      "source": "trecvit_2026",
+      "target": "vision_learners_2026",
+      "relation": "extends",
+      "description": "从视频动力学建模证明生成模型天然蕴含高阶通用视觉感知"
+    },
+    {
+      "source": "vision_learners_2026",
+      "target": "visual_gi_whitepaper_2026",
+      "relation": "foundation_for",
+      "description": "生成即理解的研究成果直接奠定了视觉通用智能白皮书的理论支柱"
+    },
+    {
+      "source": "gato_2022",
+      "target": "rt1_2022",
+      "relation": "extends",
+      "description": "RT-1 承袭 Gato 的动作 Token 化思想，专精深耕真实机械臂的大规模稳定控制"
+    },
+    {
+      "source": "rt1_2022",
+      "target": "rt2_2023",
+      "relation": "extends",
+      "description": "RT-2 在 RT-1 真实控制数据之上融合多模态基础模型，实现跨模态常识转移"
+    },
+    {
+      "source": "rt1_2022",
+      "target": "robocat_2023",
+      "relation": "extends",
+      "description": "RoboCat 构建了机械臂自主试错与闭环自我提升学习框架"
+    },
+    {
+      "source": "rt2_2023",
+      "target": "autort_2024",
+      "relation": "foundation_for",
+      "description": "AutoRT 引入大语言模型统领机械臂机群在建筑内自主工作与安全采集"
+    },
+    {
+      "source": "gato_2022",
+      "target": "sima_2024",
+      "relation": "foundation_for",
+      "description": "SIMA 将通用具身智能体扩展至 3D 虚拟游戏世界并听从人类指令"
+    },
+    {
+      "source": "robocat_2023",
+      "target": "table_tennis_2024",
+      "relation": "foundation_for",
+      "description": "敏捷自适应控制算法赋能乒乓球机器人在真实竞技对决中击败人类选手"
+    },
+    {
+      "source": "autort_2024",
+      "target": "roboballet_2025",
+      "relation": "foundation_for",
+      "description": "机群编排向多臂紧凑密集防碰撞运动规划（RoboBallet）延伸"
+    },
+    {
+      "source": "alphafold1_2018",
+      "target": "alphafold2_2020",
+      "relation": "extends",
+      "description": "AlphaFold 2 彻底重构为端到端 Evoformer 与 3D 几何结构模块，解决折叠难题"
+    },
+    {
+      "source": "alphafold2_2020",
+      "target": "alphamissense_2023",
+      "relation": "extends",
+      "description": "AlphaMissense 将 AlphaFold 结构预测能力应用于全人类错义突变致病性预测"
+    },
+    {
+      "source": "alphafold2_2020",
+      "target": "graphcast_2023",
+      "relation": "foundation_for",
+      "description": "图神经网络在物理几何空间模拟的成功经验迁移至全球中期气象预报"
+    },
+    {
+      "source": "alphafold2_2020",
+      "target": "alphafold_3_2024",
+      "relation": "extends",
+      "description": "AlphaFold 3 引入扩散模型，扩展至全生命分子复合物结构预测"
+    },
+    {
+      "source": "alphamissense_2023",
+      "target": "txgemma_2025",
+      "relation": "foundation_for",
+      "description": "突变致病数据与基础模型融合，打造面向新药研发的 TxGemma 智能体"
+    },
+    {
+      "source": "alphazero_2017",
+      "target": "alphageometry_2024",
+      "relation": "cites",
+      "description": "AlphaGeometry 汲取自生成合成数据理念，实现无需人类示范的 IMO 几何推理"
+    },
+    {
+      "source": "alphageometry_2024",
+      "target": "alphaproof_2024",
+      "relation": "extends",
+      "description": "AlphaProof 将神经符号推演扩展至 Lean 形式化语言并夺得 IMO 银牌"
+    },
+    {
+      "source": "gemini_1_5_2024",
+      "target": "thought_partners_2026",
+      "relation": "foundation_for",
+      "description": "大模型超强上下文理解驱动人机协作从被动应答走向主动思维伙伴"
+    }
+  ]
+}

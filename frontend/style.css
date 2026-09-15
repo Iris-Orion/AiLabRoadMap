@@ -1810,40 +1810,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
   }
 }
 
-@media (max-width: 768px) {
-  .app-header {
-    height: auto;
-    padding: 12px 16px;
-    flex-wrap: wrap;
-  }
-
-  .brand-subtitle {
-    display: none;
-  }
-
-  .app-controlbar {
-    padding: 8px 16px;
-  }
-
-  .search-input-wrapper {
-    width: 200px;
-  }
-
-  .workbench-window {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-  }
-
-  .lineage-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .floating-legend {
-    display: none; /* Auto collapse on small mobile */
-  }
-}
-
 /* ==========================================================================
    View Switcher & Publications Library Explorer Styles
    ========================================================================== */
@@ -3029,20 +2995,703 @@ input[type="range"]::-webkit-slider-thumb:hover {
   color: var(--text-secondary);
 }
 
-@media (max-width: 768px) {
-  .hub-scroll-wrap {
-    padding: 20px 16px 60px;
+/* --------------------------------------------------------------------------
+   Workbench Bottom Close Action (Universal Base Style)
+   -------------------------------------------------------------------------- */
+.workbench-bottom-actions {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-workbench-close-bottom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 480px;
+  padding: 12px 24px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-workbench-close-bottom:hover,
+.btn-workbench-close-bottom:active {
+  background: var(--brand-indigo);
+  color: #ffffff;
+  border-color: var(--brand-indigo);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+/* ==========================================================================
+   Comprehensive Responsive Architecture (Tablets & Mobile Handsets)
+   ========================================================================== */
+
+/* Medium Screens & Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .header-metrics {
+    display: none !important;
   }
-  .hub-hero {
-    padding: 24px 20px;
+
+  .workbench-window {
+    width: 96vw;
+    height: 94vh;
+    max-width: 96vw;
+    max-height: 94vh;
   }
-  .hub-hero-title {
-    font-size: 1.8rem;
+
+  .hub-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
   }
+
   .hub-labs-grid {
-    grid-template-columns: 1fr;
-  }
-  .lab-card-actions {
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 }
+
+/* Mobile Handsets (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Global viewport & body reset */
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .app-layout {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* Compact 2-Tier Header Layout */
+  .app-header {
+    height: auto;
+    min-height: 52px;
+    padding: 8px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px 6px;
+  }
+
+  .header-brand {
+    order: 1;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .brand-logo svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .badge-status {
+    padding: 2px 6px;
+    font-size: 0.68rem;
+  }
+
+  .brand-subtitle {
+    display: none !important;
+  }
+
+  .header-actions {
+    order: 2;
+    margin-left: auto;
+    gap: 4px;
+  }
+
+  /* Hide verbose text labels in header action buttons on mobile, keep clean icon buttons */
+  #btn-docs-label,
+  #btn-fit-label,
+  #layout-direction-label,
+  #theme-label {
+    display: none !important;
+  }
+
+  .icon-btn {
+    padding: 6px 8px;
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+
+  .lang-btn {
+    padding: 6px 8px;
+    min-width: 38px;
+  }
+
+  /* Tier 2: Full-Width 3-Tab Segmented Nav Switcher */
+  .view-switch-nav {
+    order: 3;
+    width: 100%;
+    display: flex;
+    gap: 3px;
+    padding: 3px;
+    margin-top: 2px;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface-elevated);
+  }
+
+  .view-tab-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    padding: 6px 4px;
+    font-size: 0.74rem;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: var(--radius-sm);
+  }
+
+  .view-tab-btn svg {
+    width: 13px;
+    height: 13px;
+    margin-right: 2px;
+  }
+
+  .tab-badge {
+    padding: 0 4px;
+    font-size: 0.65rem;
+    margin-left: 2px;
+  }
+
+  /* Multi-Lab Hub View (Overview Page) */
+  .hub-scroll-wrap {
+    padding: 14px 12px 60px;
+  }
+
+  .hub-container {
+    max-width: 100%;
+  }
+
+  .hub-hero {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+  }
+
+  .hub-hero-badge {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .hub-hero-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .hub-hero-subtitle {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  .hub-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .hub-hero-stat-card {
+    padding: 10px 8px;
+  }
+
+  .hub-hero-stat-num {
+    font-size: 1.35rem;
+  }
+
+  .hub-hero-stat-desc {
+    font-size: 0.68rem;
+  }
+
+  .hub-labs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .lab-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .lab-card-content {
+    padding: 16px 14px;
+  }
+
+  .lab-card-title {
+    font-size: 1.2rem;
+  }
+
+  .lab-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .lab-action-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .hub-features-section {
+    padding: 24px 14px;
+  }
+
+  .hub-features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* DAG Topology Controls & Graph Canvas */
+  .app-controlbar {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .control-group {
+    width: 100%;
+  }
+
+  .search-group {
+    width: 100%;
+  }
+
+  .search-input-wrapper {
+    width: 100%;
+  }
+
+  /* 16px font prevents iOS Safari auto-zoom on input focus */
+  #input-search,
+  #lib-search-input {
+    font-size: 16px !important;
+  }
+
+  .topic-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .group-label {
+    font-size: 0.72rem;
+  }
+
+  /* Horizontally swipeable topic chips for touch screens */
+  .topic-chips {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding: 2px 0 6px;
+    width: 100%;
+  }
+
+  .topic-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 4px 10px;
+    font-size: 0.76rem;
+  }
+
+  .timeline-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .timeline-meta {
+    font-size: 0.75rem;
+  }
+
+  .slider-wrapper {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .switch-group {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* Hide intrusive floating legend on mobile */
+  .floating-legend {
+    display: none !important;
+  }
+
+  /* Docked bottom tooltip on touch devices */
+  .node-tooltip {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 14px !important;
+    top: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    max-width: calc(100vw - 20px) !important;
+    width: auto !important;
+    pointer-events: auto !important;
+    z-index: 100 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* Publications Library Explorer */
+  .lib-toolbar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .lib-toolbar-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .lib-search-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .lib-status-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .lib-filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .filter-label {
+    font-size: 0.72rem;
+  }
+
+  /* Horizontally swipeable library filter chips */
+  .lib-chips-wrap {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 5px;
+    padding: 2px 0 6px;
+    width: 100%;
+  }
+
+  .lib-chips-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lib-filter-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+  }
+
+  .lib-cards-grid {
+    grid-template-columns: 1fr !important;
+    padding: 10px 12px 60px !important;
+    gap: 12px !important;
+  }
+
+  .lib-card {
+    padding: 12px 14px;
+  }
+
+  .lib-card-actions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .lib-action-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    min-height: 36px;
+  }
+
+  /* Direct Full Expanded Workbench Modal (Mobile 100vw × 100dvh) */
+  .paper-modal-workbench,
+  .paper-drawer {
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+
+  .workbench-window {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  .workbench-header {
+    padding: 10px 14px 8px 14px !important;
+  }
+
+  /* Hide fullscreen toggle button since mobile modal is already 100% full screen */
+  #btn-toggle-fullscreen {
+    display: none !important;
+  }
+
+  .window-close-btn,
+  .drawer-close-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .workbench-title,
+  .drawer-title {
+    font-size: 1.15rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .workbench-authors,
+  .drawer-authors {
+    font-size: 0.76rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Horizontally swipeable direct resource links */
+  .workbench-links-bar,
+  .drawer-links {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+
+  .workbench-links-bar::-webkit-scrollbar,
+  .drawer-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn-direct-link,
+  .wb-link-btn,
+  .drawer-link {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+
+  /* Horizontally swipeable anchor navigation bar */
+  .workbench-anchor-nav {
+    display: flex;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 5px;
+    padding-top: 6px;
+  }
+
+  .workbench-anchor-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .anchor-nav-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 4px 9px;
+    font-size: 0.72rem;
+  }
+
+  /* Scrollable Workbench Body */
+  .workbench-body,
+  .drawer-inner {
+    padding: 12px 12px 60px 12px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .paper-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .metric-card {
+    padding: 8px !important;
+  }
+
+  .metric-num {
+    font-size: 1.25rem !important;
+  }
+
+  .metric-sub {
+    font-size: 0.68rem !important;
+  }
+
+  .deepwiki-tree-box,
+  .repo-tree-box,
+  .code-snippet-box,
+  .wb-code-block,
+  pre {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.74rem !important;
+    padding: 10px 12px !important;
+    max-width: 100% !important;
+    line-height: 1.45 !important;
+  }
+
+  .theory-mapping-table,
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.74rem;
+  }
+
+  .artifacts-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .lineage-columns {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .faq-answer {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Mobile Bottom Close Button in Workbench */
+  .workbench-bottom-actions {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .btn-workbench-close-bottom {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* Modals: Methodology & Lab Preview */
+  .docs-modal-backdrop {
+    padding: 10px !important;
+  }
+
+  .docs-modal-window,
+  .lab-preview-modal-window {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    max-height: 92dvh !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .docs-modal-header {
+    padding: 12px 14px !important;
+  }
+
+  .docs-header-title {
+    font-size: 1.1rem !important;
+  }
+
+  .docs-modal-body {
+    padding: 14px 12px !important;
+    font-size: 0.85rem !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .docs-section {
+    margin-bottom: 20px !important;
+  }
+}
+
+/* Small Phones & Compact Viewports (max-width: 480px) */
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .badge-status span#status-text {
+    display: none;
+  }
+
+  .badge-status {
+    padding: 4px;
+    border-radius: 50%;
+  }
+
+  .view-tab-btn {
+    font-size: 0.7rem;
+    padding: 5px 2px;
+  }
+
+  .hub-hero-title {
+    font-size: 1.35rem;
+  }
+
+  .hub-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .hub-hero-stat-num {
+    font-size: 1.2rem;
+  }
+
+  .workbench-header {
+    padding: 8px 10px 6px 10px !important;
+  }
+
+  .workbench-title,
+  .drawer-title {
+    font-size: 1.05rem !important;
+  }
+
+  .paper-metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+

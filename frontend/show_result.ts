@@ -351,7 +351,8 @@ export const I18N = {
     theory_tag_label: "Mathematical Rigor",
     title_math_foundation: "📌 核心数学理论与优化目标",
     title_key_equations: "⚡ 核心数学公式与形式化定义",
-    title_theory_mapping: "🔄 数学符号 ➔ 源码变量映射对齐表 (Theory-Code Mapping)"
+    title_theory_mapping: "🔄 数学符号 ➔ 源码变量映射对齐表 (Theory-Code Mapping)",
+    btn_bottom_close: "✕ 关闭研读工作台 (返回)"
   },
   en: {
     doc_title: "AiLabRoadMap | Global AI Labs Evolution Graph & Lineage",
@@ -458,7 +459,8 @@ export const I18N = {
     theory_tag_label: "Mathematical Rigor",
     title_math_foundation: "📌 Core Mathematical Principles & Objectives",
     title_key_equations: "⚡ Key Equations & Formal Formulations",
-    title_theory_mapping: "🔄 Theory-Code Alignment Table (Math ➔ Source)"
+    title_theory_mapping: "🔄 Theory-Code Alignment Table (Math ➔ Source)",
+    btn_bottom_close: "✕ Close Workbench (Back)"
   }
 };
 
@@ -703,6 +705,8 @@ const dom = {
   anchorLabelWalkthrough: document.getElementById('anchor-label-walkthrough')!,
   anchorLabelLineage: document.getElementById('anchor-label-lineage')!,
   anchorLabelFaq: document.getElementById('anchor-label-faq')!,
+  btnBottomCloseDrawer: document.getElementById('btn-bottom-close-drawer') as HTMLButtonElement | null,
+  labelBottomClose: document.getElementById('label-bottom-close') as HTMLElement | null,
 
   // Documentation Modal
   modalDocs: document.getElementById('modal-docs') as HTMLElement,
@@ -1110,6 +1114,7 @@ function applyLanguage(lang: 'zh' | 'en') {
   if (dom.titleMathFoundation) dom.titleMathFoundation.textContent = dict.title_math_foundation;
   if (dom.titleKeyEquations) dom.titleKeyEquations.textContent = dict.title_key_equations;
   if (dom.titleTheoryMapping) dom.titleTheoryMapping.textContent = dict.title_theory_mapping;
+  if (dom.labelBottomClose) dom.labelBottomClose.textContent = dict.btn_bottom_close;
 
   // Methodology Modal
   if (dom.docsModalTitle) dom.docsModalTitle.textContent = dict.docs_modal_title;
@@ -3118,6 +3123,9 @@ function bindEvents(cy: Core, data: GraphData) {
   // Close Drawer Button & Backdrop
   dom.btnCloseDrawer.onclick = () => clearSelection();
   dom.drawerBackdrop.onclick = () => clearSelection();
+  if (dom.btnBottomCloseDrawer) {
+    dom.btnBottomCloseDrawer.onclick = () => clearSelection();
+  }
 
   // Copy Code Button
   if (dom.btnCopyCode && dom.codeSnippetContent) {
@@ -3169,6 +3177,27 @@ function bindEvents(cy: Core, data: GraphData) {
         dom.modalLabPreview.style.display = 'none';
       }
     }
+  });
+
+  // Responsive Canvas Resize & Orientation Change Handling
+  let resizeTimer: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      if (state.cy && state.activeView === 'graph') {
+        state.cy.resize();
+        state.cy.fit(undefined, 25);
+      }
+    }, 150);
+  });
+
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      if (state.cy && state.activeView === 'graph') {
+        state.cy.resize();
+        state.cy.fit(undefined, 25);
+      }
+    }, 200);
   });
 
   // Update Header Metric Numbers
